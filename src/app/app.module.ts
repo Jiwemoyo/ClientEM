@@ -3,10 +3,26 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
+import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    UserListComponent,
+    RecipeListComponent,
+    RecipeDetailComponent,
+    RecipeFormComponent,
+    CommentListComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,
