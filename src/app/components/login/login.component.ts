@@ -1,3 +1,4 @@
+// login.component.ts
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -22,7 +23,8 @@ export class LoginComponent {
     this.authService.login(userData).subscribe(
       response => {
         localStorage.setItem('token', response.token);
-        this.router.navigate(['/']);
+        localStorage.setItem('userId', response.userId); // Guardar el userId en localStorage
+        this.router.navigate(['/profile']);
       },
       error => this.errorMessage = error.error.message
     );

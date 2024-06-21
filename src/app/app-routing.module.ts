@@ -8,10 +8,12 @@ import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile',component:UserProfileComponent},
   { path: 'admin/users', component: UserListComponent },
   { path: 'recipes', component: RecipeListComponent },
   { path: 'recipes/:id', component: RecipeDetailComponent },

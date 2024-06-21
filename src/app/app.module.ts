@@ -14,6 +14,7 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     RecipeFormComponent,
     CommentListComponent,
     CommentFormComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

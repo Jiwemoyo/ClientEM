@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Mis Recetas</h2>
+  <div *ngIf="recipes.length === 0">
+    <p>No tienes recetas aún.</p>
+  </div>
+  <div *ngIf="recipes.length > 0">
+    <ul>
+      <li *ngFor="let recipe of recipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <!-- Agrega más detalles si es necesario -->
+      </li>
+    </ul>
+  </div>
+</div>

@@ -19,8 +19,11 @@ export class RecipeService {
     return this.http.get(this.apiUrl);
   }
 
-  getRecipesByUser(userId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/user/${userId}`);
+  getRecipesByUser(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get(`${this.apiUrl}/user`, { headers });
   }
 
   getRecipeById(recipeId: string, token: string): Observable<any> {
