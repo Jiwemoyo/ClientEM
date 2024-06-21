@@ -14,7 +14,7 @@
         </ul>
         <p><strong>Instrucciones:</strong></p>
         <p>{{ recipe.steps }}</p>
-        <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" style="max-width: 200px;">
+        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
       </li>
     </ul>
   </div>
