@@ -1,3 +1,4 @@
+<!-- user-profile.component.html -->
 <div class="container">
   <h2>Mis Recetas</h2>
   <div *ngIf="recipes.length === 0">
@@ -13,8 +14,18 @@
           <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
         </ul>
         <p><strong>Instrucciones:</strong></p>
-        <p>{{ recipe.steps }}</p>
+        <p>{{ recipe.instructions }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+
+        <div *ngIf="recipe.comments">
+          <h4>Comentarios:</h4>
+          <ul>
+            <li *ngFor="let comment of recipe.comments">
+              <p>{{ comment.content }}</p>
+              <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
   </div>
