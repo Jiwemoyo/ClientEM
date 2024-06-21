@@ -12,6 +12,9 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 
+import { FormsModule } from '@angular/forms';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,14 +25,16 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     RecipeDetailComponent,
     RecipeFormComponent,
     CommentListComponent,
-    CommentFormComponent
+    CommentFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
