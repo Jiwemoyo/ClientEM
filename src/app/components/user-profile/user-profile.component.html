@@ -8,7 +8,13 @@
       <li *ngFor="let recipe of recipes">
         <h3>{{ recipe.title }}</h3>
         <p>{{ recipe.description }}</p>
-        <!-- Agrega más detalles si es necesario -->
+        <p><strong>Ingredientes:</strong></p>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+        </ul>
+        <p><strong>Instrucciones:</strong></p>
+        <p>{{ recipe.steps }}</p>
+        <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" style="max-width: 200px;">
       </li>
     </ul>
   </div>
