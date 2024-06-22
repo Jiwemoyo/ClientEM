@@ -19,7 +19,7 @@
 
         <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
 
-        <div *ngIf="recipe.comments">
+        <div *ngIf="recipe.comments.length > 0">
           <h4>Comentarios:</h4>
           <ul>
             <li *ngFor="let comment of recipe.comments">
@@ -30,13 +30,13 @@
         </div>
 
         <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
-        <button (click)="updateRecipe(recipe._id)">Actualizar</button>
+        <button (click)="editRecipe(recipe)">Editar</button>
       </li>
     </ul>
   </div>
 
-  <h2>Crear Nueva Receta</h2>
-  <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+  <h2>{{ isEditing ? 'Actualizar Receta' : 'Crear Nueva Receta' }}</h2>
+  <form [formGroup]="recipeForm" (ngSubmit)="isEditing ? updateRecipe() : createRecipe()">
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
 
@@ -52,6 +52,6 @@
     <label for="image">Imagen</label>
     <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
 
-    <button type="submit">Crear</button>
+    <button type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
   </form>
 </div>
