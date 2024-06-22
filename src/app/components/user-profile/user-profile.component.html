@@ -53,5 +53,6 @@
     <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
 
     <button type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
   </form>
 </div>

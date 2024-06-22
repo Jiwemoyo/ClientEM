@@ -41,8 +41,8 @@ export class UserProfileComponent implements OnInit {
         this.recipes = recipes.map((recipe: { likes: string | any[]; comments: any; }) => {
           return {
             ...recipe,
-            likesCount: recipe.likes.length,  // Contar likes
-            comments: recipe.comments         // Asegurar comentarios
+            likesCount: recipe.likes.length,
+            comments: recipe.comments
           };
         });
       },
@@ -102,10 +102,16 @@ export class UserProfileComponent implements OnInit {
           this.isEditing = false;
           this.currentRecipeId = null;
           this.recipeForm.reset();
+          this.reloadPage();
         },
         error => console.error(error)
       );
     }
+  }
+  cancelEdit(): void {
+    this.isEditing = false;
+    this.currentRecipeId = null;
+    this.recipeForm.reset();
   }
 
   deleteRecipe(id: string): void {
@@ -124,5 +130,9 @@ export class UserProfileComponent implements OnInit {
         image: file
       });
     }
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 }
