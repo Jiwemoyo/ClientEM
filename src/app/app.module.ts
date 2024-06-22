@@ -12,7 +12,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
@@ -32,7 +32,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(),

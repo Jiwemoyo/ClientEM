@@ -1,4 +1,4 @@
-<!-- user-profile.component.html -->
+<!-- src/app/components/user-profile/user-profile.component.html -->
 <div class="container">
   <h2>Mis Recetas</h2>
   <div *ngIf="recipes.length === 0">
@@ -13,10 +13,12 @@
         <ul>
           <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
         </ul>
-        <p><strong>Instrucciones:</strong></p>
-        <p>{{ recipe.instructions }}</p>
+        <p><strong>Pasos:</strong></p>
+        <p>{{ recipe.steps }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+
         <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
+
         <div *ngIf="recipe.comments">
           <h4>Comentarios:</h4>
           <ul>
@@ -26,7 +28,30 @@
             </li>
           </ul>
         </div>
+
+        <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
+        <button (click)="updateRecipe(recipe._id)">Actualizar</button>
       </li>
     </ul>
   </div>
+
+  <h2>Crear Nueva Receta</h2>
+  <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+    <label for="title">Título</label>
+    <input id="title" formControlName="title" type="text" />
+
+    <label for="description">Descripción</label>
+    <input id="description" formControlName="description" type="text" />
+
+    <label for="ingredients">Ingredientes</label>
+    <textarea id="ingredients" formControlName="ingredients"></textarea>
+
+    <label for="steps">Pasos</label>
+    <textarea id="steps" formControlName="steps"></textarea>
+
+    <label for="image">Imagen</label>
+    <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
+
+    <button type="submit">Crear</button>
+  </form>
 </div>
