@@ -16,7 +16,7 @@
         <p><strong>Instrucciones:</strong></p>
         <p>{{ recipe.instructions }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-
+        <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
         <div *ngIf="recipe.comments">
           <h4>Comentarios:</h4>
           <ul>
