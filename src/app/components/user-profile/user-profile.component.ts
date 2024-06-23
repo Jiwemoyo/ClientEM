@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   recipeForm: FormGroup;
   token: string | null;
   isEditing: boolean = false;
+  isCreating: boolean = false;
   currentRecipeId: string | null = null;
 
   constructor(
@@ -64,6 +65,7 @@ export class UserProfileComponent implements OnInit {
         recipe => {
           this.recipes.push(recipe);
           this.recipeForm.reset();
+          this.isCreating = false;
         },
         error => console.error(error)
       );
@@ -78,6 +80,7 @@ export class UserProfileComponent implements OnInit {
       steps: recipe.steps
     });
     this.isEditing = true;
+    this.isCreating = false;
     this.currentRecipeId = recipe._id;
   }
 
@@ -102,15 +105,26 @@ export class UserProfileComponent implements OnInit {
           this.isEditing = false;
           this.currentRecipeId = null;
           this.recipeForm.reset();
-          this.reloadPage();
         },
         error => console.error(error)
       );
     }
   }
+
   cancelEdit(): void {
     this.isEditing = false;
     this.currentRecipeId = null;
+    this.recipeForm.reset();
+  }
+
+  startCreating(): void {
+    this.isCreating = true;
+    this.isEditing = false;
+    this.recipeForm.reset();
+  }
+
+  cancelCreate(): void {
+    this.isCreating = false;
     this.recipeForm.reset();
   }
 
@@ -130,9 +144,5 @@ export class UserProfileComponent implements OnInit {
         image: file
       });
     }
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

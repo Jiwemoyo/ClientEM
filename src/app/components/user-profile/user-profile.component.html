@@ -19,7 +19,7 @@
 
         <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
 
-        <div *ngIf="recipe.comments.length > 0">
+        <div *ngIf="recipe.comments">
           <h4>Comentarios:</h4>
           <ul>
             <li *ngFor="let comment of recipe.comments">
@@ -30,13 +30,15 @@
         </div>
 
         <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
-        <button (click)="editRecipe(recipe)">Editar</button>
+        <button (click)="editRecipe(recipe)">Actualizar</button>
       </li>
     </ul>
   </div>
 
-  <h2>{{ isEditing ? 'Actualizar Receta' : 'Crear Nueva Receta' }}</h2>
-  <form [formGroup]="recipeForm" (ngSubmit)="isEditing ? updateRecipe() : createRecipe()">
+  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
+
+  <form *ngIf="isCreating" [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+    <h2>Crear Nueva Receta</h2>
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
 
@@ -52,7 +54,28 @@
     <label for="image">Imagen</label>
     <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
 
-    <button type="submit">{{ isEditing ? 'Actualizar' : 'Crear' }}</button>
+    <button type="submit">Crear</button>
+    <button type="button" (click)="cancelCreate()">Cancelar</button>
+  </form>
+
+  <form *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+    <h2>Actualizar Receta</h2>
+    <label for="title">Título</label>
+    <input id="title" formControlName="title" type="text" />
+
+    <label for="description">Descripción</label>
+    <input id="description" formControlName="description" type="text" />
+
+    <label for="ingredients">Ingredientes</label>
+    <textarea id="ingredients" formControlName="ingredients"></textarea>
+
+    <label for="steps">Pasos</label>
+    <textarea id="steps" formControlName="steps"></textarea>
+
+    <label for="image">Imagen</label>
+    <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
+
+    <button type="submit">Actualizar</button>
     <button type="button" (click)="cancelEdit()">Cancelar</button>
   </form>
 </div>
