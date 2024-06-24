@@ -4,6 +4,7 @@ import { RecipeService } from '../../services/recipe.service';
 import { CommentService } from '../../services/comment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -15,6 +16,7 @@ export class RecipeDetailComponent implements OnInit {
   commentForm: FormGroup;
   editCommentForm: FormGroup;
   editingCommentId: string | null = null;
+  userId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,8 +36,15 @@ export class RecipeDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.recipeService.getRecipeById(id, this.localStorageService.getItem('token')!).subscribe((data: any) => {
+    const token = this.localStorageService.getItem('token');
+
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      this.userId = decodedToken.userId;
+    }
+
+    if (id && token) {
+      this.recipeService.getRecipeById(id, token).subscribe((data: any) => {
         this.recipe = data;
       });
     }

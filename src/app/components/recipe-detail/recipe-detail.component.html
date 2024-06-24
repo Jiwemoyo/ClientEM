@@ -19,8 +19,10 @@
       <li *ngFor="let comment of recipe.comments">
         <p>{{ comment.content }}</p>
         <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
-        <button (click)="onEditComment(comment._id, comment.content)">Editar</button>
-        <button (click)="onDeleteComment(comment._id)">Eliminar</button>
+        <div *ngIf="comment.author && comment.author._id === userId">
+          <button (click)="onEditComment(comment._id, comment.content)">Editar</button>
+          <button (click)="onDeleteComment(comment._id)">Eliminar</button>
+        </div>
       </li>
     </ul>
   </div>
