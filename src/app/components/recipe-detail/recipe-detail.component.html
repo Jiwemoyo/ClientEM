@@ -1,1 +1,25 @@
-<p>recipe-detail works!</p>
+<!-- src/app/components/recipe-detail/recipe-detail.component.html -->
+<div *ngIf="recipe">
+  <h2>{{ recipe.title }}</h2>
+  <p>{{ recipe.description }}</p>
+  <p><strong>Ingredientes:</strong></p>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+  </ul>
+  <p><strong>Pasos:</strong></p>
+  <p>{{ recipe.steps }}</p>
+  <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+  <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
+  <div *ngIf="recipe.comments">
+    <h4>Comentarios:</h4>
+    <ul>
+      <li *ngFor="let comment of recipe.comments">
+        <p>{{ comment.content }}</p>
+        <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
+      </li>
+    </ul>
+  </div>
+</div>
+<div *ngIf="!recipe">
+  <p>Cargando detalles de la receta...</p>
+</div>
