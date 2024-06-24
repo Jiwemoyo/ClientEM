@@ -1,1 +1,18 @@
-<p>recipe-list works!</p>
+<!-- src/app/components/recipe-list/recipe-list.component.html -->
+<div class="container">
+  <h2>Recetas</h2>
+  <div *ngIf="recipes.length === 0">
+    <p>No hay recetas disponibles.</p>
+  </div>
+  <div *ngIf="recipes.length > 0">
+    <ul>
+      <li *ngFor="let recipe of recipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>Autor: {{ recipe.author.username }}</p>
+        <p>Likes: {{ recipe.likesCount }}</p>
+        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+        <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
+      </li>
+    </ul>
+  </div>
+</div>
