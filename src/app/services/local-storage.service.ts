@@ -21,4 +21,8 @@ export class LocalStorageService {
       localStorage.removeItem(key);
     }
   }
+
+  getUsername(): string | null {
+    return this.getItem('username');
+  }
 }

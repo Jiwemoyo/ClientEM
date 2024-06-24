@@ -1,5 +1,3 @@
-<!-- recipe-detail.component.html -->
-
 <div *ngIf="recipe">
   <h2>{{ recipe.title }}</h2>
   <p>{{ recipe.description }}</p>
@@ -12,6 +10,7 @@
   <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
   <p><strong>Autor:</strong> {{ recipe.author?.username }}</p>
   <p><strong>Likes:</strong> {{ recipe.likes.length }}</p>
+
   <div *ngIf="recipe.comments && recipe.comments.length > 0">
     <h4>Comentarios:</h4>
     <ul>
@@ -24,6 +23,12 @@
   <div *ngIf="!recipe.comments || recipe.comments.length === 0">
     <p>No hay comentarios.</p>
   </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
+    <label for="content">Agregar un comentario:</label>
+    <textarea id="content" formControlName="content"></textarea>
+    <button type="submit" [disabled]="commentForm.invalid">Comentar</button>
+  </form>
 </div>
 <div *ngIf="!recipe">
   <p>Cargando detalles de la receta...</p>
