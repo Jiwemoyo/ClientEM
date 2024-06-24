@@ -14,7 +14,6 @@ export class CommentService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.apiUrl, commentData, { headers });
   }
-
   getCommentsByRecipe(recipeId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${recipeId}`);
   }

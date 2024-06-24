@@ -45,8 +45,8 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment) => {
-          // Instead of manually updating the comments array, we refresh the page
-          location.reload();
+          this.recipe.comments.push(newComment);
+          this.commentForm.reset();
         },
         (error) => {
           console.error('Error creating comment:', error);
