@@ -13,6 +13,8 @@ import { LocalStorageService } from '../../services/local-storage.service';
 export class RecipeDetailComponent implements OnInit {
   recipe: any;
   commentForm: FormGroup;
+  editCommentForm: FormGroup;
+  editingCommentId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +24,10 @@ export class RecipeDetailComponent implements OnInit {
     private localStorageService: LocalStorageService
   ) {
     this.commentForm = this.fb.group({
+      content: ['', Validators.required]
+    });
+
+    this.editCommentForm = this.fb.group({
       content: ['', Validators.required]
     });
   }
@@ -45,13 +51,52 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment) => {
-          this.recipe.comments.push(newComment);
-          this.commentForm.reset();
+          location.reload();
         },
         (error) => {
           console.error('Error creating comment:', error);
         }
       );
     }
+  }
+
+  onEditComment(commentId: string, currentContent: string): void {
+    this.editingCommentId = commentId;
+    this.editCommentForm.patchValue({ content: currentContent });
+  }
+
+  onSubmitEditComment(): void {
+    if (this.editCommentForm.valid && this.editingCommentId) {
+      const token = this.localStorageService.getItem('token');
+      const commentData = {
+        content: this.editCommentForm.get('content')?.value
+      };
+
+      this.commentService.updateComment(this.editingCommentId, commentData, token!).subscribe(
+        () => {
+          location.reload();
+        },
+        (error) => {
+          console.error('Error updating comment:', error);
+        }
+      );
+    }
+  }
+
+  onDeleteComment(commentId: string): void {
+    const token = this.localStorageService.getItem('token');
+    this.commentService.deleteComment(commentId, token!).subscribe(
+      () => {
+        location.reload();
+      },
+      (error) => {
+        console.error('Error deleting comment:', error);
+      }
+    );
+  }
+
+  onCancelEdit(): void {
+    this.editingCommentId = null;
+    this.editCommentForm.reset();
   }
 }

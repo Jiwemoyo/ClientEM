@@ -1,5 +1,7 @@
-<div *ngIf="recipe">
+<!-- src/app/components/recipe-detail/recipe-detail.component.html -->
+<div class="container">
   <h2>{{ recipe.title }}</h2>
+  <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
   <p>{{ recipe.description }}</p>
   <p><strong>Ingredientes:</strong></p>
   <ul>
@@ -7,29 +9,36 @@
   </ul>
   <p><strong>Pasos:</strong></p>
   <p>{{ recipe.steps }}</p>
-  <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+
   <p><strong>Autor:</strong> {{ recipe.author?.username }}</p>
   <p><strong>Likes:</strong> {{ recipe.likes.length }}</p>
 
-  <div *ngIf="recipe.comments && recipe.comments.length > 0">
+  <div *ngIf="recipe.comments">
     <h4>Comentarios:</h4>
     <ul>
       <li *ngFor="let comment of recipe.comments">
         <p>{{ comment.content }}</p>
         <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
+        <button (click)="onEditComment(comment._id, comment.content)">Editar</button>
+        <button (click)="onDeleteComment(comment._id)">Eliminar</button>
       </li>
     </ul>
   </div>
-  <div *ngIf="!recipe.comments || recipe.comments.length === 0">
-    <p>No hay comentarios.</p>
+
+  <div *ngIf="editingCommentId">
+    <h4>Editar Comentario</h4>
+    <form [formGroup]="editCommentForm" (ngSubmit)="onSubmitEditComment()">
+      <label for="editContent">Comentario</label>
+      <textarea id="editContent" formControlName="content"></textarea>
+      <button type="submit">Guardar</button>
+      <button type="button" (click)="onCancelEdit()">Cancelar</button>
+    </form>
   </div>
 
+  <h4>Añadir Comentario</h4>
   <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
-    <label for="content">Agregar un comentario:</label>
+    <label for="content">Comentario</label>
     <textarea id="content" formControlName="content"></textarea>
-    <button type="submit" [disabled]="commentForm.invalid">Comentar</button>
+    <button type="submit">Añadir</button>
   </form>
-</div>
-<div *ngIf="!recipe">
-  <p>Cargando detalles de la receta...</p>
 </div>
