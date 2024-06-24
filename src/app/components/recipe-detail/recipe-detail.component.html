@@ -1,4 +1,5 @@
-<!-- src/app/components/recipe-detail/recipe-detail.component.html -->
+<!-- recipe-detail.component.html -->
+
 <div *ngIf="recipe">
   <h2>{{ recipe.title }}</h2>
   <p>{{ recipe.description }}</p>
@@ -9,8 +10,9 @@
   <p><strong>Pasos:</strong></p>
   <p>{{ recipe.steps }}</p>
   <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-  <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
-  <div *ngIf="recipe.comments">
+  <p><strong>Autor:</strong> {{ recipe.author?.username }}</p>
+  <p><strong>Likes:</strong> {{ recipe.likes.length }}</p>
+  <div *ngIf="recipe.comments && recipe.comments.length > 0">
     <h4>Comentarios:</h4>
     <ul>
       <li *ngFor="let comment of recipe.comments">
@@ -18,6 +20,9 @@
         <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
       </li>
     </ul>
+  </div>
+  <div *ngIf="!recipe.comments || recipe.comments.length === 0">
+    <p>No hay comentarios.</p>
   </div>
 </div>
 <div *ngIf="!recipe">
