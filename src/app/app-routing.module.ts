@@ -9,11 +9,13 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile',component:UserProfileComponent},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'admin/users', component: UserListComponent },
   { path: 'recipes', component: RecipeListComponent },
   { path: 'recipes/:id', component: RecipeDetailComponent },
