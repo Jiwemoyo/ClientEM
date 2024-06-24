@@ -1,6 +1,7 @@
 <!-- src/app/components/user-profile/user-profile.component.html -->
 <div class="container">
   <h2>Mis Recetas</h2>
+  <button (click)="logout()">Cerrar Sesión</button>
   <div *ngIf="recipes.length === 0">
     <p>No tienes recetas aún.</p>
   </div>

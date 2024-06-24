@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 
@@ -19,7 +20,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private localStorageService: LocalStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.recipeForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -144,5 +146,10 @@ export class UserProfileComponent implements OnInit {
         image: file
       });
     }
+  }
+
+  logout(): void {
+    this.localStorageService.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }
