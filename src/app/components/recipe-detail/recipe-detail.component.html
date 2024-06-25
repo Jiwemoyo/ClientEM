@@ -9,7 +9,14 @@
   <p>{{ recipe.steps }}</p>
   <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
 
-  <p><strong>Likes:</strong> {{ recipe.likesCount || 0 }}</p> <!-- Asegurarse que likesCount sea numérico -->
+  <h3>Likes: {{ likesCount }}</h3> <!-- Mostrar el número de likes -->
+
+  <!-- <ul>
+    <li *ngFor="let like of likes">
+      <p>{{ like.user?.username }} dio like</p>
+    </li>
+  </ul> -->
+
   <button *ngIf="!userHasLiked" (click)="likeRecipe()">Like</button>
   <button *ngIf="userHasLiked" (click)="unlikeRecipe()">Unlike</button>
 

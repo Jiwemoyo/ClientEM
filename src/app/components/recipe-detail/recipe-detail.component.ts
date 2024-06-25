@@ -13,12 +13,14 @@ import { jwtDecode } from 'jwt-decode';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe: any = {}; // Inicializar recipe como un objeto vacío
+  recipe: any = {};
   commentForm: FormGroup;
   editCommentForm: FormGroup;
   editingCommentId: string | null = null;
   userId: string | null = null;
   userHasLiked: boolean = false;
+  likes: any[] = [];
+  likesCount: number = 0; // Variable para almacenar el número de likes
 
   constructor(
     private route: ActivatedRoute,
@@ -49,9 +51,17 @@ export class RecipeDetailComponent implements OnInit {
     if (id && token) {
       this.recipeService.getRecipeById(id, token).subscribe((data: any) => {
         this.recipe = data;
+        this.getLikes();
         this.checkUserLike();
+        this.getLikesCount(); // Obtener el número inicial de likes
       });
     }
+  }
+
+  getLikes(): void {
+    this.likeService.getLikesByRecipe(this.recipe._id).subscribe((data: any) => {
+      this.likes = data;
+    });
   }
 
   checkUserLike(): void {
@@ -67,11 +77,9 @@ export class RecipeDetailComponent implements OnInit {
     if (token) {
       this.likeService.likeRecipe(this.recipe._id, token).subscribe(() => {
         this.userHasLiked = true;
-        if (this.recipe.likesCount !== undefined && this.recipe.likesCount !== null) {
-          this.recipe.likesCount += 1; // Incrementar el contador de likes
-        } else {
-          this.recipe.likesCount = 1; // Inicializar el contador de likes si es undefined o null
-        }
+        this.recipe.likesCount += 1; // Incrementar el conteo localmente
+        this.getLikes(); // Actualizar lista de likes después de dar like
+        this.getLikesCount(); // Actualizar número de likes después de dar like
       });
     }
   }
@@ -81,13 +89,17 @@ export class RecipeDetailComponent implements OnInit {
     if (token) {
       this.likeService.unlikeRecipe(this.recipe._id, token).subscribe(() => {
         this.userHasLiked = false;
-        if (this.recipe.likesCount !== undefined && this.recipe.likesCount !== null) {
-          this.recipe.likesCount -= 1; // Decrementar el contador de likes
-        } else {
-          this.recipe.likesCount = 0; // Inicializar el contador de likes si es undefined o null
-        }
+        this.recipe.likesCount -= 1; // Decrementar el conteo localmente
+        this.getLikes(); // Actualizar lista de likes después de quitar like
+        this.getLikesCount(); // Actualizar número de likes después de quitar like
       });
     }
+  }
+
+  getLikesCount(): void {
+    this.likeService.getLikesCountByRecipe(this.recipe._id).subscribe((data: any) => {
+      this.likesCount = data.count;
+    });
   }
 
   onSubmitComment(): void {
