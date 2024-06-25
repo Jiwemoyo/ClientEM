@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/users', component: UserListComponent },
   { path: 'recipes', component: RecipeListComponent },
-  { path: 'recipe/:id', component: RecipeDetailComponent },
+  { path: 'recipe/:id', component: RecipeDetailComponent, canActivate: [AuthGuard] },
   { path: 'create-recipe', component: RecipeFormComponent },
   { path: 'comments/:recipeId', component: CommentListComponent },
   { path: 'create-comment', component: CommentFormComponent },

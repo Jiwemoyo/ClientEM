@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     if (token) {
       return true;
     } else {
-      alert('Debes loguearte o registrarte para ver tu perfil.');
+      alert('Debes loguearte o registrarte para interactuar con la pagina');
       this.router.navigate(['/login']);
       return false;
     }
