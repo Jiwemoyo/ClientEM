@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailComponent, canActivate: [AuthGuard] },
   { path: 'create-recipe', component: RecipeFormComponent },
   { path: 'comments/:recipeId', component: CommentListComponent },
-  { path: 'user-profile-view/:userId', component: UserProfileViewComponent },
+  { path: 'user-profile-view/:userId', component: UserProfileViewComponent, canActivate: [AuthGuard] },
   { path: 'create-comment', component: CommentFormComponent },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' }
 ];
