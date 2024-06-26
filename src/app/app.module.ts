@@ -15,6 +15,7 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserProfileViewComponent } from './components/user-profile-view/user-profile-view.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     CommentListComponent,
     CommentFormComponent,
     UserProfileComponent,
+    UserProfileViewComponent,
   ],
   imports: [
     BrowserModule,

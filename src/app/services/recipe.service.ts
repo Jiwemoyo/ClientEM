@@ -1,3 +1,5 @@
+// recipe.service.ts
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -24,6 +26,10 @@ export class RecipeService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.http.get(`${this.apiUrl}/user`, { headers });
+  }
+
+  getRecipesByUserId(userId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${userId}`);
   }
 
   getRecipeById(recipeId: string, token: string): Observable<any> {

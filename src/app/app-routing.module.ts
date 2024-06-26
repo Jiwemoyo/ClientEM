@@ -9,6 +9,7 @@ import { RecipeFormComponent } from './components/recipe-form/recipe-form.compon
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserProfileViewComponent } from './components/user-profile-view/user-profile-view.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailComponent, canActivate: [AuthGuard] },
   { path: 'create-recipe', component: RecipeFormComponent },
   { path: 'comments/:recipeId', component: CommentListComponent },
+  { path: 'user-profile-view/:userId', component: UserProfileViewComponent },
   { path: 'create-comment', component: CommentFormComponent },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' }
 ];

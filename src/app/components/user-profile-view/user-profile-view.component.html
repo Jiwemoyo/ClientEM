@@ -1,0 +1,34 @@
+<!-- user-profile-view.component.html -->
+
+<div class="container">
+  <h2>Perfil de {{ username }}</h2>
+  <h3>Recetas de {{ username }}</h3>
+  <div *ngIf="recipes.length === 0">
+    <p>Este usuario no tiene recetas aún.</p>
+  </div>
+  <div *ngIf="recipes.length > 0">
+    <ul>
+      <li *ngFor="let recipe of recipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <p><strong>Ingredientes:</strong></p>
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+        </ul>
+        <p><strong>Pasos:</strong></p>
+        <p>{{ recipe.steps }}</p>
+        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+        <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
+        <div *ngIf="recipe.comments">
+          <h4>Comentarios:</h4>
+          <ul>
+            <li *ngFor="let comment of recipe.comments">
+              <p>{{ comment.content }}</p>
+              <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

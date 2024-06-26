@@ -8,7 +8,9 @@
     <ul>
       <li *ngFor="let recipe of recipes">
         <h3>{{ recipe.title }}</h3>
-        <p>Autor: {{ recipe.author.username }}</p>
+        <p>Autor:
+          <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
+        </p>
         <p>Likes: {{ recipe.likesCount }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
         <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
