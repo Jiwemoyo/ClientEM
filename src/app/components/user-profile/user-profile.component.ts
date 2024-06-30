@@ -1,3 +1,5 @@
+// src/app/components/user-profile/user-profile.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -146,6 +148,10 @@ export class UserProfileComponent implements OnInit {
         image: file
       });
     }
+  }
+
+  viewRecipe(recipeId: string): void {
+    this.router.navigate(['/recipe', recipeId]);
   }
 
   logout(): void {

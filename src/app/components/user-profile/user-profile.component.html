@@ -9,29 +9,13 @@
     <ul>
       <li *ngFor="let recipe of recipes">
         <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.description }}</p>
-        <p><strong>Ingredientes:</strong></p>
-        <ul>
-          <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
-        </ul>
-        <p><strong>Pasos:</strong></p>
-        <p>{{ recipe.steps }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
 
         <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
 
-        <div *ngIf="recipe.comments">
-          <h4>Comentarios:</h4>
-          <ul>
-            <li *ngFor="let comment of recipe.comments">
-              <p>{{ comment.content }}</p>
-              <small>Por: {{ comment.author?.username }} - {{ comment.createdAt | date }}</small>
-            </li>
-          </ul>
-        </div>
-
-        <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
+        <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
         <button (click)="editRecipe(recipe)">Actualizar</button>
+        <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
       </li>
     </ul>
   </div>
@@ -66,7 +50,6 @@
 
     <label for="description">Descripción</label>
     <input id="description" formControlName="description" type="text" />
-
     <label for="ingredients">Ingredientes</label>
     <textarea id="ingredients" formControlName="ingredients"></textarea>
 
