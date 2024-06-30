@@ -1,7 +1,5 @@
-// user-profile-view.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
@@ -15,18 +13,29 @@ export class UserProfileViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('userId');
     if (userId) {
       this.recipeService.getRecipesByUserId(userId).subscribe((data: any) => {
-        this.recipes = data;
+        this.recipes = data.map((recipe: { likes: string | any[]; comments: any; }) => {
+          return {
+            ...recipe,
+            likesCount: recipe.likes.length,
+            comments: recipe.comments
+          };
+        });
         if (this.recipes.length > 0) {
           this.username = this.recipes[0].author.username;
         }
       });
     }
+  }
+
+  viewRecipe(recipeId: string): void {
+    this.router.navigate(['/recipe', recipeId]);
   }
 }
