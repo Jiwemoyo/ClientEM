@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,15 +14,21 @@ import { LocalStorageService } from '../../services/local-storage.service';
 })
 export class UserProfileComponent implements OnInit {
   recipes: any[] = [];
+  restaurants: any[] = [];
   recipeForm: FormGroup;
+  restaurantForm: FormGroup;
   token: string | null;
   isEditing: boolean = false;
   isCreating: boolean = false;
+  isEditingRestaurant: boolean = false;
+  isCreatingRestaurant: boolean = false;
   currentRecipeId: string | null = null;
+  currentRestaurantId: string | null = null;
 
   constructor(
     private recipeService: RecipeService,
     private localStorageService: LocalStorageService,
+    private restaurantService: RestaurantService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {
@@ -33,11 +40,17 @@ export class UserProfileComponent implements OnInit {
       image: [null]
     });
 
+    this.restaurantForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      locationUrl: ['', Validators.required]
+    });
+
     this.token = this.localStorageService.getItem('token');
   }
 
   ngOnInit(): void {
     this.loadUserRecipes();
+    this.loadUserRestaurants();
   }
 
   loadUserRecipes(): void {
@@ -149,6 +162,99 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
+  loadUserRestaurants(): void {
+    if (this.token) {
+      this.restaurantService.getRestaurantsByUser(this.token).subscribe(
+        restaurants => {
+          this.restaurants = restaurants;
+        },
+        error => console.error(error)
+      );
+    }
+  }
+
+  createRestaurant(): void {
+    if (!this.token) return;
+
+    const formData = this.restaurantForm.value;
+
+    this.restaurantService.createRestaurant(formData, this.token).subscribe(
+      restaurant => {
+        this.restaurants.push(restaurant);
+        this.restaurantForm.reset();
+        this.isCreatingRestaurant = false;
+      },
+      error => console.error(error)
+    );
+  }
+
+  editRestaurant(restaurant: any): void {
+    this.restaurantForm.patchValue({
+      name: restaurant.name,
+      locationUrl: restaurant.locationUrl
+    });
+    this.isEditingRestaurant = true;
+    this.isCreatingRestaurant = false;
+    this.currentRestaurantId = restaurant._id;
+  }
+
+  updateRestaurant(): void {
+    if (!this.token || !this.currentRestaurantId) return;
+
+    const formData = this.restaurantForm.value;
+
+    this.restaurantService.updateRestaurant(this.currentRestaurantId, formData, this.token).subscribe(
+      updatedRestaurant => {
+        const index = this.restaurants.findIndex(r => r._id === this.currentRestaurantId);
+        if (index !== -1) {
+          this.restaurants[index] = updatedRestaurant;
+        }
+        this.restaurantForm.reset();
+        this.isEditingRestaurant = false;
+        this.currentRestaurantId = null;
+      },
+      error => console.error(error)
+    );
+  }
+
+  deleteRestaurant(id: string): void {
+    if (!this.token) return;
+
+    this.restaurantService.deleteRestaurant(id, this.token).subscribe(
+      () => {
+        this.restaurants = this.restaurants.filter(r => r._id !== id);
+      },
+      error => console.error(error)
+    );
+  }
+
+  startCreatingRestaurant(): void {
+    this.isCreatingRestaurant = true;
+    this.isEditingRestaurant = false;
+    this.restaurantForm.reset();
+  }
+
+  cancelCreateRestaurant(): void {
+    this.isCreatingRestaurant = false;
+    this.restaurantForm.reset();
+  }
+
+  cancelEditRestaurant(): void {
+    this.isEditingRestaurant = false;
+    this.currentRestaurantId = null;
+    this.restaurantForm.reset();
+  }
+// En tu componente
+restaurantCountText(): string {
+  if (this.restaurants.length === 0) {
+    return 'Mi Sucursal';
+  } else if (this.restaurants.length === 1) {
+    return 'Mi Sucursal';
+  } else {
+    return 'Mis Sucursales';
+  }
+}
+
 
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
