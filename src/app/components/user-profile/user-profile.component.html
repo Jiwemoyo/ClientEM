@@ -71,14 +71,12 @@
   <div *ngIf="restaurants.length > 0">
     <ul>
       <li *ngFor="let restaurant of restaurants">
-        <h3>{{ restaurant.name }}</h3>
-        <a [href]="restaurant.locationUrl" target="_blank">Ver Ubicación</a>
+        <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
         <button (click)="editRestaurant(restaurant)">Actualizar</button>
         <button (click)="deleteRestaurant(restaurant._id)">Eliminar</button>
       </li>
     </ul>
   </div>
-
   <button *ngIf="!isCreatingRestaurant && !isEditingRestaurant" (click)="startCreatingRestaurant()">Crear Nuevo Restaurante</button>
 
   <form *ngIf="isCreatingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="createRestaurant()">
