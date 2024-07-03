@@ -14,4 +14,16 @@
       </li>
     </ul>
   </div>
+
+  <h3>{{ restaurants.length === 1 ? 'Restaurante de ' : 'Restaurantes de ' }}{{ username }}</h3>
+  <div *ngIf="restaurants.length === 0">
+    <p>Este usuario no tiene restaurantes aún.</p>
+  </div>
+  <div *ngIf="restaurants.length > 0">
+    <ul>
+      <li *ngFor="let restaurant of restaurants">
+        <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
+      </li>
+    </ul>
+  </div>
 </div>

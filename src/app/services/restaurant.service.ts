@@ -29,4 +29,8 @@ export class RestaurantService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(`${this.apiUrl}/${id}`, { headers });
   }
+
+  getRestaurantsByUserId(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/${userId}`);
+  }
 }

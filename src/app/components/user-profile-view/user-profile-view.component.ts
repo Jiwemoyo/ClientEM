@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
+import { RestaurantService } from '../../services/restaurant.service'; // Importa el servicio de restaurantes
 
 @Component({
   selector: 'app-user-profile-view',
@@ -9,11 +10,13 @@ import { RecipeService } from '../../services/recipe.service';
 })
 export class UserProfileViewComponent implements OnInit {
   recipes: any[] = [];
+  restaurants: any[] = []; // Nueva variable para los restaurantes
   username: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
+    private restaurantService: RestaurantService, // Inyecta el servicio de restaurantes
     private router: Router
   ) { }
 
@@ -31,6 +34,11 @@ export class UserProfileViewComponent implements OnInit {
         if (this.recipes.length > 0) {
           this.username = this.recipes[0].author.username;
         }
+      });
+
+      // Llama al servicio para obtener los restaurantes del usuario
+      this.restaurantService.getRestaurantsByUserId(userId).subscribe((data: any) => {
+        this.restaurants = data;
       });
     }
   }
