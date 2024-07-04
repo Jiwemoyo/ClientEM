@@ -25,7 +25,7 @@
     <ul>
       <li *ngFor="let comment of recipe.comments">
         <p>{{ comment.content }}</p>
-        <small>Por: <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a> - {{ comment.createdAt | date }}</small>
+        <small>Por: <a [routerLink]="['/user-profile-view', comment.author._id]">{{ comment.author.username }}</a> - {{ comment.createdAt | date }}</small>
         <button *ngIf="comment.author._id === userId" (click)="onEditComment(comment._id, comment.content)">Editar</button>
         <button *ngIf="comment.author._id === userId" (click)="onDeleteComment(comment._id)">Eliminar</button>
       </li>
@@ -36,5 +36,11 @@
     <label for="content">Agregar Comentario</label>
     <input id="content" formControlName="content" type="text" />
     <button type="submit">Comentar</button>
+  </form>
+  <form [formGroup]="editCommentForm" *ngIf="editingCommentId">
+    <label for="editContent">Editar Comentario</label>
+    <input id="editContent" formControlName="content" type="text" />
+    <button type="button" (click)="onSubmitEditComment()">Guardar Cambios</button>
+    <button type="button" (click)="onCancelEdit()">Cancelar</button>
   </form>
 </div>
