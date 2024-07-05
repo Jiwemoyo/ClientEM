@@ -16,6 +16,8 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileViewComponent } from './components/user-profile-view/user-profile-view.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
 
 @NgModule({
   declarations: [

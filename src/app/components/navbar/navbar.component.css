@@ -2,21 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 48px;
-  background-color: #FFF5E7; /* color de fondo similar a la imagen */
+  padding: 20px 64px;
+  background-color: #FFF5E1; /* color de fondo similar a la imagen */
 }
 
 .navbar-brand {
   font-family: 'Pacifico', cursive;
   font-size: 32px;
-  color: #547A80;
+  color: #395B64;
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #547A80;
+  color: #395B64;
 }
 
 .navbar-logo .icon {
@@ -28,9 +28,9 @@
 .navbar-links a {
   margin-left: 20px;
   font-family: 'Pacifico', cursive;
-  font-size: 18px;
+  font-size: 24px;
   text-decoration: none;
-  color: #547A80;
+  color: #395B64;
   position: relative;
 }
 
@@ -39,7 +39,7 @@
   position: absolute;
   width: 0;
   height: 3px; /* Grosor de la línea subrayada */
-  background-color: #547A80;
+  background-color: #395B64;
   bottom: -2px; /* Ajuste vertical de la línea */
   left: 0;
   transition: width 0.3s ease-in-out; /* Animación suave */
