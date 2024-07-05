@@ -11,6 +11,8 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileViewComponent } from './components/user-profile-view/user-profile-view.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'comments/:recipeId', component: CommentListComponent },
   { path: 'user-profile-view/:userId', component: UserProfileViewComponent, canActivate: [AuthGuard] },
   { path: 'create-comment', component: CommentFormComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminGuard] },
+{ path: 'admin/users', component: UserListComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: '', redirectTo: '/recipes', pathMatch: 'full' }
 ];
 

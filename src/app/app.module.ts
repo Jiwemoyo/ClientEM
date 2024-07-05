@@ -32,7 +32,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     CommentFormComponent,
     UserProfileComponent,
     UserProfileViewComponent,
-    NavbarComponent,
   ],
   imports: [
     BrowserModule,
