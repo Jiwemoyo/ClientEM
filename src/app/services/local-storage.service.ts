@@ -4,54 +4,43 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LocalStorageService {
+  private localStorageSupported: boolean | null = null;
+
   constructor() { }
 
-  private isLocalStorageSupported(): boolean {
+  private checkLocalStorageSupport(): boolean {
+    if (this.localStorageSupported !== null) {
+      return this.localStorageSupported;
+    }
+
     try {
       const testKey = '__test__';
       localStorage.setItem(testKey, testKey);
       localStorage.removeItem(testKey);
-      return true;
+      this.localStorageSupported = true;
     } catch (e) {
-      return false;
+      this.localStorageSupported = false;
     }
+
+    return this.localStorageSupported;
   }
 
   getItem(key: string): string | null {
-    if (this.isLocalStorageSupported()) {
-      try {
-        return localStorage.getItem(key);
-      } catch (e) {
-        console.error('Error al obtener item de localStorage:', e);
-        return null;
-      }
-    } else {
-      console.error('localStorage no soportado en este navegador.');
-      return null;
+    if (this.checkLocalStorageSupport()) {
+      return localStorage.getItem(key);
     }
+    return null;
   }
 
   setItem(key: string, value: string): void {
-    if (this.isLocalStorageSupported()) {
-      try {
-        localStorage.setItem(key, value);
-      } catch (e) {
-        console.error('Error al establecer item en localStorage:', e);
-      }
-    } else {
-      console.error('localStorage no soportado en este navegador.');
+    if (this.checkLocalStorageSupport()) {
+      localStorage.setItem(key, value);
     }
   }
 
   removeItem(key: string): void {
-    if (this.isLocalStorageSupported()) {
-      try {
-        localStorage.removeItem(key);
-      } catch (e) {
-        console.error('Error al remover item de localStorage:', e);
-      }
-    } else {
-      console.error('localStorage no soportado en este navegador.');
+    if (this.checkLocalStorageSupport()) {
+      localStorage.removeItem(key);
     }
   }
 

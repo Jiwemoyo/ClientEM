@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-user-list',
@@ -19,14 +20,14 @@ export class UserListComponent implements OnInit {
   alertMessage: string = '';
   showAlert: boolean = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.getAllUsers();
   }
 
   getAllUsers() {
-    const token = localStorage.getItem('token');
+    const token = this.localStorageService.getItem('token');
     if (token) {
       this.userService.getUsers(token).subscribe(
         (data: any[]) => {
@@ -40,10 +41,11 @@ export class UserListComponent implements OnInit {
         error => console.error('Error al obtener usuarios:', error)
       );
     } else {
-      console.error('Token no encontrado en localStorage');
-      // Puedes manejar esta situación según tus requisitos (redirigir a login, mostrar mensaje, etc.)
+      console.error('Token no encontrado');
+      // Manejar la situación (redirigir a login, mostrar mensaje, etc.)
     }
   }
+
 
   searchUsers() {
     this.filteredUsers = this.users.filter(user =>
@@ -67,7 +69,7 @@ export class UserListComponent implements OnInit {
       email: user.editingData.email,
       role: user.editingData.role
     };
-    const token = localStorage.getItem('token');
+    const token = this.localStorageService.getItem('token');
     if (token) {
       this.userService.updateUser(user._id, updatedData, token).subscribe(
         () => {
@@ -80,13 +82,13 @@ export class UserListComponent implements OnInit {
         }
       );
     } else {
-      console.error('Token no encontrado en localStorage');
-      // Puedes manejar esta situación según tus requisitos (redirigir a login, mostrar mensaje, etc.)
+      console.error('Token no encontrado');
+      // Manejar la situación
     }
   }
 
   deleteUser(userId: string) {
-    const token = localStorage.getItem('token');
+    const token = this.localStorageService.getItem('token');
     if (token) {
       this.userService.deleteUser(userId, token).subscribe(
         () => {
@@ -99,13 +101,14 @@ export class UserListComponent implements OnInit {
         }
       );
     } else {
-      console.error('Token no encontrado en localStorage');
-      // Puedes manejar esta situación según tus requisitos (redirigir a login, mostrar mensaje, etc.)
+      console.error('Token no encontrado');
+      // Manejar la situación
     }
   }
 
+
   createUser() {
-    const token = localStorage.getItem('token');
+    const token = this.localStorageService.getItem('token');
     if (token) {
       this.userService.createUser(this.newUser, token).subscribe(
         (createdUser: any) => {
@@ -123,8 +126,8 @@ export class UserListComponent implements OnInit {
         }
       );
     } else {
-      console.error('Token no encontrado en localStorage');
-      // Puedes manejar esta situación según tus requisitos (redirigir a login, mostrar mensaje, etc.)
+      console.error('Token no encontrado');
+      // Manejar la situación
     }
   }
 
