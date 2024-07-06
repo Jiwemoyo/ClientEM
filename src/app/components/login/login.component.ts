@@ -1,4 +1,3 @@
-// login.component.ts
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -22,9 +21,12 @@ export class LoginComponent {
 
     this.authService.login(userData).subscribe(
       response => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userId', response.userId); // Guardar el userId en localStorage
-        this.router.navigate(['/profile']);
+        localStorage.setItem('token', response.token); // Guarda el token en localStorage
+        if (response.role === 'admin') {
+          this.router.navigate(['/admin-dashboard']);
+        } else {
+          this.router.navigate(['/profile']);
+        }
       },
       error => this.errorMessage = error.error.message
     );

@@ -17,6 +17,9 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileViewComponent } from './components/user-profile-view/user-profile-view.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UserProfileComponent,
     UserProfileViewComponent,
     NavbarComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()), // Configurar fetch para HttpClient
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,39 @@
+form {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.checkmark {
+  color: green;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.ok-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
