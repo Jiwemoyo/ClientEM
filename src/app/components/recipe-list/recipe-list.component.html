@@ -1,12 +1,13 @@
 <!-- src/app/components/recipe-list/recipe-list.component.html -->
 <div class="container">
   <h2>Recetas</h2>
-  <div *ngIf="recipes.length === 0">
+  <input type="text" placeholder="Buscar recetas..." (input)="onSearch($event)" class="search-input">
+  <div *ngIf="filteredRecipes.length === 0">
     <p>No hay recetas disponibles.</p>
   </div>
-  <div *ngIf="recipes.length > 0">
+  <div *ngIf="filteredRecipes.length > 0">
     <ul>
-      <li *ngFor="let recipe of recipes">
+      <li *ngFor="let recipe of filteredRecipes">
         <h3>{{ recipe.title }}</h3>
         <p>Autor:
           <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
