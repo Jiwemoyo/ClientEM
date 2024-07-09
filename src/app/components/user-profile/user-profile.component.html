@@ -1,13 +1,14 @@
 <!-- src/app/components/user-profile/user-profile.component.html -->
 <div class="container">
   <h2>Mis Recetas</h2>
+  <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" />
   <button (click)="logout()">Cerrar Sesión</button>
   <div *ngIf="recipes.length === 0">
     <p>No tienes recetas aún.</p>
   </div>
   <div *ngIf="recipes.length > 0">
     <ul>
-      <li *ngFor="let recipe of recipes">
+      <li *ngFor="let recipe of filteredRecipes">
         <h3>{{ recipe.title }}</h3>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
 

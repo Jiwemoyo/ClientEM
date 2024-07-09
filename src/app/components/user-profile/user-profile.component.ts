@@ -1,5 +1,3 @@
-// src/app/components/user-profile/user-profile.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,6 +12,8 @@ import { RestaurantService } from '../../services/restaurant.service';
 })
 export class UserProfileComponent implements OnInit {
   recipes: any[] = [];
+  filteredRecipes: any[] = [];
+  searchTerm: string = '';
   restaurants: any[] = [];
   recipeForm: FormGroup;
   restaurantForm: FormGroup;
@@ -63,8 +63,16 @@ export class UserProfileComponent implements OnInit {
             comments: recipe.comments
           };
         });
+        this.filteredRecipes = this.recipes; // Inicialmente, todas las recetas están en la lista filtrada
       },
       error => console.error(error)
+    );
+  }
+
+  onSearch(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredRecipes = this.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(searchTerm)
     );
   }
 
