@@ -1,12 +1,14 @@
 <div class="container">
   <h2>Perfil de {{ username }}</h2>
+
   <h3>Recetas de {{ username }}</h3>
-  <div *ngIf="recipes.length === 0">
+  <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" />
+  <div *ngIf="filteredRecipes.length === 0">
     <p>Este usuario no tiene recetas aún.</p>
   </div>
-  <div *ngIf="recipes.length > 0">
+  <div *ngIf="filteredRecipes.length > 0">
     <ul>
-      <li *ngFor="let recipe of recipes">
+      <li *ngFor="let recipe of filteredRecipes">
         <h3>{{ recipe.title }}</h3>
         <p>Likes: {{ recipe.likesCount }}</p>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">

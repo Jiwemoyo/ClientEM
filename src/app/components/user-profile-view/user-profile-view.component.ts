@@ -10,6 +10,7 @@ import { RestaurantService } from '../../services/restaurant.service'; // Import
 })
 export class UserProfileViewComponent implements OnInit {
   recipes: any[] = [];
+  filteredRecipes: any[] = []; // Nueva propiedad para las recetas filtradas
   restaurants: any[] = []; // Nueva variable para los restaurantes
   username: string = '';
 
@@ -31,6 +32,7 @@ export class UserProfileViewComponent implements OnInit {
             comments: recipe.comments
           };
         });
+        this.filteredRecipes = this.recipes; // Inicialmente, todas las recetas están en la lista filtrada
         if (this.recipes.length > 0) {
           this.username = this.recipes[0].author.username;
         }
@@ -45,5 +47,12 @@ export class UserProfileViewComponent implements OnInit {
 
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
+  }
+
+  onSearch(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredRecipes = this.recipes.filter(recipe =>
+      recipe.title.toLowerCase().includes(searchTerm)
+    );
   }
 }
