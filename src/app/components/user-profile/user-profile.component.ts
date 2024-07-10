@@ -268,8 +268,8 @@ restaurantCountText(): string {
     this.router.navigate(['/recipe', recipeId]);
   }
 
-  logout(): void {
-    this.localStorageService.removeItem('token');
-    this.router.navigate(['/login']);
-  }
+  // logout(): void {
+  //   this.localStorageService.removeItem('token');
+  //   this.router.navigate(['/login']);
+  // }
 }
