@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isUserLoggedIn() {
-    throw new Error('Method not implemented.');
-  }
   private apiUrl = 'http://localhost:3000/api/auth';
+  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private http: HttpClient) { }
 
@@ -23,17 +22,27 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('userId', response.userId);
         localStorage.setItem('userRole', response.role); // Guardar el rol del usuario
+        this.loggedIn.next(true);
       })
     );
-  }
-
-  getUserRole(): string {
-    return localStorage.getItem('userRole') || '';
   }
 
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
+    this.loggedIn.next(false);
+  }
+
+  getUserRole(): string {
+    return localStorage.getItem('userRole') || '';
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
+
+  private hasToken(): boolean {
+    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
   }
 }

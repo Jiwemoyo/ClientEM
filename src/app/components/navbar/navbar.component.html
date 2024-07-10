@@ -4,7 +4,9 @@
   </div>
   <div class="navbar-links">
     <a routerLink="/recipes" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Recetas</a>
-    <a routerLink="/login" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Login</a>
-    <a routerLink="/register" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Registro</a>
+    <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+    <a *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Perfil</a>
+    <a *ngIf="!isLoggedIn" routerLink="/register" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Registro</a>
+    <a *ngIf="isLoggedIn" (click)="logout()" class="logout">Salir</a>
   </div>
 </nav>

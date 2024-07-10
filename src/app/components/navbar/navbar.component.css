@@ -25,16 +25,19 @@
   height: 32px; /* Ajusta la altura del icono */
 }
 
-.navbar-links a {
+.navbar-links a,
+.navbar-links .logout {
   margin-left: 20px;
   font-family: 'Pacifico', cursive;
   font-size: 24px;
   text-decoration: none;
   color: #395B64;
   position: relative;
+  cursor: pointer; /* Cambia el puntero al hacer hover */
 }
 
-.navbar-links a::after {
+.navbar-links a::after,
+.navbar-links .logout::after {
   content: '';
   position: absolute;
   width: 0;
@@ -46,6 +49,7 @@
 }
 
 .navbar-links a:hover::after,
+.navbar-links .logout:hover::after,
 .navbar-links .active-link::after {
   width: 100%;
 }
