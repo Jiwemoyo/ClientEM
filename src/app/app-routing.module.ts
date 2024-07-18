@@ -14,10 +14,11 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent,canActivate:[AuthenticatedGuard] },
+  { path: 'login', component: LoginComponent,canActivate:[AuthenticatedGuard]},
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'admin/users', component: UserListComponent },
   { path: 'recipes', component: RecipeListComponent },
