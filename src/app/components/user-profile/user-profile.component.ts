@@ -91,6 +91,7 @@ export class UserProfileComponent implements OnInit {
           this.recipes.push(recipe);
           this.recipeForm.reset();
           this.isCreating = false;
+          window.location.reload()
         },
         error => console.error(error)
       );
@@ -156,7 +157,10 @@ export class UserProfileComponent implements OnInit {
   deleteRecipe(id: string): void {
     if (this.token) {
       this.recipeService.deleteRecipe(id, this.token).subscribe(
-        () => this.recipes = this.recipes.filter(recipe => recipe._id !== id),
+        () => {
+          this.recipes = this.recipes.filter(recipe => recipe._id !== id)
+          window.location.reload();
+        },
         error => console.error(error)
       );
     }
