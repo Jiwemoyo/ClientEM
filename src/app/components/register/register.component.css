@@ -1,15 +1,51 @@
-/* register.component.css y login.component.css */
-.container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* register.component.css */
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-h2 {
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: url('../../../assets/collageComida.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+}
+
+.background-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Oscurecer la imagen con un filtro negro semitransparente */
+  z-index: -1; /* Colocar la capa de filtro detrás del contenido */
+}
+
+.container {
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+  text-align: left; /* Alinear el texto a la izquierda */
+  max-width: 500px; /* Ancho máximo del contenedor */
+  width: 100%;
+}
+
+.container h2 {
   text-align: center;
+  color: #FFF5E1;
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
+  font-size: 3.5rem; /* Tamaño de fuente más grande para el título */
+  margin-bottom: 1rem;
 }
 
 form {
@@ -18,33 +54,69 @@ form {
 }
 
 div {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem; /* Espaciado mayor entre los campos */
 }
 
 label {
-  margin-bottom: 5px;
+  color: #FFF5E1;
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para las etiquetas */
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  font-size: 1.2rem; /* Tamaño de fuente más grande para las etiquetas */
 }
 
-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  color: #FFF5E1;
+  width: 100%;
+  padding: 1rem; /* Mayor espacio interno en los inputs */
+  border: 4px solid #FFF5E1;
+  border-radius: 20px;
+  background: transparent;
+  box-sizing: border-box;
+  font-size: 1.2rem; /* Tamaño de fuente más grande para los inputs */
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para los inputs */
 }
 
 button {
-  padding: 10px;
+  padding: 1rem;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
+  border-radius: 10px;
+  background-color: #395B64;
+  color: #FFF5E1;
+  font-size: 1.2rem; /* Tamaño de fuente más grande para el botón */
   cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1.5rem; /* Separar el botón del resto del formulario */
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para el botón */
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #507f8b;
 }
 
 p {
+  color: #FFF5E1;
+  text-align: center;
+  margin-top: 1.5rem; /* Ajustar el margen superior */
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para el párrafo */
+}
+
+a {
+  color: #395B64;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para el enlace */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
   color: red;
   text-align: center;
+  margin-top: 1.5rem;
+  font-family: 'Roboto', sans-serif; /* Fuente Roboto para el mensaje de error */
 }

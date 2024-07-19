@@ -1,9 +1,17 @@
+/* navbar.component.css */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 64px;
-  background-color: #FFF5E1; /* color de fondo similar a la imagen */
+  background-color: #FFF5E1;
+  z-index: 1000;
+  width: 100%; /* Cambia esto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
 }
 
 .navbar-brand {
