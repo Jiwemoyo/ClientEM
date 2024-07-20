@@ -2,7 +2,23 @@
 html, body {
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
   height: 100%;
   width: 100%;
   overflow-x: hidden;
 }
+=======
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif; /* Puedes cambiar esto a la fuente que prefieras */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+>>>>>>> estilos
