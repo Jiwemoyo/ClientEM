@@ -51,6 +51,9 @@ export class RecipeDetailComponent implements OnInit {
     if (id && token) {
       this.recipeService.getRecipeById(id, token).subscribe((data: any) => {
         this.recipe = data;
+        if (typeof this.recipe.ingredients === 'string') {
+          this.recipe.ingredients = this.recipe.ingredients.split(',');
+        }
         this.getLikes();
         this.checkUserLike();
         this.getLikesCount(); // Obtener el número inicial de likes

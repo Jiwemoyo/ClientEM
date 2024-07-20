@@ -1,0 +1,169 @@
+.recipe-container {
+  padding: 20px;
+  background-color: #FFF5E7; /* Fondo claro */
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #547A80;
+  color: #FFF5E7;
+  padding: 20px 48px;
+  padding-bottom: 32px;
+}
+
+.title-description {
+  flex: 1;
+}
+
+.title-description h2 {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  font-size: 3em;
+  font-weight: normal;
+}
+
+.title-description p {
+  margin: 5px 0 0 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+
+.likes-section {
+  display: flex;
+  align-items: center;
+}
+
+.likes-section h3 {
+  margin: 0 10px 0 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  background-color: #FFF5E7;
+  color: #547A80;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.likes-section button {
+  padding: 5px 15px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  background-color: #FFF5E7;
+  color: #547A80;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.likes-section button:hover {
+  background-color: #e6d6b8;
+}
+
+.recipe-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 48px;
+  background-color: #FFF5E7;
+  border-radius: 0 0 10px 10px;
+}
+
+.recipe-image-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.recipe-image {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.ingredients {
+  flex: 1;
+}
+
+.ingredients h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  font-weight: lighter;
+  margin-bottom: 20px; /* Aumenta la separación entre el título y la lista */
+  color: #547A80;
+}
+
+.ingredients ul {
+  padding-left: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  list-style: disc;
+}
+
+.ingredients ul li {
+  margin-bottom: 10px; /* Añade espacio entre los elementos de la lista */
+}
+
+.recipe-steps {
+  padding: 20px 48px;
+  background-color: #FFF5E7;
+  border-radius: 0 0 10px 10px;
+}
+
+.recipe-steps h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px; /* Aumenta la separación entre el título y la lista */
+}
+
+.recipe-steps ol {
+  padding-left: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  list-style-type: decimal;
+}
+
+.recipe-steps ol li {
+  margin-bottom: 15px; /* Aumenta el espacio entre los pasos */
+  padding-left: 10px; /* Añade un poco de padding a la izquierda para alinear mejor con los números */
+}
+
+/* Opcional: si quieres que el último paso no tenga margen inferior */
+.recipe-steps ol li:last-child {
+  margin-bottom: 0;
+}
+
+h4 {
+  margin-top: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #547A80;
+  color: #FFF5E7;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #3a5559;
+}
