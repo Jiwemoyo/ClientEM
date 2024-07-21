@@ -1,0 +1,175 @@
+/* Estilos para el contenedor principal */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+
+/* Estilos para el título */
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5em;
+  color: #395B64;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 30%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: 2px solid #395B64;
+  border-radius: 20px 20px 20px 20px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.search-button {
+  background-color: #395B64;
+  color: #ffe1ef;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  border-radius: 0 20px 20px 0;
+
+}
+
+.search-button:hover {
+  background-color: #1b5e20;
+}
+
+.search-icon {
+  font-size: 1.9em;
+  color: #FFF5E1;
+  font-variant: normal;
+}
+
+/* Estilos para la lista de recetas */
+ul {
+  text-align: left;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+  margin: 40px auto;
+  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+}
+
+/* Estilos para cada receta */
+li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el título de la receta */
+h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+  color: #395B64;
+  margin-bottom: 10px;
+}
+
+/* Estilos para los párrafos */
+p {
+  font-family: 'Arial', sans-serif;
+  font-size: 1em;
+  color: #555;
+  margin: 5px 0;
+}
+/* Estilos para el botón de Ver detalles */
+.details-button {
+  background-color: #395B64; /* Color de fondo para el botón de Ver detalles */
+  color: #FFF5E1;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  margin-left: 40px;
+}
+
+.details-button:hover {
+  background-color: #1b5e20;
+}
+/* Estilos para la imagen de la receta */
+.recipe-image {
+  max-width: 1200;
+  height: 148px;
+  width: 222px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+}
+
+/* Estilos para el botón de la receta */
+button {
+  background-color: #395B64;
+  color: #FFF5E1;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+.button-container {
+  display: flex;
+  align-items: center; /* Alinea verticalmente en el centro si el contenido tiene diferente altura */
+}
+
+.like-button {
+  margin-right: 10px; /* Espacio entre el texto y el botón */
+}
+
+.details-button {
+  font-size: 0.8em; /* Tamaño de fuente más pequeño */
+  padding: 5px 10px; /* Menos espacio interno */
+  border: 1px solid #ccc; /* Opcional: borde más delgado */
+  border-radius: 10px; /* Opcional: bordes redondeados */
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #1b5e20;
+}
+
+/* Estilos para los enlaces */
+a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
