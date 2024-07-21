@@ -20,7 +20,7 @@ export class RecipeDetailComponent implements OnInit {
   userId: string | null = null;
   userHasLiked: boolean = false;
   likes: any[] = [];
-  likesCount: number = 0; // Variable para almacenar el número de likes
+  likesCount: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +56,7 @@ export class RecipeDetailComponent implements OnInit {
         }
         this.getLikes();
         this.checkUserLike();
-        this.getLikesCount(); // Obtener el número inicial de likes
+        this.getLikesCount();
       });
     }
   }
@@ -80,9 +80,9 @@ export class RecipeDetailComponent implements OnInit {
     if (token) {
       this.likeService.likeRecipe(this.recipe._id, token).subscribe(() => {
         this.userHasLiked = true;
-        this.recipe.likesCount += 1; // Incrementar el conteo localmente
-        this.getLikes(); // Actualizar lista de likes después de dar like
-        this.getLikesCount(); // Actualizar número de likes después de dar like
+        this.recipe.likesCount += 1;
+        this.getLikes();
+        this.getLikesCount();
       });
     }
   }
@@ -92,9 +92,9 @@ export class RecipeDetailComponent implements OnInit {
     if (token) {
       this.likeService.unlikeRecipe(this.recipe._id, token).subscribe(() => {
         this.userHasLiked = false;
-        this.recipe.likesCount -= 1; // Decrementar el conteo localmente
-        this.getLikes(); // Actualizar lista de likes después de quitar like
-        this.getLikesCount(); // Actualizar número de likes después de quitar like
+        this.recipe.likesCount -= 1;
+        this.getLikes();
+        this.getLikesCount();
       });
     }
   }
@@ -114,8 +114,10 @@ export class RecipeDetailComponent implements OnInit {
       };
 
       this.commentService.createComment(commentData, token!).subscribe(
-        (newComment) => {
-          location.reload();
+        (newComment: any) => {
+          // Asumiendo que el servidor devuelve el comentario completo, incluyendo el autor
+          this.recipe.comments = [...this.recipe.comments, newComment];
+          this.commentForm.reset();
         },
         (error) => {
           console.error('Error creating comment:', error);
@@ -137,8 +139,15 @@ export class RecipeDetailComponent implements OnInit {
       };
 
       this.commentService.updateComment(this.editingCommentId, commentData, token!).subscribe(
-        () => {
-          location.reload();
+        (updatedComment: any) => {
+          const index = this.recipe.comments.findIndex((c: any) => c._id === this.editingCommentId);
+          if (index !== -1) {
+            // Mantener toda la información del comentario, solo actualizar el contenido
+            this.recipe.comments[index].content = updatedComment.content;
+            this.recipe.comments = [...this.recipe.comments];
+          }
+          this.editingCommentId = null;
+          this.editCommentForm.reset();
         },
         (error) => {
           console.error('Error updating comment:', error);
@@ -151,7 +160,7 @@ export class RecipeDetailComponent implements OnInit {
     const token = this.localStorageService.getItem('token');
     this.commentService.deleteComment(commentId, token!).subscribe(
       () => {
-        location.reload();
+        this.recipe.comments = this.recipe.comments.filter((c: any) => c._id !== commentId);
       },
       (error) => {
         console.error('Error deleting comment:', error);
