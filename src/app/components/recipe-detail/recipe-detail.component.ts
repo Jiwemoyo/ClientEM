@@ -123,8 +123,20 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment: any) => {
-          // Asumiendo que el servidor devuelve el comentario completo, incluyendo el autor
-          this.recipe.comments = [...this.recipe.comments, newComment];
+          // Crear un objeto de comentario completo
+          const fullNewComment = {
+            _id: newComment._id,
+            content: newComment.content,
+            author: {
+              _id: this.userId,
+              username: this.localStorageService.getItem('username') || 'Usuario'
+            },
+            createdAt: newComment.createdAt || new Date().toISOString(),
+            recipe: newComment.recipe
+          };
+
+          // Añadir el nuevo comentario al principio del array
+          this.recipe.comments = [fullNewComment, ...this.recipe.comments];
           this.commentForm.reset();
         },
         (error) => {
