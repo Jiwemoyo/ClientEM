@@ -40,31 +40,48 @@
   align-items: center;
 }
 
-.likes-section h3 {
-  margin: 0 10px 0 0;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2em;
-  background-color: #FFF5E7;
-  color: #547A80;
-  padding: 5px 10px;
-  border-radius: 50%;
-}
-
-.likes-section button {
-  padding: 5px 15px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.9em;
-  background-color: #FFF5E7;
-  color: #547A80;
-  border: none;
-  border-radius: 15px;
+.like-icon {
+  font-size: 2.5em;  /* Aumentado el tamaño */
   cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  color: #FFF5E7;
+  margin-right: 10px;  /* Espacio entre el icono y el número */
 }
 
-.likes-section button:hover {
-  background-color: #e6d6b8;
+.like-icon.liked {
+  color: #FF6B6B;
 }
 
+.like-icon:hover {
+  transform: scale(1.1);
+}
+
+.likes-count {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5em;  /* Aumentado ligeramente para equilibrar con el icono más grande */
+  color: #FFF5E7;
+}
+
+@media (max-width: 768px) {
+  .recipe-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .likes-section {
+    margin-top: 0;
+  }
+
+  .like-icon {
+    font-size: 2em;  /* Ligeramente más pequeño en móviles para ahorrar espacio */
+  }
+
+  .likes-count {
+    font-size: 1.2em;  /* Ajustado para móviles */
+  }
+}
 .recipe-body {
   display: flex;
   justify-content: space-between;
@@ -298,4 +315,78 @@ button[type="submit"]:hover {
 
 .delete-btn:hover {
   background-color: #5a3e3b;
+}
+
+@media (max-width: 768px) {
+  .recipe-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .likes-section {
+    margin-top: 15px;
+  }
+
+  .recipe-body {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .recipe-image-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .recipe-image {
+    max-width: 100%;
+  }
+
+  .ingredients {
+    width: 100%;
+  }
+
+  .recipe-steps {
+    padding: 20px;
+  }
+
+  .comment-form {
+    flex-direction: column;
+  }
+
+  .comment-form button {
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+
+  .comment {
+    flex-direction: column;
+  }
+
+  .comment-actions {
+    margin-top: 10px;
+  }
+}
+
+/* Para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+  .recipe-header {
+    padding: 15px;
+  }
+
+  .title-description h2 {
+    font-size: 2em;
+  }
+
+  .recipe-body,
+  .recipe-steps,
+  .comments-section {
+    padding: 15px;
+  }
+
+  .ingredients h3,
+  .recipe-steps h3,
+  .comments-title {
+    font-size: 1.5em;
+  }
 }

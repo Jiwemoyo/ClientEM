@@ -61,6 +61,14 @@ export class RecipeDetailComponent implements OnInit {
     }
   }
 
+  toggleLike() {
+    if (this.userHasLiked) {
+      this.unlikeRecipe();
+    } else {
+      this.likeRecipe();
+    }
+  }
+
   getLikes(): void {
     this.likeService.getLikesByRecipe(this.recipe._id).subscribe((data: any) => {
       this.likes = data;

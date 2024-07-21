@@ -5,15 +5,24 @@
       <p>{{ recipe.description }}</p>
     </div>
     <div class="likes-section">
-      <h3>{{ likesCount }}</h3>
-      <button *ngIf="!userHasLiked" (click)="likeRecipe()">Me Gusta</button>
-      <button *ngIf="userHasLiked" (click)="unlikeRecipe()">No Me Gusta</button>
+      <span
+        class="like-icon"
+        [class.liked]="userHasLiked"
+        (click)="toggleLike()"
+        >&#10084;</span
+      >
+      <span class="likes-count">{{ likesCount }}</span>
     </div>
   </div>
 
   <div class="recipe-body">
     <div class="recipe-image-container">
-      <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+      <img
+        *ngIf="recipe.image"
+        [src]="'http://localhost:3000' + recipe.image"
+        alt="{{ recipe.title }}"
+        class="recipe-image"
+      />
     </div>
     <div class="ingredients">
       <h3>Ingredientes:</h3>
@@ -33,30 +42,58 @@
   <div class="comments-section">
     <h4 class="comments-title">Comentarios:</h4>
 
-    <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="comment-form">
-      <input id="content" formControlName="content" type="text" placeholder="¿Ya la preparaste? Déjanos saber qué te pareció" />
+    <form
+      [formGroup]="commentForm"
+      (ngSubmit)="onSubmitComment()"
+      class="comment-form"
+    >
+      <input
+        id="content"
+        formControlName="content"
+        type="text"
+        placeholder="¿Ya la preparaste? Déjanos saber qué te pareció"
+      />
       <button type="submit">Comentar</button>
     </form>
 
-    <div class="comments-list" *ngIf="recipe.comments && recipe.comments.length > 0">
+    <div
+      class="comments-list"
+      *ngIf="recipe.comments && recipe.comments.length > 0"
+    >
       <div class="comment" *ngFor="let comment of recipe.comments">
         <div class="comment-content">
           <p>{{ comment.content }}</p>
           <div class="comment-meta">
-            <small>Por: <a [routerLink]="['/user-profile-view', comment.author._id]">{{ comment.author.username }}</a> - {{ comment.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+            <small
+              >Por:
+              <a [routerLink]="['/user-profile-view', comment.author._id]">{{
+                comment.author.username
+              }}</a>
+              - {{ comment.createdAt | date : "dd/MM/yyyy HH:mm" }}</small
+            >
           </div>
         </div>
         <div class="comment-actions" *ngIf="comment.author._id === userId">
-          <button class="edit-btn" (click)="onEditComment(comment._id, comment.content)">Editar</button>
-          <button class="delete-btn" (click)="onDeleteComment(comment._id)">Eliminar</button>
+          <button
+            class="edit-btn"
+            (click)="onEditComment(comment._id, comment.content)"
+          >
+            Editar
+          </button>
+          <button class="delete-btn" (click)="onDeleteComment(comment._id)">
+            Eliminar
+          </button>
         </div>
       </div>
-  </div>
+    </div>
 
-  <form [formGroup]="editCommentForm" *ngIf="editingCommentId">
-    <label for="editContent">Editar Comentario</label>
-    <input id="editContent" formControlName="content" type="text" />
-    <button type="button" (click)="onSubmitEditComment()">Guardar Cambios</button>
-    <button type="button" (click)="onCancelEdit()">Cancelar</button>
-  </form>
+    <form [formGroup]="editCommentForm" *ngIf="editingCommentId">
+      <label for="editContent">Editar Comentario</label>
+      <input id="editContent" formControlName="content" type="text" />
+      <button type="button" (click)="onSubmitEditComment()">
+        Guardar Cambios
+      </button>
+      <button type="button" (click)="onCancelEdit()">Cancelar</button>
+    </form>
+  </div>
 </div>
