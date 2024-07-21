@@ -1,3 +1,6 @@
+*{
+  font-family: 'Roboto', sans-serif;;
+}
 .recipe-container {
   padding: 20px;
   background-color: #FFF5E7; /* Fondo claro */
@@ -112,9 +115,10 @@
 }
 
 .recipe-steps h3 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.2em;
-  font-weight: bold;
+  color: #547A80;
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  font-weight: lighter;
   margin-bottom: 20px; /* Aumenta la separación entre el título y la lista */
 }
 
@@ -166,4 +170,132 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #3a5559;
+}
+
+/* Estilos para la sección de comentarios */
+.comments-section {
+  margin-top: 30px;
+  padding: 0 20px; /* Agrega margen a los extremos */
+}
+
+.comments-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  color: #547A80;
+  margin-bottom: 20px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.comment-form input[type="text"] {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #547A80; /* Línea más ancha */
+  padding: 10px 0;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
+  width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+}
+
+.comment-form input[type="text"]::placeholder {
+  color: #a8a8a8;
+}
+
+/* Elimina el borde cuando el input está enfocado */
+.comment-form input[type="text"]:focus {
+  outline: none;
+  border-bottom-color: #3a5559; /* Cambia el color de la línea al enfocar */
+}
+
+.comment-form button {
+  align-self: flex-end;
+  background-color: #547A80;
+  color: #FFF5E7;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #3a5559;
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #f9f1e3;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comment-content {
+  flex-grow: 1;
+}
+
+.comment-content p {
+  margin: 0 0 10px 0;
+  font-size: 1em;
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;;
+}
+
+.comment-meta {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.comment-meta a {
+  color: #547A80;
+  text-decoration: none;
+}
+
+.comment-meta a:hover {
+  text-decoration: underline;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #547A80;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #3a5559;
+}
+
+.delete-btn {
+  background-color: #805854;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #5a3e3b;
 }

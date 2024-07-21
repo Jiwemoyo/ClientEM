@@ -24,29 +24,34 @@
   </div>
 
   <div class="recipe-steps">
-    <h3>Pasos:</h3>
+    <h3>Preparacion:</h3>
     <ol>
       <li *ngFor="let step of recipe.steps">{{ step }}</li>
     </ol>
   </div>
 
-  <div *ngIf="recipe.comments">
-    <h4>Comentarios:</h4>
-    <ul>
-      <li *ngFor="let comment of recipe.comments">
-        <p>{{ comment.content }}</p>
-        <small>Por: <a [routerLink]="['/user-profile-view', comment.author._id]">{{ comment.author.username }}</a> - {{ comment.createdAt | date }}</small>
-        <button *ngIf="comment.author._id === userId" (click)="onEditComment(comment._id, comment.content)">Editar</button>
-        <button *ngIf="comment.author._id === userId" (click)="onDeleteComment(comment._id)">Eliminar</button>
-      </li>
-    </ul>
-  </div>
+  <div class="comments-section">
+    <h4 class="comments-title">Comentarios:</h4>
 
-  <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
-    <label for="content">Agregar Comentario</label>
-    <input id="content" formControlName="content" type="text" />
-    <button type="submit">Comentar</button>
-  </form>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="comment-form">
+      <input id="content" formControlName="content" type="text" placeholder="¿Ya la preparaste? Déjanos saber qué te pareció" />
+      <button type="submit">Comentar</button>
+    </form>
+
+    <div class="comments-list" *ngIf="recipe.comments && recipe.comments.length > 0">
+      <div class="comment" *ngFor="let comment of recipe.comments">
+        <div class="comment-content">
+          <p>{{ comment.content }}</p>
+          <div class="comment-meta">
+            <small>Por: <a [routerLink]="['/user-profile-view', comment.author._id]">{{ comment.author.username }}</a> - {{ comment.createdAt | date:'dd/MM/yyyy HH:mm' }}</small>
+          </div>
+        </div>
+        <div class="comment-actions" *ngIf="comment.author._id === userId">
+          <button class="edit-btn" (click)="onEditComment(comment._id, comment.content)">Editar</button>
+          <button class="delete-btn" (click)="onDeleteComment(comment._id)">Eliminar</button>
+        </div>
+      </div>
+  </div>
 
   <form [formGroup]="editCommentForm" *ngIf="editingCommentId">
     <label for="editContent">Editar Comentario</label>
