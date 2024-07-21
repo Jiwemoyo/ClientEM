@@ -2,7 +2,10 @@
   <div class="navbar-brand">
     <a routerLink="/" class="navbar-logo">Easy<img src="../../../assets/IconoEM.svg" alt="icon" class="icon">Menu</a>
   </div>
-  <div class="navbar-links">
+  <div class="menu-toggle" (click)="toggleMenu()">
+    <span class="menu-icon" [class.open]="menuActive"></span>
+  </div>
+  <div class="navbar-links" [class.open]="menuActive">
     <a routerLink="/recipes" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Recetas</a>
     <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Login</a>
     <a *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Perfil</a>

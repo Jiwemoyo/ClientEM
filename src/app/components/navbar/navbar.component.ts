@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
+  menuActive: boolean = false;
   private authSubscription: Subscription | null = null;
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -18,6 +19,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.isLoggedIn().subscribe((status: boolean) => {
       this.isLoggedIn = status;
     });
+  }
+
+  toggleMenu() {
+    this.menuActive = !this.menuActive;
   }
 
   logout(): void {
