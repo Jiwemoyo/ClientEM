@@ -1,0 +1,87 @@
+/* Contenedor principal */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 150px 20px; /* Aumentar padding para mover contenido más abajo */
+  flex-wrap: wrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
+}
+
+/* Contenedor de la imagen */
+.image-container {
+  margin-right: 20px;
+  flex: 1; /* Permite que el contenedor de la imagen crezca y se reduzca según sea necesario */
+}
+
+/* Imagen responsiva */
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Contenedor del botón */
+.button-container {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  flex: 1; /* Permite que el contenedor del botón crezca y se reduzca según sea necesario */
+}
+
+/* Botón */
+.button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #395B64;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+  background-color: #507f8b;
+}
+
+/* Título */
+p {
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
+  color: #395B64;
+  font-size: 40px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+  .container {
+    padding: 100px 20px; /* Ajustar padding para pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 70px 20px; /* Ajustar padding para pantallas pequeñas */
+  }
+
+  .image-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 50px 10px; /* Ajustar padding para pantallas muy pequeñas */
+  }
+
+  .button-container button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 30px; /* Ajustar tamaño del título para pantallas muy pequeñas */
+  }
+}

@@ -22,6 +22,7 @@ export class RegisterComponent {
       password: this.password
     };
 
+    
     this.authService.register(userData).subscribe(
       () => this.router.navigate(['/login']),
       error => this.errorMessage = error.error.message
