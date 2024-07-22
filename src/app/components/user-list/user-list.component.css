@@ -1,19 +1,18 @@
-form {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
+.main {
+  background-color: #efe4cf;
 }
-
 .alert {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #507f8b;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
+  color: #fff;
+  border: 2px solid #fff;
 }
 
 .alert-content {
@@ -21,19 +20,323 @@ form {
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .checkmark {
-  color: green;
+  color: #ffffff;
   font-size: 24px;
   margin-right: 10px;
 }
 
 .ok-button {
-  background-color: #007bff;
+  background-color: #395B64;
   color: white;
   border: none;
   padding: 5px 15px;
   border-radius: 3px;
   cursor: pointer;
+}
+
+/* Tabla de usuarios */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 10px;
+  background: #FFF5E1;
+  padding: 20px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-table thead tr {
+  background-color: #395B64;
+  color: #ffffff;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+.user-table th, .user-table td {
+  padding: 12px 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.user-table tbody tr {
+  border-bottom: 1px solid #507f8b;
+  font-family: 'Roboto', sans-serif;
+}
+
+.user-table tbody tr:nth-of-type(even) {
+  background-color: #efe4cf;
+  font-family: 'Roboto', sans-serif;
+}
+
+.user-table tbody tr:last-of-type {
+  border-bottom: 3px solid #395B64;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.edit-btn {
+  background-color: #395B64;
+  margin-right: 10px;
+}
+
+.delete-btn {
+  background-color: #805854;
+}
+
+@media (max-width: 768px) {
+  .user-table thead {
+    display: none;
+  }
+
+  .user-table, .user-table tbody, .user-table tr, .user-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .user-table tr {
+    margin-bottom: 15px;
+    border: 2px solid #395B64;
+    border-radius: 10px;
+    padding: 10px;
+    background: #efe4cf;
+  }
+
+  .user-table td {
+    text-align: left;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .user-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 10px);
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .user-table td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* Contenedor del formulario de edición */
+.edit-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #507f8b;
+  padding: 20px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 1000;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  width: 300px;
+}
+
+.edit-form-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+
+}
+
+.edit-form-container input,
+.edit-form-container select {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+}
+
+.edit-form-container button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.edit-form-container button[type="submit"] {
+  background-color: #395B64;
+  color: #fff;
+  margin-right: 10px;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.edit-form-container button[type="button"] {
+  background-color: #805854;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+/* Estilos para los selectores de rol */
+.edit-form-container select {
+  color: #000000;
+  background-color: #f8f8f8;
+}
+
+.edit-form-container select option {
+  background-color: #507f8b;
+  color: #fff;
+}
+
+/* Formularios responsivos */
+@media (max-width: 768px) {
+  .user-table th, .user-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .user-table th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .user-table tr {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .user-table td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .user-table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
+
+/* Formulario de creación de usuario */
+.create-user-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #efe4cf;
+  border: 2px solid #395B64;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.create-user-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-user-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #000000;
+
+}
+
+.create-user-form input,
+.create-user-form select {
+  width: calc(100% - 16px);
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #395B64;
+  border-radius: 4px;
+  background-color: #507f8b;
+}
+
+.create-user-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #395B64;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-user-form button:hover {
+  background-color: #507f8b ;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .create-user-form {
+    padding: 15px;
+  }
+
+  .create-user-form input,
+  .create-user-form select {
+    width: 100%;
+  }
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-top: 120px;
+  margin-bottom: 30px;
+  justify-content: flex-end;
+}
+
+.search-container input[type="text"] {
+  flex: 0 1 300px;
+  padding: 8px;
+  margin-right: 10px;
+  border: 2px solid #507f8b;
+  border-radius: 13px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #FFF5E1;
+}
+
+.search-container input[type="text"]:focus {
+  border-color: #395B64;
+  outline: none;
+}
+
+.search-container button {
+  padding: 8px 16px;
+  background-color: #395B64;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+}
+
+.search-container button:hover {
+  background-color: #507f8b;
 }
