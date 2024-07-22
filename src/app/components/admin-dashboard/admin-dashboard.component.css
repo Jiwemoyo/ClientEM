@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 150px 20px; /* Aumentar padding para mover contenido más abajo */
+  padding: 140px 20px; /* Aumentar padding para mover contenido más abajo */
   flex-wrap: wrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
 }
 
