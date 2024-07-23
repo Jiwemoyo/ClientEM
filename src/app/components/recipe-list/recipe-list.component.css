@@ -4,7 +4,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px; /* Aumenta el ancho máximo del contenedor */
   margin: 0 auto;
   padding: 10px;
   text-align: center;
@@ -20,7 +20,7 @@
   width: 100%;
   height: 900px;
   max-height: 300px; /* Ajusta este valor según sea necesario */
-  object-fit: cover; /* Mantiene la proporción de la imagen */
+  object-fit: cover;
   display: block;
 }
 
@@ -44,6 +44,8 @@ h2 {
   color: #395B64;
   margin-bottom: 20px;
   text-align: left;
+  font-weight: normal;
+  padding-left: 35px;
 }
 
 /* Estilos para la barra de búsqueda */
@@ -97,28 +99,34 @@ h2 {
 /* Estilos para la lista de recetas */
 ul {
   text-align: left;
-  gap: 20px;
+  gap: 20px; /* Espacio entre las imágenes */
   list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Diseño responsivo */
-  margin: 40px auto;
-  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto; /* Ajusta el margen superior e inferior */
+  max-width: 1300px; /* Ajusta el ancho máximo del contenedor */
+  justify-content: center; /* Centra las imágenes horizontalmente */
 }
 
 /* Estilos para cada receta */
 li {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  margin-bottom: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  text-align: left;
+  border-radius: 10px; /* Mantiene los bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 li:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más prominente solo hacia abajo */
 }
 
 /* Estilos para el título de la receta */
@@ -126,7 +134,14 @@ h3 {
   font-family: 'Pacifico', cursive;
   font-size: 1.5em;
   color: #395B64;
-  margin-bottom: 10px;
+  margin: 10px 0;
+  text-align: left;
+  font-weight: normal;
+  align-self: flex-start;
+  margin-left: 15px;
+}
+b{
+  margin-right: 130px;
 }
 
 /* Estilos para los párrafos */
@@ -135,19 +150,23 @@ p {
   font-size: 1em;
   color: #555;
   margin: 5px 0;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  align-self: flex-start;
+  font-weight: normal;
 }
-
 /* Estilos para el botón de Ver detalles */
 .details-button {
   background-color: #395B64;
   color: #FFF5E1;
-  padding: 10px 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s;
-  margin-left: 40px;
+  padding: 5px;
 }
 
 .details-button:hover {
@@ -156,39 +175,31 @@ p {
 
 /* Estilos para la imagen de la receta */
 .recipe-image {
-  width: 222px; /* Ancho fijo */
-  height: 148px; /* Alto fijo */
-  object-fit: cover; /* Ajusta la imagen al tamaño del contenedor */
+  width: 280px; /* Aumenta el ancho de la imagen */
+  height: 180px; /* Aumenta el alto de la imagen */
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
-/* Estilos para el botón de la receta */
-button {
-  background-color: #395B64;
-  color: #FFF5E1;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
-}
 
+/* Estilos para el contenedor del botón y los likes */
 .button-container {
   display: flex;
-  align-items: center; /* Alinea verticalmente en el centro si el contenido tiene diferente altura */
+  justify-content: space-between;
+  align-items: center;
+  width: 280px; /* Alineado con el ancho de la imagen */
+  padding: 0 10px;
 }
 
 .like-button {
-  margin-right: 10px; /* Espacio entre el texto y el botón */
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  cursor: pointer;
 }
 
-.details-button {
-  font-size: 0.8em; /* Tamaño de fuente más pequeño */
-  padding: 5px 10px; /* Menos espacio interno */
-  border: 1px solid #ccc; /* Opcional: borde más delgado */
-  border-radius: 10px; /* Opcional: bordes redondeados */
-  margin-left: 10px;
+.like-button i {
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
 }
 
 button:hover {
@@ -203,6 +214,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  text-align: left;
 }
 
 /* Media Queries para diferentes dispositivos */
