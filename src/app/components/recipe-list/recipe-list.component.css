@@ -44,6 +44,7 @@ h2 {
   color: #395B64;
   margin-bottom: 20px;
   text-align: left;
+  font-weight: normal;
 }
 
 /* Estilos para la barra de búsqueda */
@@ -130,6 +131,7 @@ h3 {
   color: #395B64;
   margin: 10px 0;
   text-align: center;
+  font-weight: normal;
 }
 
 /* Estilos para los párrafos */
