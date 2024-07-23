@@ -1,10 +1,10 @@
 /* Estilos para el contenedor principal */
 .container-fondo {
-  background-color: #b3f1b2;
+  background-color: #FFF5E1;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1300px; /* Aumenta el ancho máximo del contenedor */
   margin: 0 auto;
   padding: 10px;
   text-align: center;
@@ -20,7 +20,7 @@
   width: 100%;
   height: 900px;
   max-height: 300px; /* Ajusta este valor según sea necesario */
-  object-fit: cover; /* Mantiene la proporción de la imagen */
+  object-fit: cover;
   display: block;
 }
 
@@ -45,6 +45,7 @@ h2 {
   margin-bottom: 20px;
   text-align: left;
   font-weight: normal;
+  padding-left: 35px;
 }
 
 /* Estilos para la barra de búsqueda */
@@ -97,14 +98,14 @@ h2 {
 
 /* Estilos para la lista de recetas */
 ul {
-  text-align: center; /* Centra el contenido de texto dentro de los elementos de lista */
+  text-align: left;
   gap: 20px; /* Espacio entre las imágenes */
   list-style: none;
   padding: 20px;
-  display: flex; /* Usa flexbox para la disposición horizontal */
-  flex-wrap: wrap; /* Permite que las imágenes se envuelvan a la siguiente línea si es necesario */
-  margin: 40px auto; /* Reduce el margen y centra el contenedor */
-  max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto; /* Ajusta el margen superior e inferior */
+  max-width: 1300px; /* Ajusta el ancho máximo del contenedor */
   justify-content: center; /* Centra las imágenes horizontalmente */
 }
 
@@ -118,6 +119,7 @@ li {
   align-items: center;
   background: none;
   border: none;
+  text-align: left;
 }
 
 li:hover {
@@ -130,8 +132,9 @@ h3 {
   font-size: 1.5em;
   color: #395B64;
   margin: 10px 0;
-  text-align: center;
+  text-align: left;
   font-weight: normal;
+  align-self: flex-start;
 }
 
 /* Estilos para los párrafos */
@@ -140,7 +143,10 @@ p {
   font-size: 1em;
   color: #555;
   margin: 5px 0;
-  text-align: center;
+  text-align: left;
+  padding: 5px;
+  font-weight: bold;
+  align-self: flex-start;
 }
 
 /* Estilos para el botón de Ver detalles */
@@ -153,6 +159,7 @@ p {
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s;
+  padding: 5px;
 }
 
 .details-button:hover {
@@ -161,9 +168,9 @@ p {
 
 /* Estilos para la imagen de la receta */
 .recipe-image {
-  width: 222px; /* Ancho fijo */
-  height: 148px; /* Alto fijo */
-  object-fit: cover; /* Ajusta la imagen al tamaño del contenedor */
+  width: 280px; /* Aumenta el ancho de la imagen */
+  height: 180px; /* Aumenta el alto de la imagen */
+  object-fit: cover;
   border-radius: 10px;
   margin-bottom: 10px;
 }
@@ -173,12 +180,19 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 222px; /* Alineado con el ancho de la imagen */
+  width: 280px; /* Alineado con el ancho de la imagen */
   padding: 0 10px;
 }
 
 .like-button {
-  margin-right: 10px; /* Espacio entre el texto y el botón */
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.like-button i {
+  margin-right: 5px; /* Espacio entre el ícono y el texto */
 }
 
 button:hover {
@@ -193,6 +207,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  text-align: left;
 }
 
 /* Media Queries para diferentes dispositivos */

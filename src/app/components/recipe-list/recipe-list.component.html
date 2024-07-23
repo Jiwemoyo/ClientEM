@@ -15,16 +15,16 @@
       <p>No hay recetas disponibles.</p>
     </div>
     <h2>Recetas</h2>
-    <div *ngIf="filteredRecipes.length > 0">
+    <div *ngIf="filteredRecipes.length > 0" class="text">
       <ul>
         <li *ngFor="let recipe of filteredRecipes">
           <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
           <h3>{{ recipe.title }}</h3>
-          <p>Autor:
+          <p>Hecho por:
             <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
           </p>
           <div class="button-container">
-            <p class="like-button">Likes: {{ recipe.likesCount }}</p>
+            <p class="like-button"> <i class="fa-solid fa-heart"></i> {{ recipe.likesCount }}</p>
             <button class="details-button" (click)="viewRecipe(recipe._id)">Ver Detalles</button>
           </div>
         </li>
