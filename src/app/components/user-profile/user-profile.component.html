@@ -86,11 +86,17 @@
     <h2>Crear Nueva Sucursal</h2>
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" />
+    <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
+      <small class="error">El nombre es requerido</small>
+    </div>
 
-    <label for="locationUrl">URL de Ubicación</label>
+    <label for="locationUrl">URL de Ubicación (Google Maps)</label>
     <input id="locationUrl" formControlName="locationUrl" type="text" />
+    <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
+      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+    </div>
 
-    <button type="submit">Crear</button>
+    <button type="submit" [disabled]="!restaurantForm.valid">Crear</button>
     <button type="button" (click)="cancelCreateRestaurant()">Cancelar</button>
   </form>
 
@@ -98,11 +104,17 @@
     <h2>Actualizar Restaurante</h2>
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" />
+    <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
+      <small class="error">El nombre es requerido</small>
+    </div>
 
-    <label for="locationUrl">URL de Ubicación</label>
+    <label for="locationUrl">URL de Ubicación (Google Maps)</label>
     <input id="locationUrl" formControlName="locationUrl" type="text" />
+    <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
+      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+    </div>
 
-    <button type="submit">Actualizar</button>
+    <button type="submit" [disabled]="!restaurantForm.valid">Actualizar</button>
     <button type="button" (click)="cancelEditRestaurant()">Cancelar</button>
   </form>
 </div>
