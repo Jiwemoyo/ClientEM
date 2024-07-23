@@ -20,11 +20,11 @@
         <li *ngFor="let recipe of filteredRecipes">
           <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
           <h3>{{ recipe.title }}</h3>
-          <p>Hecho por:
+          <b>Hecho por:
             <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
-          </p>
+          </b>
           <div class="button-container">
-            <p class="like-button"> <i class="fa-solid fa-heart"></i> {{ recipe.likesCount }}</p>
+            <p class="like-button"> <i class="fa-solid fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }}</p>
             <button class="details-button" (click)="viewRecipe(recipe._id)">Ver Detalles</button>
           </div>
         </li>
