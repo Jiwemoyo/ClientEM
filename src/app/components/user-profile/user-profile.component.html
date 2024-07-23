@@ -19,7 +19,6 @@
   </div>
 
   <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
-
   <form *ngIf="isCreating" [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
     <h2>Crear Nueva Receta</h2>
     <label for="title">Título</label>
@@ -35,7 +34,8 @@
     <textarea id="steps" formControlName="steps"></textarea>
 
     <label for="image">Imagen</label>
-    <input type="file" (change)="alSeleccionarArchivo($event)">
+    <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
+    <small>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
 
     <button type="submit">Crear</button>
     <button type="button" (click)="cancelCreate()">Cancelar</button>
@@ -56,7 +56,8 @@
     <textarea id="steps" formControlName="steps"></textarea>
 
     <label for="image">Imagen</label>
-    <input type="file" (change)="alSeleccionarArchivo($event)">
+    <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
+    <small>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
     <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
 
     <button type="submit">Actualizar</button>

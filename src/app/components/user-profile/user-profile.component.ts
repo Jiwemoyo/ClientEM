@@ -55,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     this.loadUserRestaurants();
   }
 
+
   loadUserRecipes(): void {
     this.recipeService.getRecipesByUser().subscribe(
       recipes => {
@@ -186,10 +187,15 @@ export class UserProfileComponent implements OnInit {
   alSeleccionarArchivo(evento: any): void {
     const archivo = evento.target.files[0];
     if (archivo) {
-      this.archivoSeleccionado = archivo;
-      this.recipeForm.patchValue({
-        image: archivo.name
-      });
+      if (archivo.type.match(/image\/(jpeg|png|jpg)/)) {
+        this.archivoSeleccionado = archivo;
+        this.recipeForm.patchValue({
+          image: archivo.name
+        });
+      } else {
+        alert('Por favor, selecciona un archivo de imagen válido (JPEG, PNG, JPG).');
+        evento.target.value = ''; // Limpia el input
+      }
     }
   }
 
@@ -286,4 +292,6 @@ export class UserProfileComponent implements OnInit {
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
   }
+
+
 }
