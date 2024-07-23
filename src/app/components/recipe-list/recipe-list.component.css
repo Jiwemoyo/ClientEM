@@ -96,14 +96,15 @@ h2 {
 
 /* Estilos para la lista de recetas */
 ul {
-  text-align: left;
-  gap: 20px;
+  text-align: center; /* Centra el contenido de texto dentro de los elementos de lista */
+  gap: 20px; /* Espacio entre las imágenes */
   list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Diseño responsivo */
-  margin: 40px auto;
+  padding: 20px;
+  display: flex; /* Usa flexbox para la disposición horizontal */
+  flex-wrap: wrap; /* Permite que las imágenes se envuelvan a la siguiente línea si es necesario */
+  margin: 40px auto; /* Reduce el margen y centra el contenedor */
   max-width: 1200px; /* Ajusta el ancho máximo del contenedor */
+  justify-content: center; /* Centra las imágenes horizontalmente */
 }
 
 /* Estilos para cada receta */
