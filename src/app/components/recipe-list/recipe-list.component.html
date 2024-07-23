@@ -4,31 +4,31 @@
   <div class="overlay-text">"Encuentra, comparte y saborea"</div>
 </div>
 <div class="container-fondo">
-<div class="container">
-  <div class="search-container">
-    <input type="text" placeholder="Buscas algo en especial" (input)="onSearch($event)" class="search-input">
-    <button class="search-button">
-      <i class="fa-solid fa-magnifying-glass" style="color: #f1f5f9;"></i>
-    </button>
+  <div class="container">
+    <div class="search-container">
+      <input type="text" placeholder="Buscas algo en especial" (input)="onSearch($event)" class="search-input">
+      <button class="search-button">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      </button>
+    </div>
+    <div *ngIf="filteredRecipes.length === 0">
+      <p>No hay recetas disponibles.</p>
+    </div>
+    <h2>Recetas</h2>
+    <div *ngIf="filteredRecipes.length > 0">
+      <ul>
+        <li *ngFor="let recipe of filteredRecipes">
+          <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+          <h3>{{ recipe.title }}</h3>
+          <p>Autor:
+            <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
+          </p>
+          <div class="button-container">
+            <p class="like-button">Likes: {{ recipe.likesCount }}</p>
+            <button class="details-button" (click)="viewRecipe(recipe._id)">Ver Detalles</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div *ngIf="filteredRecipes.length === 0">
-    <p>No hay recetas disponibles.</p>
-  </div>
-  <h2>Recetas</h2>
-  <div *ngIf="filteredRecipes.length > 0">
-    <ul>
-      <li *ngFor="let recipe of filteredRecipes">
-        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-        <h3>{{ recipe.title }}</h3>
-        <p>Autor:
-          <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
-        </p>
-        <div class="button-container">
-          <p class="like-button">Likes: {{ recipe.likesCount }}</p>
-          <button class="details-button" (click)="viewRecipe(recipe._id)">Ver Detalles</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
 </div>
