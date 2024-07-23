@@ -24,6 +24,8 @@ export class UserProfileComponent implements OnInit {
   isCreatingRestaurant: boolean = false;
   currentRecipeId: string | null = null;
   currentRestaurantId: string | null = null;
+  archivoSeleccionado: File | null = null;
+  existingImageUrl: string | null = null;
 
   constructor(
     private recipeService: RecipeService,
@@ -56,14 +58,12 @@ export class UserProfileComponent implements OnInit {
   loadUserRecipes(): void {
     this.recipeService.getRecipesByUser().subscribe(
       recipes => {
-        this.recipes = recipes.map((recipe: { likes: string | any[]; comments: any; }) => {
-          return {
-            ...recipe,
-            likesCount: recipe.likes.length,
-            comments: recipe.comments
-          };
-        });
-        this.filteredRecipes = this.recipes; // Inicialmente, todas las recetas están en la lista filtrada
+        this.recipes = recipes.map((recipe: { likes: string | any[]; comments: any; }) => ({
+          ...recipe,
+          likesCount: recipe.likes.length,
+          comments: recipe.comments
+        }));
+        this.filteredRecipes = this.recipes;
       },
       error => console.error(error)
     );
@@ -80,10 +80,14 @@ export class UserProfileComponent implements OnInit {
     const formData = new FormData();
     Object.keys(this.recipeForm.controls).forEach(key => {
       const control = this.recipeForm.get(key);
-      if (control) {
+      if (control && control.value !== null) {
         formData.append(key, control.value);
       }
     });
+
+    if (this.archivoSeleccionado) {
+      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
+    }
 
     if (this.token) {
       this.recipeService.createRecipe(formData, this.token).subscribe(
@@ -91,7 +95,8 @@ export class UserProfileComponent implements OnInit {
           this.recipes.push(recipe);
           this.recipeForm.reset();
           this.isCreating = false;
-          window.location.reload()
+          this.archivoSeleccionado = null;
+          this.loadUserRecipes();
         },
         error => console.error(error)
       );
@@ -102,9 +107,12 @@ export class UserProfileComponent implements OnInit {
     this.recipeForm.patchValue({
       title: recipe.title,
       description: recipe.description,
-      ingredients: recipe.ingredients.join(', '),
-      steps: recipe.steps
+      ingredients: Array.isArray(recipe.ingredients) ? recipe.ingredients.join(', ') : recipe.ingredients,
+      steps: Array.isArray(recipe.steps) ? recipe.steps.join('\n') : recipe.steps
     });
+
+    this.existingImageUrl = recipe.image;
+    this.archivoSeleccionado = null;
     this.isEditing = true;
     this.isCreating = false;
     this.currentRecipeId = recipe._id;
@@ -116,10 +124,14 @@ export class UserProfileComponent implements OnInit {
     const formData = new FormData();
     Object.keys(this.recipeForm.controls).forEach(key => {
       const control = this.recipeForm.get(key);
-      if (control) {
+      if (control && control.value !== null && key !== 'image') {
         formData.append(key, control.value);
       }
     });
+
+    if (this.archivoSeleccionado) {
+      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
+    }
 
     if (this.token) {
       this.recipeService.updateRecipe(this.currentRecipeId, formData, this.token).subscribe(
@@ -131,6 +143,8 @@ export class UserProfileComponent implements OnInit {
           this.isEditing = false;
           this.currentRecipeId = null;
           this.recipeForm.reset();
+          this.archivoSeleccionado = null;
+          this.loadUserRecipes();
         },
         error => console.error(error)
       );
@@ -141,39 +155,44 @@ export class UserProfileComponent implements OnInit {
     this.isEditing = false;
     this.currentRecipeId = null;
     this.recipeForm.reset();
+    this.archivoSeleccionado = null;
   }
 
   startCreating(): void {
     this.isCreating = true;
     this.isEditing = false;
     this.recipeForm.reset();
+    this.archivoSeleccionado = null;
   }
 
   cancelCreate(): void {
     this.isCreating = false;
     this.recipeForm.reset();
+    this.archivoSeleccionado = null;
   }
 
   deleteRecipe(id: string): void {
     if (this.token) {
       this.recipeService.deleteRecipe(id, this.token).subscribe(
         () => {
-          this.recipes = this.recipes.filter(recipe => recipe._id !== id)
-          window.location.reload();
+          this.recipes = this.recipes.filter(recipe => recipe._id !== id);
+          this.loadUserRecipes();
         },
         error => console.error(error)
       );
     }
   }
 
-  onFileChange(event: any): void {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
+  alSeleccionarArchivo(evento: any): void {
+    const archivo = evento.target.files[0];
+    if (archivo) {
+      this.archivoSeleccionado = archivo;
       this.recipeForm.patchValue({
-        image: file
+        image: archivo.name
       });
     }
   }
+
   loadUserRestaurants(): void {
     if (this.token) {
       this.restaurantService.getRestaurantsByUser(this.token).subscribe(
@@ -195,6 +214,7 @@ export class UserProfileComponent implements OnInit {
         this.restaurants.push(restaurant);
         this.restaurantForm.reset();
         this.isCreatingRestaurant = false;
+        this.loadUserRestaurants();
       },
       error => console.error(error)
     );
@@ -224,6 +244,7 @@ export class UserProfileComponent implements OnInit {
         this.restaurantForm.reset();
         this.isEditingRestaurant = false;
         this.currentRestaurantId = null;
+        this.loadUserRestaurants();
       },
       error => console.error(error)
     );
@@ -235,6 +256,7 @@ export class UserProfileComponent implements OnInit {
     this.restaurantService.deleteRestaurant(id, this.token).subscribe(
       () => {
         this.restaurants = this.restaurants.filter(r => r._id !== id);
+        this.loadUserRestaurants();
       },
       error => console.error(error)
     );
@@ -256,24 +278,12 @@ export class UserProfileComponent implements OnInit {
     this.currentRestaurantId = null;
     this.restaurantForm.reset();
   }
-// En tu componente
-restaurantCountText(): string {
-  if (this.restaurants.length === 0) {
-    return 'Mi Sucursal';
-  } else if (this.restaurants.length === 1) {
-    return 'Mi Sucursal';
-  } else {
-    return 'Mis Sucursales';
-  }
-}
 
+  restaurantCountText(): string {
+    return this.restaurants.length <= 1 ? 'Mi Sucursal' : 'Mis Sucursales';
+  }
 
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
   }
-
-  // logout(): void {
-  //   this.localStorageService.removeItem('token');
-  //   this.router.navigate(['/login']);
-  // }
 }

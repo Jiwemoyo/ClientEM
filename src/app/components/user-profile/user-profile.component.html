@@ -1,8 +1,7 @@
-<!-- src/app/components/user-profile/user-profile.component.html -->
 <div class="container">
   <h2>Mis Recetas</h2>
   <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" />
-  <!-- <button (click)="logout()">Cerrar Sesión</button> -->
+
   <div *ngIf="recipes.length === 0">
     <p>No tienes recetas aún.</p>
   </div>
@@ -11,9 +10,7 @@
       <li *ngFor="let recipe of filteredRecipes">
         <h3>{{ recipe.title }}</h3>
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-
         <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
-
         <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
         <button (click)="editRecipe(recipe)">Actualizar</button>
         <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
@@ -38,7 +35,7 @@
     <textarea id="steps" formControlName="steps"></textarea>
 
     <label for="image">Imagen</label>
-    <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
+    <input type="file" (change)="alSeleccionarArchivo($event)">
 
     <button type="submit">Crear</button>
     <button type="button" (click)="cancelCreate()">Cancelar</button>
@@ -51,6 +48,7 @@
 
     <label for="description">Descripción</label>
     <input id="description" formControlName="description" type="text" />
+
     <label for="ingredients">Ingredientes</label>
     <textarea id="ingredients" formControlName="ingredients"></textarea>
 
@@ -58,15 +56,17 @@
     <textarea id="steps" formControlName="steps"></textarea>
 
     <label for="image">Imagen</label>
-    <input id="image" formControlName="image" type="file" (change)="onFileChange($event)" />
+    <input type="file" (change)="alSeleccionarArchivo($event)">
+    <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
 
     <button type="submit">Actualizar</button>
     <button type="button" (click)="cancelEdit()">Cancelar</button>
   </form>
+
   <h2>{{ restaurantCountText() }}</h2>
 
   <div *ngIf="restaurants.length === 0">
-    <p>Si tienes un restaurante coloca la direccion  para que la gente pueda disfrutar el sabor autentico de tus recetas </p>
+    <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
   </div>
 
   <div *ngIf="restaurants.length > 0">
@@ -78,7 +78,8 @@
       </li>
     </ul>
   </div>
-  <button *ngIf="!isCreatingRestaurant && !isEditingRestaurant" (click)="startCreatingRestaurant()">Crear Nuevo Restaurante</button>
+
+  <button *ngIf="!isCreatingRestaurant && !isEditingRestaurant" (click)="startCreatingRestaurant()">Crear Nueva Sucursal</button>
 
   <form *ngIf="isCreatingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="createRestaurant()">
     <h2>Crear Nueva Sucursal</h2>
