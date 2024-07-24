@@ -6,21 +6,22 @@
   overflow: hidden;
 }
 
+/* Contenedor */
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
-  margin: 0 auto;
-  background-color: #FFF5E1;
-  padding: 100px 20px; /* Aumentar padding para mover contenido más abajo */
-  flex-wrap: wrap; /* Permite que los elementos se muevan a una nueva línea si es necesario */
+  height: 100%;
+  background-color: #efe4cf;
+  padding-top: 1px; /* Reducido para menos espacio */
 }
 
 /* Contenedor de la imagen */
 .image-container {
-  margin-right: 20px;
-  flex: 1; /* Permite que el contenedor de la imagen crezca y se reduzca según sea necesario */
+  margin-bottom: 5px; /* Reducido para menos espacio entre imagen y título */
+  margin-top: 0;
 }
 
 /* Imagen responsiva */
@@ -29,16 +30,24 @@
   height: auto;
 }
 
+/* Título */
+p {
+  font-family: 'Pacifico', cursive;
+  color: #395B64;
+  font-size: 50px;
+  margin: 0;
+  padding-top: 0; /* Asegura que no haya padding extra */
+}
+
 /* Contenedor del botón */
 .button-container {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  flex: 1; /* Permite que el contenedor del botón crezca y se reduzca según sea necesario */
 }
 
 /* Botón */
 .button-container button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-size: 16px;
   border: none;
   background-color: #395B64;
@@ -52,43 +61,20 @@
   background-color: #507f8b;
 }
 
-/* Título */
-p {
-  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
-  color: #395B64;
-  font-size: 40px;
-}
-
 /* Estilos responsivos */
-@media (max-width: 1024px) {
-  .container {
-    padding: 100px 20px; /* Ajustar padding para pantallas medianas */
-  }
-}
-
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 70px 20px; /* Ajustar padding para pantallas pequeñas */
-  }
-
-  .image-container {
-    margin-right: 0;
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 50px 10px; /* Ajustar padding para pantallas muy pequeñas */
+  p {
+    font-size: 40px;
   }
 
   .button-container button {
     padding: 8px 16px;
     font-size: 14px;
   }
+}
 
+@media (max-width: 480px) {
   p {
-    font-size: 30px; /* Ajustar tamaño del título para pantallas muy pequeñas */
+    font-size: 30px;
   }
 }

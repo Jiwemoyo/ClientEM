@@ -44,16 +44,32 @@ export class UserProfileComponent implements OnInit {
 
     this.restaurantForm = this.formBuilder.group({
       name: ['', Validators.required],
-      locationUrl: ['', Validators.required]
+      locationUrl: ['', [Validators.required, this.googleMapsUrlValidator]]
     });
 
     this.token = this.localStorageService.getItem('token');
   }
 
+  googleMapsUrlValidator(control: { value: string; }) {
+    const url = control.value;
+    const validPatterns = [
+      /^https:\/\/(www\.)?google\.com\/maps\//,
+      /^https:\/\/goo\.gl\/maps\//,
+      /^https:\/\/maps\.app\.goo\.gl\//
+    ];
+
+    const isValid = validPatterns.some(pattern => pattern.test(url));
+    return isValid ? null : { invalidGoogleMapsUrl: true };
+  }
+
+
+
   ngOnInit(): void {
     this.loadUserRecipes();
     this.loadUserRestaurants();
   }
+
+
 
   loadUserRecipes(): void {
     this.recipeService.getRecipesByUser().subscribe(
@@ -186,10 +202,15 @@ export class UserProfileComponent implements OnInit {
   alSeleccionarArchivo(evento: any): void {
     const archivo = evento.target.files[0];
     if (archivo) {
-      this.archivoSeleccionado = archivo;
-      this.recipeForm.patchValue({
-        image: archivo.name
-      });
+      if (archivo.type.match(/image\/(jpeg|png|jpg)/)) {
+        this.archivoSeleccionado = archivo;
+        this.recipeForm.patchValue({
+          image: archivo.name
+        });
+      } else {
+        alert('Por favor, selecciona un archivo de imagen válido (JPEG, PNG, JPG).');
+        evento.target.value = ''; // Limpia el input
+      }
     }
   }
 
@@ -205,7 +226,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   createRestaurant(): void {
-    if (!this.token) return;
+    if (!this.token || !this.restaurantForm.valid) return;
 
     const formData = this.restaurantForm.value;
 
@@ -231,7 +252,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateRestaurant(): void {
-    if (!this.token || !this.currentRestaurantId) return;
+    if (!this.token || !this.currentRestaurantId || !this.restaurantForm.valid) return;
 
     const formData = this.restaurantForm.value;
 
@@ -248,6 +269,9 @@ export class UserProfileComponent implements OnInit {
       },
       error => console.error(error)
     );
+  }
+  isValidGoogleMapsUrl(url: string): boolean {
+    return this.googleMapsUrlValidator({ value: url }) === null;
   }
 
   deleteRestaurant(id: string): void {
@@ -286,4 +310,6 @@ export class UserProfileComponent implements OnInit {
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
   }
+
+
 }

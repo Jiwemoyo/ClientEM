@@ -1,6 +1,7 @@
 .main {
   background-color: #efe4cf;
 }
+
 .alert {
   position: fixed;
   top: 50%;
@@ -13,14 +14,46 @@
   text-align: center;
   color: #fff;
   border: 2px solid #fff;
+  z-index: 9999;
+  width: 400px; /* Aumentado para pantallas normales */
+  max-width: 90%;
 }
 
 .alert-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
   font-family: 'Roboto', sans-serif;
+}
+
+.ok-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #395B64;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .alert {
+    width: auto;
+    min-width: 250px;
+    max-width: 80%;
+    padding: 15px;
+  }
+
+  .alert-content {
+    font-size: 14px;
+  }
+
+  .ok-button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }
 
 .checkmark {
@@ -44,6 +77,7 @@
   border-radius: 10px;
   background: #FFF5E1;
   padding: 20px;
+  max-width: 100%;
 }
 
 .user-table {
@@ -119,22 +153,28 @@
     text-align: left;
     padding-left: 50%;
     position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
   }
 
   .user-table td::before {
     content: attr(data-label);
     position: absolute;
-    left: 10px;
-    width: calc(50% - 10px);
-    padding-left: 15px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
     font-weight: bold;
     text-align: left;
     white-space: nowrap;
   }
 
-  .user-table td {
-    padding-left: 10px;
-    padding-right: 10px;
+  .user-table td:last-child {
+    border-bottom: none;
+  }
+
+  .edit-btn, .delete-btn {
+    display: inline-block;
+    margin-top: 5px;
   }
 }
 
@@ -158,7 +198,6 @@
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
-
 }
 
 .edit-form-container input,
@@ -184,14 +223,12 @@
   color: #fff;
   margin-right: 10px;
   font-family: 'Roboto', sans-serif;
-
 }
 
 .edit-form-container button[type="button"] {
   background-color: #805854;
   color: #fff;
   font-family: 'Roboto', sans-serif;
-
 }
 
 /* Estilos para los selectores de rol */
@@ -205,53 +242,18 @@
   color: #fff;
 }
 
-/* Formularios responsivos */
-@media (max-width: 768px) {
-  .user-table th, .user-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .user-table th {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  .user-table tr {
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ddd;
-  }
-
-  .user-table td {
-    border: none;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  .user-table td:before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 45%;
-    padding-left: 10px;
-    font-weight: bold;
-    white-space: nowrap;
-  }
-}
-
 /* Formulario de creación de usuario */
 .create-user-form {
-  max-width: 400px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 400px;
+  margin: 40px auto 0;
   padding: 20px;
   background: #efe4cf;
   border: 2px solid #395B64;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 40px;
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
 
 .create-user-form h2 {
@@ -263,17 +265,17 @@
   display: block;
   margin-bottom: 8px;
   color: #000000;
-
 }
 
 .create-user-form input,
 .create-user-form select {
-  width: calc(100% - 16px);
+  width: 100%;
   padding: 8px;
   margin-bottom: 16px;
   border: 1px solid #395B64;
   border-radius: 4px;
   background-color: #507f8b;
+  box-sizing: border-box;
 }
 
 .create-user-form button {
@@ -287,19 +289,14 @@
 }
 
 .create-user-form button:hover {
-  background-color: #507f8b ;
+  background-color: #507f8b;
   color: #000000;
-  font-family: 'Roboto', sans-serif;
 }
 
 @media (max-width: 768px) {
   .create-user-form {
+    width: 90%;
     padding: 15px;
-  }
-
-  .create-user-form input,
-  .create-user-form select {
-    width: 100%;
   }
 }
 
@@ -307,18 +304,23 @@
 .search-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 30px;
-  justify-content: flex-end;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-container input[type="text"] {
-  flex: 0 1 300px;
+  flex: 1;
   padding: 8px;
   margin-right: 10px;
   border: 2px solid #507f8b;
   border-radius: 13px;
   font-family: 'Roboto', sans-serif;
   background-color: #FFF5E1;
+  min-width: 0;
 }
 
 .search-container input[type="text"]:focus {
@@ -334,8 +336,25 @@
   border-radius: 4px;
   cursor: pointer;
   font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
 }
 
 .search-container button:hover {
   background-color: #507f8b;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container input[type="text"] {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-container button {
+    width: 100%;
+  }
 }
