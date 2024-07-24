@@ -291,6 +291,178 @@ a:hover {
   text-align: center;
 }
 
+/* Contenedor de restaurantes */
+.no-restaurants-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
+  padding: 10px;
+}
+
+/* Contenido de no restaurantes */
+.no-restaurants-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+/* Imagen de home y estilos */
+.home {
+  max-width: 300px; /* Ajusta este valor según tus necesidades */
+  height: auto;
+  border-radius: 8px; /* Opcional: para bordes redondeados */
+  margin-right: 15px; /* Espacio entre la imagen y el texto */
+  opacity: 0.7;
+}
+
+/* Texto de restaurantes */
+.no-restaurants-content p {
+  color: #616161; /* Color del texto */
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* estilo crear sucursal*/
+.create-button {
+  background-color: #4c4c4c; /* Verde */
+  color: white;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.create-button:hover {
+  background-color: #1b5e20; /* Verde más oscuro */
+  border-color: #1b5e20;
+}
+
+.restaurant-form {
+  background-color: #f9f3e9;
+  padding: 15px;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  margin: 10px 0;
+  max-width: 400px;
+  width: 80%;
+}
+
+.restaurant-form h2 {
+  font-family: 'Cursive', sans-serif;
+  font-size: 1.8rem;
+  color: #4c4c4c;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.input-field {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-button {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.submit-button {
+  background-color: #4c4c4c; /* Verde */
+  color: white;
+  border-color: #4c4c4c;
+}
+
+.submit-button:hover {
+  background-color: #1b5e20; /* Verde más oscuro */
+  border-color: #1b5e20;
+}
+
+.cancel-button {
+  background-color: #f44336; /* Rojo */
+  color: white;
+  border-color: #f44336;
+}
+
+.cancel-button:hover {
+  background-color: #e53935; /* Rojo más oscuro */
+  border-color: #e53935;
+}
+
+.error {
+  color: #b24c4c;
+  font-size: 0.875rem;
+}
+/* estilo crear sucursal fin */
+
+/* estilo actualizar sucursal*/
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.input-field {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-button {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.submit-button {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  border-color: #4CAF50;
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Verde más oscuro */
+  border-color: #45a049;
+}
+
+
+
+/* estilo actualizar sucursal fin */
+
 /* Encabezado del formulario */
 h3 {
   text-align: center;

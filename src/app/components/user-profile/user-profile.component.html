@@ -140,44 +140,73 @@
       </li>
     </ul>
   </div>
+<!-- crear sucursal -->
+  <div class="container-receta">
+  <button 
+  class="create-button" 
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
+  (click)="startCreatingRestaurant()"
+>
+  Crear Nueva Sucursal
+</button>
 
-  <button *ngIf="!isCreatingRestaurant && !isEditingRestaurant" (click)="startCreatingRestaurant()">Crear Nueva Sucursal</button>
+<form 
+  class="restaurant-form" 
+  *ngIf="isCreatingRestaurant" 
+  [formGroup]="restaurantForm" 
+  (ngSubmit)="createRestaurant()"
+>
+  <h2>Crear Nueva Sucursal</h2>
 
-  <form *ngIf="isCreatingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="createRestaurant()">
-    <h2>Crear Nueva Sucursal</h2>
+  <div class="form-group">
     <label for="name">Nombre</label>
-    <input id="name" formControlName="name" type="text" />
+    <input id="name" formControlName="name" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
       <small class="error">El nombre es requerido</small>
     </div>
+  </div>
 
+  <div class="form-group">
     <label for="locationUrl">URL de Ubicación (Google Maps)</label>
-    <input id="locationUrl" formControlName="locationUrl" type="text" />
+    <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
       <small class="error">Por favor, introduce una URL válida de Google Maps</small>
     </div>
+  </div>
 
-    <button type="submit" [disabled]="!restaurantForm.valid">Crear</button>
-    <button type="button" (click)="cancelCreateRestaurant()">Cancelar</button>
-  </form>
-
+  <div class="button-group">
+    <button type="submit" [disabled]="!restaurantForm.valid" class="form-button submit-button">Crear</button>
+    <button type="button" (click)="cancelCreateRestaurant()" class="form-button cancel-button">Cancelar</button>
+  </div>
+</form>
+</div>
+<!-- actualizar sucursal -->
+<div class="container-receta">
   <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
     <h2>Actualizar Restaurante</h2>
-    <label for="name">Nombre</label>
-    <input id="name" formControlName="name" type="text" />
-    <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
-      <small class="error">El nombre es requerido</small>
+  
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" formControlName="name" type="text" class="input-field" />
+      <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
+        <small class="error">El nombre es requerido</small>
+      </div>
     </div>
-
-    <label for="locationUrl">URL de Ubicación (Google Maps)</label>
-    <input id="locationUrl" formControlName="locationUrl" type="text" />
-    <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
-      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+  
+    <div class="form-group">
+      <label for="locationUrl">URL de Ubicación (Google Maps)</label>
+      <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
+      <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
+        <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+      </div>
     </div>
-
-    <button type="submit" [disabled]="!restaurantForm.valid">Actualizar</button>
-    <button type="button" (click)="cancelEditRestaurant()">Cancelar</button>
-  </form>
+  
+    <div class="button-group">
+      <button type="submit" [disabled]="!restaurantForm.valid" class="form-button submit-button">Actualizar</button>
+      <button type="button" (click)="cancelEditRestaurant()" class="form-button cancel-button">Cancelar</button>
+    </div>
+  </form>  
+</div>
 </div>
 <!-- Mostrar tarjetas solo cuando se está creando una nueva sucursal -->
 <div *ngIf="isCreatingRestaurant" class="cards-container">
