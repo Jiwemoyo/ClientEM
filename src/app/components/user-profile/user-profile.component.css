@@ -217,6 +217,42 @@ ul {
   background-color: #1b5e20;
 }
 
+/* Contenedor de restaurantes */
+.no-restaurants-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
+  padding: 10px;
+}
+
+/* Contenido de no restaurantes */
+.no-restaurants-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+/* Imagen de home y estilos */
+.home {
+  width: 100%;
+  max-width: 300px; /* Ajusta este valor según tus necesidades */
+  height: auto;
+  border-radius: 8px; /* Opcional: para bordes redondeados */
+  margin-right: 15px; /* Espacio entre la imagen y el texto */
+  margin-left: 200px;
+  opacity: 0.7;
+}
+
+/* Texto de restaurantes */
+.no-restaurants-content p {
+  color: #616161; /* Color del texto */
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+
 /* Estilos para los párrafos */
 p {
   font-family: 'Arial', sans-serif;

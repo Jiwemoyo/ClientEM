@@ -124,11 +124,13 @@
  <br>
  
   <h2>{{ restaurantCountText() }}</h2>
-
-  <div *ngIf="restaurants.length === 0">
-    <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
+  <div class="no-restaurants-container">
+    <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
+      <img src="../../../assets/home.jpeg" alt="comida" class="home">
+      <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p> 
+    </div>
   </div>
-
+  
   <div *ngIf="restaurants.length > 0">
     <ul>
       <li *ngFor="let restaurant of restaurants">
