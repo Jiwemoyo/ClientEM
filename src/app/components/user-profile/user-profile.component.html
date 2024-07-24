@@ -79,29 +79,50 @@
     </form>
   </div>
 </div>
-  <form *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
-    <h2>Actualizar Receta</h2>
+ <!-- Formulario de actualizar receta -->
+ <div class="container-receta">
+ <form class="recipe-form" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+  <h2>Actualizar Receta</h2>
+  
+  <div class="form-group">
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
+  </div>
 
+  <div class="form-group">
     <label for="description">Descripción</label>
     <input id="description" formControlName="description" type="text" />
+  </div>
 
+  <div class="form-group">
     <label for="ingredients">Ingredientes</label>
     <textarea id="ingredients" formControlName="ingredients"></textarea>
+  </div>
 
+  <div class="form-group">
     <label for="steps">Pasos</label>
     <textarea id="steps" formControlName="steps"></textarea>
+  </div>
 
+  <div class="form-group">
     <label for="image">Imagen</label>
     <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
     <small>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
-    <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
+  </div>
 
+  <div class="form-group">
+    <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
+  </div>
+
+  <div class="button-group">
     <button type="submit">Actualizar</button>
     <button type="button" (click)="cancelEdit()">Cancelar</button>
-  </form>
-
+  </div>
+</form>
+ </div>
+ <br>
+ <br>
+ 
   <h2>{{ restaurantCountText() }}</h2>
 
   <div *ngIf="restaurants.length === 0">
