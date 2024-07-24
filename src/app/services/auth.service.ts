@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   private hasToken(): boolean {
-    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
+    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token') && !this.isTokenExpired();
   }
 
   private setSession(authResult: any): void {
@@ -54,5 +54,11 @@ export class AuthService {
     localStorage.removeItem('userRole');
     localStorage.removeItem('expiresAt');
     this.loggedIn.next(false);
+  }
+
+  private isTokenExpired(): boolean {
+    const expiresAt = localStorage.getItem('expiresAt');
+    if (!expiresAt) return true;
+    return new Date().getTime() > new Date(expiresAt).getTime();
   }
 }
