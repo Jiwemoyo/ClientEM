@@ -1,21 +1,21 @@
 /* Estilos para el contenedor principal */
 .container {
   max-width: 1300px;
-  margin: 0 auto;
-  padding: 0px;
   text-align: center;
   background-color: #FFF5E1;
 }
 
 .image-container {
   position: relative;
-  width: 100%;
+  width: 100vw;
   margin: 0 auto;
+  overflow: hidden;
+  margin-left: 0;
 }
 
 .image-container img {
-  width: 100%;
-  height: auto;
+  width: 100vw;
+  height: 150px;
   max-height: 300px; /* Ajusta este valor según sea necesario */
   object-fit: cover;
   display: block;
@@ -42,7 +42,7 @@ h2 {
   margin-bottom: 20px;
   text-align: left;
   font-weight: normal;
-  padding-left: 35px;
+  padding-left: 50px;
 }
 
 /* Estilos para la barra de búsqueda */
@@ -97,10 +97,9 @@ h2 {
 ul {
   text-align: left;
   list-style: none;
-  padding: 10px;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 5px auto;
   max-width: 1300px;
   gap: 20px; /* Espacio entre las tarjetas */
   justify-content: center; /* Centra las tarjetas horizontalmente */

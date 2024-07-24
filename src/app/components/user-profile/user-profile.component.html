@@ -5,18 +5,18 @@
     <img src="../../../assets/collageComida.jpg" alt="comida">
     <div class="overlay-text">Bienvenido:</div>
   </div>
-
-  <h2>Mis Recetas</h2>
-  <div class="search-container">
-    <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" class="search-input"/>
+  <br>
+  <br>
+<div class="search-container">
+  <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" class="search-input"/>
     <button class="search-button">
       <i class="fa-solid fa-magnifying-glass search-icon"></i>
     </button>
-  </div>
-
-  <div *ngIf="recipes.length === 0">
-    <p>No tienes recetas aún.</p>
-  </div>
+</div>
+<div *ngIf="recipes.length === 0">
+  <p>No tienes recetas aún.</p>
+</div>
+  <h2>Mis Recetas</h2>
   <div *ngIf="recipes.length > 0" class="recipes-list">
     <ul>
       <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
