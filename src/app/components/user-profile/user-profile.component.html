@@ -36,30 +36,49 @@
       </li>
     </ul>
   </div>
-
   <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
-  <form *ngIf="isCreating" [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
-    <h2>Crear Nueva Receta</h2>
-    <label for="title">Título</label>
-    <input id="title" formControlName="title" type="text" />
 
-    <label for="description">Descripción</label>
-    <input id="description" formControlName="description" type="text" />
+  <!-- Formulario de creación de receta -->
+  <div class="container-receta">
+  <div class="recipe-form" *ngIf="isCreating">
+    <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+      <h3>Crea tu receta</h3>
 
-    <label for="ingredients">Ingredientes (separados por comas)</label>
-    <textarea id="ingredients" formControlName="ingredients"></textarea>
+      <!-- Sección para subir la imagen -->
+      <label for="image" class="image-label">
+        <input type="file" id="image" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
+        <span>Elige una imagen</span>
+      </label>
 
-    <label for="steps">Pasos (separados por comas)</label>
-    <textarea id="steps" formControlName="steps"></textarea>
+      <!-- Inputs y textareas con nueva estructura de CSS -->
+      <div class="form-group">
+        <label for="title">Nombre de la receta</label>
+        <input id="title" formControlName="title" type="text" />
+      </div>
 
-    <label for="image">Imagen</label>
-    <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
-    <small>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input id="description" formControlName="description" type="text" />
+      </div>
 
-    <button type="submit">Crear</button>
-    <button type="button" (click)="cancelCreate()">Cancelar</button>
-  </form>
+      <div class="form-group">
+        <label for="ingredients">Ingredientes (separados por comas)</label>
+        <textarea id="ingredients" formControlName="ingredients"></textarea>
+      </div>
 
+      <div class="form-group">
+        <label for="steps">Pasos (separados por comas)</label>
+        <textarea id="steps" formControlName="steps"></textarea>
+      </div>
+
+      <!-- Botones de acción con nueva estructura de CSS -->
+      <div class="button-group">
+        <button type="submit">Crear</button>
+        <button type="button" (click)="cancelCreate()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
   <form *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
     <h2>Actualizar Receta</h2>
     <label for="title">Título</label>
