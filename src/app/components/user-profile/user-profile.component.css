@@ -2,7 +2,6 @@
 .container {
   max-width: 1300px;
   margin: 0 auto;
-  margin-left: 0;
   padding: 0px;
   text-align: center;
   background-color: #FFF5E1;
@@ -15,8 +14,8 @@
 }
 
 .image-container img {
-  width: 120%;
-  height: 100px;
+  width: 100%;
+  height: auto;
   max-height: 300px; /* Ajusta este valor según sea necesario */
   object-fit: cover;
   display: block;
@@ -134,10 +133,8 @@ ul {
 /* Estilo para la línea de separación */
 .separator {
   border: 2px solid #395B64;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 1000px;
+  width: 100%;
+  margin: 10px 0;
 }
 
 /* Estilos para el título de la receta */
@@ -152,12 +149,17 @@ ul {
 }
 
 /* Estilos para los likes */
+.likes-and-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
 .likes {
   font-size: 1.1em;
   color: #7B8C8F;
   margin: 10px 0;
-  position: relative;
-  padding-right: 40px; /* Espacio para el botón de detalles */
 }
 
 .likes .fa-heart {
@@ -168,8 +170,7 @@ ul {
 /* Estilos para el contenedor de botones */
 .button-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between; /* Alinea los botones horizontalmente */
   padding: 10px;
   gap: 10px;
 }
@@ -185,23 +186,36 @@ ul {
 }
 
 .details-btn {
-  border-color: #395B64;
-  color: #395B64;
+  background-color: #395B64;
+  color: #FFF5E1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  padding: 5px;
 }
 
 .details-btn:hover {
-  background-color: #395B64;
-  color: #FFF5E1;
+  background-color: #1b5e20;
 }
 
+
 .action-btn {
-  border-color: #7B8C8F;
-  color: #7B8C8F;
+  background-color: #395B64;
+  color: #FFF5E1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  padding: 5px;
 }
 
 .action-btn:hover {
-  background-color: #7B8C8F;
-  color: #FFF5E1;
+  background-color: #1b5e20;
 }
 
 /* Estilos para los párrafos */
@@ -248,79 +262,40 @@ a:hover {
 .restaurant-form input,
 .recipe-form textarea,
 .restaurant-form textarea {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
-  margin-bottom: 10px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
   box-sizing: border-box;
 }
 
 .recipe-form button,
 .restaurant-form button {
   padding: 10px 20px;
-  border: 2px solid #395B64;
+  border: none;
   background-color: #395B64;
   color: #FFF5E1;
+  font-size: 1em;
   cursor: pointer;
   border-radius: 10px;
-  transition: background-color 0.3s;
-  margin: 5px;
+  margin-right: 10px;
 }
 
-.recipe-form button:hover,
-.restaurant-form button:hover {
-  background-color: #1b5e20;
+.recipe-form button[type="button"],
+.restaurant-form button[type="button"] {
+  background-color: #f44336;
 }
 
-/* Estilos para mensajes de error */
+.recipe-form button:disabled,
+.restaurant-form button:disabled {
+  background-color: #7B8C8F;
+}
+
 .error {
   color: red;
-  font-size: 0.9em;
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-  .recipe-card {
-    width: 100%;
-  }
-
-  .button-container {
-    flex-direction: column;
-  }
-
-  ul {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .search-container {
-    width: 100%;
-  }
-
-  .search-input {
-    font-size: 1em;
-  }
-
-  .search-button {
-    width: 40px;
-  }
-
-  h3 {
-    font-size: 1.2em;
-  }
-
-  p {
-    font-size: 0.9em;
-  }
-
-  .details-button {
-    font-size: 0.7em;
-    padding: 5px 8px;
-  }
-
-  ul {
-    grid-template-columns: 1fr;
-  }
+  font-size: 0.8em;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
