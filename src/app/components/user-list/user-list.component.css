@@ -1,5 +1,6 @@
 .main {
   background-color: #efe4cf;
+  min-height: 100vh; /* Asegura que la altura mínima sea el 100% de la ventana */
 }
 
 .alert {
@@ -111,6 +112,11 @@
 
 .user-table tbody tr:last-of-type {
   border-bottom: 3px solid #395B64;
+}
+
+/* Ocultar el botón de eliminar en el primer usuario */
+.user-table tbody tr:first-of-type .delete-btn {
+  display: none;
 }
 
 .edit-btn, .delete-btn {

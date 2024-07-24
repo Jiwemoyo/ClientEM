@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+<div>
 <div class="container">
   <div class="image-container">
     <img src="../../../assets/collageComida.jpg" alt="comida">
@@ -179,3 +179,25 @@
     <button type="button" (click)="cancelEditRestaurant()">Cancelar</button>
   </form>
 </div>
+<!-- Mostrar tarjetas solo cuando se está creando una nueva sucursal -->
+<div *ngIf="isCreatingRestaurant" class="cards-container">
+  <div class="card">
+    <img src="../../../assets/paso.png" alt="Descripción de la imagen" />
+    <p> Dirigiete a Google Maps y busca la hubicacion de tu restaurante </p>
+  </div>
+  <div class="card">
+    <img src="../../../assets/paso1.png" alt="Descripción de la imagen" />
+    <p>Si no estas posicionado en google map da click derecho para mostrar las cordenadas y luego click en ellas para copiarlas</p>
+  </div>
+  <div class="card">
+    <img src="../../../assets/paso2.png" alt="Descripción de la imagen" />
+    <p>pega las cordenadas en el buscador y presiona enter</p>
+  </div>
+  <div class="card">
+    <img src="../../../assets/paso3.png" alt="Descripción de la imagen" />
+    <p>Veras como una pantalla se expande y darle a la opcion que dice compartir</p>
+  </div>
+  <div class="card">
+    <img src="../../../assets/paso4.png" alt="Descripción de la imagen" />
+    <p>Dale click a copiar vinculo y pegalo en el input de arriba</p>
+  </div>
