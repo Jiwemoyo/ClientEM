@@ -19,19 +19,13 @@ export class AuthService {
   login(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, userData).pipe(
       tap((response: any) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userId', response.userId);
-        localStorage.setItem('userRole', response.role); // Guardar el rol del usuario
-        this.loggedIn.next(true);
+        this.setSession(response);
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
-    this.loggedIn.next(false);
+    this.clearSession();
   }
 
   getUserRole(): string {
@@ -44,5 +38,21 @@ export class AuthService {
 
   private hasToken(): boolean {
     return typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
+  }
+
+  private setSession(authResult: any): void {
+    localStorage.setItem('token', authResult.token);
+    localStorage.setItem('userId', authResult.userId);
+    localStorage.setItem('userRole', authResult.role);
+    localStorage.setItem('expiresAt', authResult.expiresAt);
+    this.loggedIn.next(true);
+  }
+
+  private clearSession(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('expiresAt');
+    this.loggedIn.next(false);
   }
 }
