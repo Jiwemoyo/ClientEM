@@ -1,0 +1,605 @@
+/* Estilos para el contenedor principal */
+.container {
+  max-width: 1300px;
+  text-align: center;
+  background-color: #FFF5E1;
+}
+
+.image-container {
+  position: relative;
+  width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-left: 0;
+}
+
+.image-container img {
+  width: 100vw;
+  height: 150px;
+  max-height: 300px; /* Ajusta este valor según sea necesario */
+  object-fit: cover;
+  display: block;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  font-family: 'Pacifico', cursive;
+}
+
+/* Estilos para el título */
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5em;
+  color: #395B64;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: normal;
+  padding-left: 50px;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: calc(100% - 50px); /* Ajustar el ancho para dejar espacio al botón */
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: 2px solid #395B64;
+  border-radius: 20px 0 0 20px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.search-button {
+  background-color: #395B64;
+  color: #ffe1ef;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  border-radius: 0 20px 20px 0;
+}
+
+.search-button:hover {
+  background-color: #1b5e20;
+}
+
+.search-icon {
+  font-size: 1.9em;
+  color: #FFF5E1;
+  font-variant: normal;
+}
+
+/* Estilos para la lista de recetas */
+ul {
+  text-align: left;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px auto;
+  max-width: 1300px;
+  gap: 20px; /* Espacio entre las tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+}
+
+/* Estilos para cada receta */
+.recipe-card {
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño de las tarjetas */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  background: none; /* Sin fondo blanco */
+  margin-bottom: 20px;
+}
+
+.recipe-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más prominente solo hacia abajo */
+}
+
+/* Estilos para la imagen de la receta */
+.recipe-image {
+  width: 100%;
+  height: 150px; /* Ajusta la altura de la imagen */
+  object-fit: cover;
+}
+
+/* Estilo para la línea de separación */
+.separator {
+  border: 2px solid #395B64;
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* Estilos para el título de la receta */
+.recipe-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+  color: #395B64;
+  margin: 10px 0;
+  text-align: left;
+  font-weight: normal;
+  padding: 0 10px;
+}
+
+/* Estilos para los likes */
+.likes-and-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.likes {
+  font-size: 1.1em;
+  color: #7B8C8F;
+  margin: 10px 0;
+}
+
+.likes .fa-heart {
+  color: #FF0000;
+  margin-right: 5px;
+}
+
+/* Estilos para el contenedor de botones */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Alinea los botones horizontalmente */
+  padding: 10px;
+  gap: 10px;
+}
+
+.details-btn,
+.action-btn {
+  padding: 5px 10px;
+  border: 2px solid;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 5px;
+}
+
+.details-btn {
+  background-color: #395B64;
+  color: #FFF5E1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  padding: 5px;
+}
+
+.details-btn:hover {
+  background-color: #1b5e20;
+}
+
+
+.action-btn {
+  background-color: #395B64;
+  color: #FFF5E1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+  padding: 5px;
+}
+
+.action-btn:hover {
+  background-color: #1b5e20;
+}
+
+/* Contenedor de restaurantes */
+.no-restaurants-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
+  padding: 10px;
+}
+
+/* Contenido de no restaurantes */
+.no-restaurants-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+/* Imagen de home y estilos */
+.home {
+  width: 100%;
+  max-width: 300px; /* Ajusta este valor según tus necesidades */
+  height: auto;
+  border-radius: 8px; /* Opcional: para bordes redondeados */
+  margin-right: 15px; /* Espacio entre la imagen y el texto */
+  margin-left: 200px;
+  opacity: 0.7;
+}
+
+/* Texto de restaurantes */
+.no-restaurants-content p {
+  color: #616161; /* Color del texto */
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+
+/* Estilos para los párrafos */
+p {
+  font-family: 'Arial', sans-serif;
+  font-size: 1em;
+  color: #555;
+  margin: 5px 0;
+  text-align: center;
+  padding: 5px;
+  font-weight: normal;
+}
+
+/* Estilos para los enlaces */
+a {
+  color: #1e88e5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilo para los formularios de receta */
+.container-receta{
+  display: flex;
+  justify-content: center; /* Alinea horizontalmente al centro */
+  align-items: center;
+}
+.recipe-form {
+  background-color: #f9f3e9;
+  padding: 15px;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  margin: 10px 0;
+  max-width: 400px;
+  width: 80%;
+  text-align: center;
+}
+
+/* Contenedor de restaurantes */
+.no-restaurants-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
+  padding: 10px;
+}
+
+/* Contenido de no restaurantes */
+.no-restaurants-content {
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+/* Imagen de home y estilos */
+.home {
+  max-width: 300px; /* Ajusta este valor según tus necesidades */
+  height: auto;
+  border-radius: 8px; /* Opcional: para bordes redondeados */
+  margin-right: 15px; /* Espacio entre la imagen y el texto */
+  opacity: 0.7;
+}
+
+/* Texto de restaurantes */
+.no-restaurants-content p {
+  color: #616161; /* Color del texto */
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* estilo crear sucursal*/
+.create-button {
+  background-color: #4c4c4c; /* Verde */
+  color: white;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.create-button:hover {
+  background-color: #1b5e20; /* Verde más oscuro */
+  border-color: #1b5e20;
+}
+
+.restaurant-form {
+  background-color: #f9f3e9;
+  padding: 15px;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  margin: 10px 0;
+  max-width: 400px;
+  width: 80%;
+}
+
+.restaurant-form h2 {
+  font-family: 'Cursive', sans-serif;
+  font-size: 1.8rem;
+  color: #4c4c4c;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.input-field {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-button {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.submit-button {
+  background-color: #4c4c4c; /* Verde */
+  color: white;
+  border-color: #4c4c4c;
+}
+
+.submit-button:hover {
+  background-color: #1b5e20; /* Verde más oscuro */
+  border-color: #1b5e20;
+}
+
+.cancel-button {
+  background-color: #f44336; /* Rojo */
+  color: white;
+  border-color: #f44336;
+}
+
+.cancel-button:hover {
+  background-color: #e53935; /* Rojo más oscuro */
+  border-color: #e53935;
+}
+
+.error {
+  color: #b24c4c;
+  font-size: 0.875rem;
+}
+/* estilo crear sucursal fin */
+
+/* estilo actualizar sucursal*/
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.input-field {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.form-button {
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.submit-button {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  border-color: #4CAF50;
+}
+
+.submit-button:hover {
+  background-color: #45a049; /* Verde más oscuro */
+  border-color: #45a049;
+}
+
+
+
+/* estilo actualizar sucursal fin */
+
+/* Encabezado del formulario */
+h3 {
+  text-align: center;
+  font-family: 'Cursive', sans-serif;
+  font-size: 1.8rem;
+  color: #4c4c4c;
+  margin-bottom: 20px;
+}
+
+/* Label e input para la imagen */
+.image-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #4c4c4c;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.image-label span {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #4c4c4c;
+}
+
+.image-label input {
+  display: none;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #4c4c4c;
+}
+
+.form-group input,
+.form-group textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Textareas */
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: #4c4c4c;
+  color: white;
+}
+
+.button-group button[type="button"] {
+  background-color: #b24c4c;
+}
+
+/* Estilo para mensajes de error */
+.error {
+  color: #b24c4c;
+  font-size: 0.875rem;
+}
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Espacio entre las tarjetas */
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.card {
+  background: #547A80; /* Color de fondo de la tarjeta */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 250px; /* Tamaño ajustado de las tarjetas */
+  text-align: center;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 150px; /* Tamaño ajustado de la imagen */
+  object-fit: cover;
+}
+
+.card p {
+  padding: 0.5rem; /* Ajuste del relleno */
+  margin: 0;
+  color: #fff; /* Color de texto blanco */
+  font-size: 0.9rem; /* Tamaño de fuente ajustado */
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}
+/* Responsive styles */
+@media (max-width: 600px) {
+  .recipe-form {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .button-group button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button-group button:last-child {
+    margin-bottom: 0;
+  }
+}
