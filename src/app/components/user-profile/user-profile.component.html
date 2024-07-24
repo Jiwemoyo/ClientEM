@@ -1,25 +1,38 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <div class="container">
-  <h2>Mis Recetas</h2>
-  <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" />
-
+  <div class="image-container">
+  <img src="../../../assets/collageComida.jpg" alt="comida">
+  <div class="overlay-text">Bienvenido:</div>
+</div>
+  <h2>Tus Recetas</h2>
+  <div class="search-container">
+    <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" class="search-input"/>
+    <button class="search-button">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    </button>
+  </div>  
   <div *ngIf="recipes.length === 0">
     <p>No tienes recetas aún.</p>
   </div>
-  <div *ngIf="recipes.length > 0">
+  <div *ngIf="recipes.length > 0" class="recipes-list">
     <ul>
-      <li *ngFor="let recipe of filteredRecipes">
-        <h3>{{ recipe.title }}</h3>
-        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-        <p><strong>Likes:</strong> {{ recipe.likesCount }}</p>
-        <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
-        <button (click)="editRecipe(recipe)">Actualizar</button>
-        <button (click)="deleteRecipe(recipe._id)">Eliminar</button>
+      <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
+        <div class="recipe-image-container">
+          <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+        </div>
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <p class="likes"><i class="fa fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
+        <div class="button-container">
+          <button (click)="viewRecipe(recipe._id)" class="details-btn">Ver Detalles</button>
+          <hr class="separator">
+          <button (click)="editRecipe(recipe)" class="action-btn">Actualizar</button>
+          <button (click)="deleteRecipe(recipe._id)" class="action-btn">Eliminar</button>
+        </div>
       </li>
     </ul>
   </div>
-
   <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
-  <form *ngIf="isCreating" [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+  <form *ngIf="isCreating" [formGroup]="recipeForm" (ngSubmit)="createRecipe()" class="recipe-form">
     <h2>Crear Nueva Receta</h2>
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
@@ -41,7 +54,7 @@
     <button type="button" (click)="cancelCreate()">Cancelar</button>
   </form>
 
-  <form *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+  <form *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()" class="recipe-form">
     <h2>Actualizar Receta</h2>
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
@@ -70,19 +83,21 @@
     <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
   </div>
 
-  <div *ngIf="restaurants.length > 0">
+  <div *ngIf="restaurants.length > 0" class="restaurants-list">
     <ul>
-      <li *ngFor="let restaurant of restaurants">
+      <li *ngFor="let restaurant of restaurants" class="restaurant-card">
         <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
-        <button (click)="editRestaurant(restaurant)">Actualizar</button>
-        <button (click)="deleteRestaurant(restaurant._id)">Eliminar</button>
+        <div class="button-container">
+          <button (click)="editRestaurant(restaurant)" class="action-btn">Actualizar</button>
+          <button (click)="deleteRestaurant(restaurant._id)" class="action-btn">Eliminar</button>
+        </div>
       </li>
     </ul>
   </div>
 
   <button *ngIf="!isCreatingRestaurant && !isEditingRestaurant" (click)="startCreatingRestaurant()">Crear Nueva Sucursal</button>
 
-  <form *ngIf="isCreatingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="createRestaurant()">
+  <form *ngIf="isCreatingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="createRestaurant()" class="restaurant-form">
     <h2>Crear Nueva Sucursal</h2>
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" />
@@ -100,7 +115,7 @@
     <button type="button" (click)="cancelCreateRestaurant()">Cancelar</button>
   </form>
 
-  <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
+  <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()" class="restaurant-form">
     <h2>Actualizar Restaurante</h2>
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" />
