@@ -9,8 +9,11 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+  private logoutTimer: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.setLogoutTimer();
+  }
 
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
@@ -46,6 +49,7 @@ export class AuthService {
     localStorage.setItem('userRole', authResult.role);
     localStorage.setItem('expiresAt', authResult.expiresAt);
     this.loggedIn.next(true);
+    this.setLogoutTimer();
   }
 
   private clearSession(): void {
@@ -54,11 +58,27 @@ export class AuthService {
     localStorage.removeItem('userRole');
     localStorage.removeItem('expiresAt');
     this.loggedIn.next(false);
+    if (this.logoutTimer) {
+      clearTimeout(this.logoutTimer);
+    }
   }
 
   private isTokenExpired(): boolean {
     const expiresAt = localStorage.getItem('expiresAt');
     if (!expiresAt) return true;
     return new Date().getTime() > new Date(expiresAt).getTime();
+  }
+
+  private setLogoutTimer(): void {
+    const expiresAt = localStorage.getItem('expiresAt');
+    if (expiresAt) {
+      const expiresIn = new Date(expiresAt).getTime() - new Date().getTime();
+      if (this.logoutTimer) {
+        clearTimeout(this.logoutTimer);
+      }
+      this.logoutTimer = setTimeout(() => {
+        this.logout();
+      }, expiresIn);
+    }
   }
 }
