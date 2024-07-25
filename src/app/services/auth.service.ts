@@ -1,18 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
-  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
-  private logoutTimer: any;
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
-    this.setLogoutTimer();
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loggedIn.next(this.hasToken());
+    }
   }
 
   register(userData: any): Observable<any> {
@@ -32,7 +37,7 @@ export class AuthService {
   }
 
   getUserRole(): string {
-    return localStorage.getItem('userRole') || '';
+    return this.getItem('userRole') || '';
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -40,45 +45,47 @@ export class AuthService {
   }
 
   private hasToken(): boolean {
-    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token') && !this.isTokenExpired();
+    return !!this.getItem('token') && !this.isTokenExpired();
   }
 
   private setSession(authResult: any): void {
-    localStorage.setItem('token', authResult.token);
-    localStorage.setItem('userId', authResult.userId);
-    localStorage.setItem('userRole', authResult.role);
-    localStorage.setItem('expiresAt', authResult.expiresAt);
+    this.setItem('token', authResult.token);
+    this.setItem('userId', authResult.userId);
+    this.setItem('userRole', authResult.role);
+    this.setItem('expiresAt', authResult.expiresAt);
     this.loggedIn.next(true);
-    this.setLogoutTimer();
   }
 
   private clearSession(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('expiresAt');
+    this.removeItem('token');
+    this.removeItem('userId');
+    this.removeItem('userRole');
+    this.removeItem('expiresAt');
     this.loggedIn.next(false);
-    if (this.logoutTimer) {
-      clearTimeout(this.logoutTimer);
-    }
   }
 
   private isTokenExpired(): boolean {
-    const expiresAt = localStorage.getItem('expiresAt');
+    const expiresAt = this.getItem('expiresAt');
     if (!expiresAt) return true;
     return new Date().getTime() > new Date(expiresAt).getTime();
   }
 
-  private setLogoutTimer(): void {
-    const expiresAt = localStorage.getItem('expiresAt');
-    if (expiresAt) {
-      const expiresIn = new Date(expiresAt).getTime() - new Date().getTime();
-      if (this.logoutTimer) {
-        clearTimeout(this.logoutTimer);
-      }
-      this.logoutTimer = setTimeout(() => {
-        this.logout();
-      }, expiresIn);
+  private setItem(key: string, value: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  private getItem(key: string): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  private removeItem(key: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(key);
     }
   }
 }
