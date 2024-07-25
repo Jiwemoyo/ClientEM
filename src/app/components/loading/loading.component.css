@@ -1,0 +1,80 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FFF5E1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.cooking-pot {
+  width: 80px;
+  height: 50px;
+  background-color: #395B64;
+  border-radius: 0 0 40% 40%;
+  position: relative;
+  margin: 0 auto 20px;
+  animation: shake 0.5s infinite;
+}
+
+.lid {
+  position: absolute;
+  width: 90px;
+  height: 20px;
+  background-color: #395B64;
+  top: -10px;
+  left: -5px;
+  border-radius: 50%;
+  animation: rattle 0.5s infinite;
+}
+
+.steam {
+  position: absolute;
+  left: 30px;
+  top: -20px;
+  width: 20px;
+  height: 20px;
+  background-color: #FFF5E1;
+  border-radius: 50%;
+  animation: steam 1s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px) rotate(-1deg); }
+  75% { transform: translateX(2px) rotate(1deg); }
+}
+
+@keyframes rattle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+@keyframes steam {
+  0% { transform: scale(0.5) translateY(0); opacity: 0.5; }
+  50% { transform: scale(1) translateY(-10px); opacity: 1; }
+  100% { transform: scale(1.5) translateY(-20px); opacity: 0; }
+}
+
+p {
+  color: #395B64;
+  font-size: 24px;  /* Aumentado el tamaño para que se vea mejor */
+  font-weight: normal;  /* Cambiado a normal ya que Pacifico es una fuente decorativa */
+  font-family: 'Pacifico', cursive;  /* Aplicando la fuente Pacifico */
+  animation: pulse 1s infinite;
+  margin-top: 20px;  /* Añadido un poco de espacio arriba */
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
