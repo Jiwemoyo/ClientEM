@@ -5,6 +5,13 @@ import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { RestaurantService } from '../../services/restaurant.service';
 
+const forbiddenWords = ['puta', 'palabra2', 'palabraInapropiada'];
+
+function isTextAppropriate(text: string): boolean {
+  const regex = new RegExp(forbiddenWords.join('|'), 'i');
+  return !regex.test(text);
+}
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -26,6 +33,7 @@ export class UserProfileComponent implements OnInit {
   currentRestaurantId: string | null = null;
   archivoSeleccionado: File | null = null;
   existingImageUrl: string | null = null;
+  fieldError: string | null = null;
 
   constructor(
     private recipeService: RecipeService,
@@ -92,7 +100,25 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  validateRecipeForm(): boolean {
+    const fieldsToValidate = ['title', 'description', 'ingredients', 'steps'];
+    for (const field of fieldsToValidate) {
+      const control = this.recipeForm.get(field);
+      if (control && !isTextAppropriate(control.value)) {
+        this.fieldError = `El campo ${field} contiene palabras inapropiadas. Por favor, elija otro contenido.`;
+        return false;
+      }
+    }
+    return true;
+  }
+
   createRecipe(): void {
+    if (!this.validateRecipeForm()) {
+      return;
+    }
+
+    this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
+
     const formData = new FormData();
     Object.keys(this.recipeForm.controls).forEach(key => {
       const control = this.recipeForm.get(key);
@@ -119,6 +145,7 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+
   editRecipe(recipe: any): void {
     this.recipeForm.patchValue({
       title: recipe.title,
@@ -136,6 +163,12 @@ export class UserProfileComponent implements OnInit {
 
   updateRecipe(): void {
     if (!this.currentRecipeId) return;
+
+    if (!this.validateRecipeForm()) {
+      return;
+    }
+
+    this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
 
     const formData = new FormData();
     Object.keys(this.recipeForm.controls).forEach(key => {
@@ -172,6 +205,7 @@ export class UserProfileComponent implements OnInit {
     this.currentRecipeId = null;
     this.recipeForm.reset();
     this.archivoSeleccionado = null;
+    this.fieldError = null; // Limpiar el mensaje de error al cancelar
   }
 
   startCreating(): void {
@@ -185,6 +219,7 @@ export class UserProfileComponent implements OnInit {
     this.isCreating = false;
     this.recipeForm.reset();
     this.archivoSeleccionado = null;
+    this.fieldError = null; // Limpiar el mensaje de error al cancelar
   }
 
   deleteRecipe(id: string): void {

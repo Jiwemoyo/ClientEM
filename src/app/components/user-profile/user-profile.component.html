@@ -39,6 +39,9 @@
   <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
 
   <!-- Formulario de creación de receta -->
+  <div *ngIf="fieldError" class="error-message">
+    {{ fieldError }}
+  </div>
   <div class="container-receta">
   <div class="recipe-form" *ngIf="isCreating">
     <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
@@ -83,7 +86,7 @@
  <div class="container-receta">
  <form class="recipe-form" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
   <h2>Actualizar Receta</h2>
-  
+
   <div class="form-group">
     <label for="title">Título</label>
     <input id="title" formControlName="title" type="text" />
@@ -122,15 +125,15 @@
  </div>
  <br>
  <br>
- 
+
   <h2>{{ restaurantCountText() }}</h2>
   <div class="no-restaurants-container">
     <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
       <img src="../../../assets/home.jpeg" alt="comida" class="home">
-      <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p> 
+      <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
     </div>
   </div>
-  
+
   <div *ngIf="restaurants.length > 0">
     <ul>
       <li *ngFor="let restaurant of restaurants">
@@ -142,18 +145,18 @@
   </div>
 <!-- crear sucursal -->
   <div class="container-receta">
-  <button 
-  class="create-button" 
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
+  <button
+  class="create-button"
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
   (click)="startCreatingRestaurant()"
 >
   Crear Nueva Sucursal
 </button>
 
-<form 
-  class="restaurant-form" 
-  *ngIf="isCreatingRestaurant" 
-  [formGroup]="restaurantForm" 
+<form
+  class="restaurant-form"
+  *ngIf="isCreatingRestaurant"
+  [formGroup]="restaurantForm"
   (ngSubmit)="createRestaurant()"
 >
   <h2>Crear Nueva Sucursal</h2>
@@ -184,7 +187,7 @@
 <div class="container-receta">
   <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
     <h2>Actualizar Restaurante</h2>
-  
+
     <div class="form-group">
       <label for="name">Nombre</label>
       <input id="name" formControlName="name" type="text" class="input-field" />
@@ -192,7 +195,7 @@
         <small class="error">El nombre es requerido</small>
       </div>
     </div>
-  
+
     <div class="form-group">
       <label for="locationUrl">URL de Ubicación (Google Maps)</label>
       <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
@@ -200,12 +203,12 @@
         <small class="error">Por favor, introduce una URL válida de Google Maps</small>
       </div>
     </div>
-  
+
     <div class="button-group">
       <button type="submit" [disabled]="!restaurantForm.valid" class="form-button submit-button">Actualizar</button>
       <button type="button" (click)="cancelEditRestaurant()" class="form-button cancel-button">Cancelar</button>
     </div>
-  </form>  
+  </form>
 </div>
 </div>
 <!-- Mostrar tarjetas solo cuando se está creando una nueva sucursal -->
