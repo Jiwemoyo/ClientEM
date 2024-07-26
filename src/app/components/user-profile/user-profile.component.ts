@@ -5,17 +5,25 @@ import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { RestaurantService } from '../../services/restaurant.service';
 
-const forbiddenWords = ['puta', 'palabra2', 'palabraInapropiada'];
+const forbiddenWords = ['puta', 'zorra', 'putas','zorras','verga','vergas'];
 
 function isTextAppropriate(text: string): boolean {
   const regex = new RegExp(forbiddenWords.join('|'), 'i');
   return !regex.test(text);
 }
 
+const fieldTranslations: { [key: string]: string } = {
+  title: 'título',
+  description: 'descripción',
+  ingredients: 'ingredientes',
+  steps: 'pasos',
+  image: 'imagen',
+};
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
   recipes: any[] = [];
@@ -47,65 +55,77 @@ export class UserProfileComponent implements OnInit {
       description: ['', Validators.required],
       ingredients: ['', Validators.required],
       steps: ['', Validators.required],
-      image: [null]
+      image: [null, Validators.required],
     });
 
     this.restaurantForm = this.formBuilder.group({
       name: ['', Validators.required],
-      locationUrl: ['', [Validators.required, this.googleMapsUrlValidator]]
+      locationUrl: ['', [Validators.required, this.googleMapsUrlValidator]],
     });
 
     this.token = this.localStorageService.getItem('token');
   }
 
-  googleMapsUrlValidator(control: { value: string; }) {
+  googleMapsUrlValidator(control: { value: string }) {
     const url = control.value;
     const validPatterns = [
       /^https:\/\/(www\.)?google\.com\/maps\//,
       /^https:\/\/goo\.gl\/maps\//,
-      /^https:\/\/maps\.app\.goo\.gl\//
+      /^https:\/\/maps\.app\.goo\.gl\//,
     ];
 
-    const isValid = validPatterns.some(pattern => pattern.test(url));
+    const isValid = validPatterns.some((pattern) => pattern.test(url));
     return isValid ? null : { invalidGoogleMapsUrl: true };
   }
-
-
 
   ngOnInit(): void {
     this.loadUserRecipes();
     this.loadUserRestaurants();
   }
 
-
-
   loadUserRecipes(): void {
     this.recipeService.getRecipesByUser().subscribe(
-      recipes => {
-        this.recipes = recipes.map((recipe: { likes: string | any[]; comments: any; }) => ({
-          ...recipe,
-          likesCount: recipe.likes.length,
-          comments: recipe.comments
-        }));
+      (recipes) => {
+        this.recipes = recipes.map(
+          (recipe: { likes: string | any[]; comments: any }) => ({
+            ...recipe,
+            likesCount: recipe.likes.length,
+            comments: recipe.comments,
+          })
+        );
         this.filteredRecipes = this.recipes;
       },
-      error => console.error(error)
+      (error) => console.error(error)
     );
   }
 
   onSearch(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
-    this.filteredRecipes = this.recipes.filter(recipe =>
+    this.filteredRecipes = this.recipes.filter((recipe) =>
       recipe.title.toLowerCase().includes(searchTerm)
     );
   }
 
   validateRecipeForm(): boolean {
-    const fieldsToValidate = ['title', 'description', 'ingredients', 'steps'];
+    const fieldsToValidate = [
+      'title',
+      'description',
+      'ingredients',
+      'steps',
+      'image',
+    ];
     for (const field of fieldsToValidate) {
       const control = this.recipeForm.get(field);
-      if (control && !isTextAppropriate(control.value)) {
-        this.fieldError = `El campo ${field} contiene palabras inapropiadas. Por favor, elija otro contenido.`;
+      if (!control || !control.value) {
+        this.fieldError = `El campo ${
+          fieldTranslations[field] || field
+        } no puede estar vacío.`;
+        return false;
+      }
+      if (field !== 'image' && !isTextAppropriate(control.value)) {
+        this.fieldError = `El campo ${
+          fieldTranslations[field] || field
+        } contiene palabras inapropiadas. Por favor, elija otro contenido.`;
         return false;
       }
     }
@@ -113,6 +133,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   createRecipe(): void {
+    if (this.recipeForm.invalid) {
+      this.markAllFieldsAsTouched();
+      this.fieldError = "Por favor, completa todos los campos requeridos, incluyendo la imagen.";
+      return;
+    }
+
     if (!this.validateRecipeForm()) {
       return;
     }
@@ -120,7 +146,7 @@ export class UserProfileComponent implements OnInit {
     this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
 
     const formData = new FormData();
-    Object.keys(this.recipeForm.controls).forEach(key => {
+    Object.keys(this.recipeForm.controls).forEach((key) => {
       const control = this.recipeForm.get(key);
       if (control && control.value !== null) {
         formData.append(key, control.value);
@@ -128,30 +154,48 @@ export class UserProfileComponent implements OnInit {
     });
 
     if (this.archivoSeleccionado) {
-      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
+      formData.append(
+        'image',
+        this.archivoSeleccionado,
+        this.archivoSeleccionado.name
+      );
     }
 
     if (this.token) {
       this.recipeService.createRecipe(formData, this.token).subscribe(
-        recipe => {
+        (recipe) => {
           this.recipes.push(recipe);
           this.recipeForm.reset();
           this.isCreating = false;
           this.archivoSeleccionado = null;
           this.loadUserRecipes();
         },
-        error => console.error(error)
+        (error) => {
+          console.error(error);
+          this.fieldError =
+            'Hubo un error al crear la receta. Por favor, intenta de nuevo.';
+        }
       );
     }
   }
 
+  markAllFieldsAsTouched(): void {
+    Object.keys(this.recipeForm.controls).forEach((field) => {
+      const control = this.recipeForm.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
 
   editRecipe(recipe: any): void {
     this.recipeForm.patchValue({
       title: recipe.title,
       description: recipe.description,
-      ingredients: Array.isArray(recipe.ingredients) ? recipe.ingredients.join(', ') : recipe.ingredients,
-      steps: Array.isArray(recipe.steps) ? recipe.steps.join('\n') : recipe.steps
+      ingredients: Array.isArray(recipe.ingredients)
+        ? recipe.ingredients.join(', ')
+        : recipe.ingredients,
+      steps: Array.isArray(recipe.steps)
+        ? recipe.steps.join('\n')
+        : recipe.steps,
     });
 
     this.existingImageUrl = recipe.image;
@@ -171,7 +215,7 @@ export class UserProfileComponent implements OnInit {
     this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
 
     const formData = new FormData();
-    Object.keys(this.recipeForm.controls).forEach(key => {
+    Object.keys(this.recipeForm.controls).forEach((key) => {
       const control = this.recipeForm.get(key);
       if (control && control.value !== null && key !== 'image') {
         formData.append(key, control.value);
@@ -179,24 +223,32 @@ export class UserProfileComponent implements OnInit {
     });
 
     if (this.archivoSeleccionado) {
-      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
+      formData.append(
+        'image',
+        this.archivoSeleccionado,
+        this.archivoSeleccionado.name
+      );
     }
 
     if (this.token) {
-      this.recipeService.updateRecipe(this.currentRecipeId, formData, this.token).subscribe(
-        updatedRecipe => {
-          const index = this.recipes.findIndex(recipe => recipe._id === this.currentRecipeId);
-          if (index !== -1) {
-            this.recipes[index] = updatedRecipe;
-          }
-          this.isEditing = false;
-          this.currentRecipeId = null;
-          this.recipeForm.reset();
-          this.archivoSeleccionado = null;
-          this.loadUserRecipes();
-        },
-        error => console.error(error)
-      );
+      this.recipeService
+        .updateRecipe(this.currentRecipeId, formData, this.token)
+        .subscribe(
+          (updatedRecipe) => {
+            const index = this.recipes.findIndex(
+              (recipe) => recipe._id === this.currentRecipeId
+            );
+            if (index !== -1) {
+              this.recipes[index] = updatedRecipe;
+            }
+            this.isEditing = false;
+            this.currentRecipeId = null;
+            this.recipeForm.reset();
+            this.archivoSeleccionado = null;
+            this.loadUserRecipes();
+          },
+          (error) => console.error(error)
+        );
     }
   }
 
@@ -226,10 +278,10 @@ export class UserProfileComponent implements OnInit {
     if (this.token) {
       this.recipeService.deleteRecipe(id, this.token).subscribe(
         () => {
-          this.recipes = this.recipes.filter(recipe => recipe._id !== id);
+          this.recipes = this.recipes.filter((recipe) => recipe._id !== id);
           this.loadUserRecipes();
         },
-        error => console.error(error)
+        (error) => console.error(error)
       );
     }
   }
@@ -240,11 +292,18 @@ export class UserProfileComponent implements OnInit {
       if (archivo.type.match(/image\/(jpeg|png|jpg)/)) {
         this.archivoSeleccionado = archivo;
         this.recipeForm.patchValue({
-          image: archivo.name
+          image: archivo,
         });
+        this.recipeForm.get('image')?.updateValueAndValidity();
       } else {
-        alert('Por favor, selecciona un archivo de imagen válido (JPEG, PNG, JPG).');
+        alert(
+          'Por favor, selecciona un archivo de imagen válido (JPEG, PNG, JPG).'
+        );
         evento.target.value = ''; // Limpia el input
+        this.recipeForm.patchValue({
+          image: null,
+        });
+        this.recipeForm.get('image')?.updateValueAndValidity();
       }
     }
   }
@@ -252,10 +311,10 @@ export class UserProfileComponent implements OnInit {
   loadUserRestaurants(): void {
     if (this.token) {
       this.restaurantService.getRestaurantsByUser(this.token).subscribe(
-        restaurants => {
+        (restaurants) => {
           this.restaurants = restaurants;
         },
-        error => console.error(error)
+        (error) => console.error(error)
       );
     }
   }
@@ -266,20 +325,20 @@ export class UserProfileComponent implements OnInit {
     const formData = this.restaurantForm.value;
 
     this.restaurantService.createRestaurant(formData, this.token).subscribe(
-      restaurant => {
+      (restaurant) => {
         this.restaurants.push(restaurant);
         this.restaurantForm.reset();
         this.isCreatingRestaurant = false;
         this.loadUserRestaurants();
       },
-      error => console.error(error)
+      (error) => console.error(error)
     );
   }
 
   editRestaurant(restaurant: any): void {
     this.restaurantForm.patchValue({
       name: restaurant.name,
-      locationUrl: restaurant.locationUrl
+      locationUrl: restaurant.locationUrl,
     });
     this.isEditingRestaurant = true;
     this.isCreatingRestaurant = false;
@@ -287,23 +346,28 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateRestaurant(): void {
-    if (!this.token || !this.currentRestaurantId || !this.restaurantForm.valid) return;
+    if (!this.token || !this.currentRestaurantId || !this.restaurantForm.valid)
+      return;
 
     const formData = this.restaurantForm.value;
 
-    this.restaurantService.updateRestaurant(this.currentRestaurantId, formData, this.token).subscribe(
-      updatedRestaurant => {
-        const index = this.restaurants.findIndex(r => r._id === this.currentRestaurantId);
-        if (index !== -1) {
-          this.restaurants[index] = updatedRestaurant;
-        }
-        this.restaurantForm.reset();
-        this.isEditingRestaurant = false;
-        this.currentRestaurantId = null;
-        this.loadUserRestaurants();
-      },
-      error => console.error(error)
-    );
+    this.restaurantService
+      .updateRestaurant(this.currentRestaurantId, formData, this.token)
+      .subscribe(
+        (updatedRestaurant) => {
+          const index = this.restaurants.findIndex(
+            (r) => r._id === this.currentRestaurantId
+          );
+          if (index !== -1) {
+            this.restaurants[index] = updatedRestaurant;
+          }
+          this.restaurantForm.reset();
+          this.isEditingRestaurant = false;
+          this.currentRestaurantId = null;
+          this.loadUserRestaurants();
+        },
+        (error) => console.error(error)
+      );
   }
   isValidGoogleMapsUrl(url: string): boolean {
     return this.googleMapsUrlValidator({ value: url }) === null;
@@ -314,10 +378,10 @@ export class UserProfileComponent implements OnInit {
 
     this.restaurantService.deleteRestaurant(id, this.token).subscribe(
       () => {
-        this.restaurants = this.restaurants.filter(r => r._id !== id);
+        this.restaurants = this.restaurants.filter((r) => r._id !== id);
         this.loadUserRestaurants();
       },
-      error => console.error(error)
+      (error) => console.error(error)
     );
   }
 
@@ -345,6 +409,4 @@ export class UserProfileComponent implements OnInit {
   viewRecipe(recipeId: string): void {
     this.router.navigate(['/recipe', recipeId]);
   }
-
-
 }
