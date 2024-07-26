@@ -1,31 +1,54 @@
 <div class="container">
-  <h2>Perfil de {{ username }}</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <h3>Recetas de {{ username }}</h3>
+  <div class="image-container">
+    <img src="../../../assets/collageComida.jpg" alt="comida">
+    <h2 class="nombre">Perfil de {{ username }}</h2>
+  </div>
+
+  <h3 class="nombre1">Recetas de {{ username }}</h3>
   <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" />
-  <div *ngIf="filteredRecipes.length === 0">
+
+
+  <div *ngIf="filteredRecipes.length === 0" class="no-recipes">
     <p>Este usuario no tiene recetas aún.</p>
   </div>
-  <div *ngIf="filteredRecipes.length > 0">
+  <div *ngIf="filteredRecipes.length > 0" class="recipes-list">
     <ul>
-      <li *ngFor="let recipe of filteredRecipes">
-        <h3>{{ recipe.title }}</h3>
-        <p>Likes: {{ recipe.likesCount }}</p>
+      <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
         <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-        <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
+        <h3>{{ recipe.title }}</h3>
+        <div class="likes-details">
+          <span class="likes">
+            <i class="fa fa-heart"></i> {{ recipe.likesCount }}  personas
+          </span>
+          <button (click)="viewRecipe(recipe._id)">Ver Detalles</button>
+        </div>
       </li>
     </ul>
   </div>
 
-  <h3>{{ restaurants.length === 1 ? 'Restaurante de ' : 'Restaurantes de ' }}{{ username }}</h3>
-  <div *ngIf="restaurants.length === 0">
+  <h3 class="restaurante">{{ restaurants.length === 1 ? 'Restaurante de ' : 'Restaurantes de ' }}{{ username }}</h3>
+
+  <!-- Mensaje cuando no hay restaurantes -->
+  <div *ngIf="restaurants.length === 0" class="no-restaurants">
+    <img src="../../../assets/collageComida.jpg" alt="No hay restaurantes" class="no-restaurants-img">
     <p>Este usuario no tiene restaurantes aún.</p>
   </div>
-  <div *ngIf="restaurants.length > 0">
-    <ul>
-      <li *ngFor="let restaurant of restaurants">
-        <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
-      </li>
-    </ul>
-  </div>
+
+<!-- Tarjetas de restaurantes cuando hay al menos uno -->
+<div *ngIf="restaurants.length > 0" class="restaurants-list">
+  <ul>
+    <li *ngFor="let restaurant of restaurants" class="restaurant-card">
+      <a [href]="restaurant.locationUrl" target="_blank" class="restaurant-link">
+        <img [src]="restaurant.imageUrl || '../../../assets/collageComida.jpg'" alt="{{ restaurant.name }}" class="restaurant-img">
+      </a>
+      <h3 class="restaurant-name">
+        <a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a>
+      </h3>
+    </li>
+  </ul>
+</div>
+
+
 </div>

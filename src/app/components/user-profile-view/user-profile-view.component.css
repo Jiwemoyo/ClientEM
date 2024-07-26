@@ -1,0 +1,269 @@
+/* General Styles */
+.container {
+  background-color: #efe4cf; /* Color de fondo adaptable */
+  min-height: 100%; /* Altura mínima del 100% del viewport */
+  width: 100%;
+  padding: 0 15px; /* Añade un poco de padding para mejor ajuste */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  margin: 0; /* Elimina cualquier margen */
+  bottom: 0; /* Asegura que se extienda hasta el fondo */
+}
+.nombre1 {
+  text-align: center;
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
+  color: #395B64;
+  font-size: 30px;
+  font-weight: normal; /* Asegúrate de que no esté en negrita */
+  text-align: center; /* Alinea el texto a la izquierda */
+}
+input[type="text"] {
+  width: 80%; /* Ajusta el ancho según tus necesidades */
+  max-width: 400px; /* Limita el ancho máximo si es necesario */
+  padding: 10px;
+  margin: 0 auto 20px; /* Centra horizontalmente y añade margen en la parte inferior */
+  border: 4px solid #395B64;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: block; /* Asegúrate de que el input sea un bloque para aplicar el auto-margen correctamente */
+  background-color: #efe4cf;
+}
+
+.no-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+}
+
+.no-recipes p {
+  font-size: 1.2em;
+  font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
+  font-family: 'Roboto', sans-serif;
+  color: #395B64  ;
+}
+
+.recipes-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.recipe-card {
+  background-color: #efe4cf;
+  border: 1px solid #efe4cf;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-card h3 {
+  font-size: 1.2em;
+  color: #395B64;
+  margin: 10px 0;
+  font-weight: normal; /* Asegúrate de que no esté en negrita */
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
+  text-align: left; /* Alinea el texto a la izquierda */
+  width: 100%; /* Asegura que el h3 ocupe todo el ancho disponible para alinear el texto correctamente */
+}
+
+
+.recipe-card .likes-details {
+  display: flex;
+  justify-content: space-between; /* Cambiar a space-between para alinear los elementos a los bordes */
+  align-items: center;
+  margin-top: auto;
+  width: 100%;
+  border-top: 3px solid #395B64;
+  padding-top: 10px;
+}
+
+.recipe-card .likes {
+  color: #395B64;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinea el conteo de likes al borde izquierdo */
+  width: 50%; /* Ajusta el ancho según sea necesario */
+}
+
+.recipe-card .likes i {
+  margin-right: 5px;
+}
+
+.recipe-card button {
+  padding: 8px 15px;
+  background-color: #395B64;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', sans-serif;
+  align-self: flex-start; /* Alinea el botón a la izquierda */
+}
+
+.recipe-card button:hover {
+  background-color: #507f8b;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px; /* Tamaño fijo para todas las imágenes */
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .recipe-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card {
+    padding: 10px;
+  }
+}
+
+.no-restaurants {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  gap: 20px; /* Espacio entre la imagen y el texto */
+  padding: 20px; /* Espacio alrededor del contenedor */
+  text-align: center; /* Centra el texto si el contenedor ocupa más ancho */
+}
+
+.no-restaurants-img {
+  max-width: 280px; /* Ajusta el tamaño de la imagen según tus necesidades */
+  height: auto; /* Mantiene la proporción de la imagen */
+  object-fit: cover; /* Asegura que la imagen se recorte correctamente si es necesario */
+}
+
+.no-restaurants p {
+  margin: 0; /* Elimina el margen por defecto del párrafo */
+  font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
+  font-family: 'Roboto', sans-serif;
+  color: #395B64  ;
+}
+
+
+.restaurants-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.restaurant-card {
+  background-color: #efe4cf;
+  border: 1px solid #efe4cf;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurant-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block; /* Asegura que la imagen no esté flotando */
+}
+
+.restaurant-name {
+  font-size: 1.2em;
+  color: #395B64;
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+}
+
+.restaurant-name a {
+  color: #395B64;
+  text-decoration: none;
+  font-weight: normal; /* Asegúrate de que no esté en negrita */
+  font-size: 20px;
+}
+
+.restaurant-name a:hover {
+  text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .restaurant-card {
+    max-width: 100%;
+  }
+
+  .restaurant-img {
+    height: auto; /* Ajusta la altura de la imagen en pantallas pequeñas */
+  }
+}
+.image-container {
+  position: relative;
+  width: 100vw; /* Cambiado a 100vw para ocupar todo el ancho de la ventana */
+  margin: 0 auto;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+}
+
+
+.image-container img {
+      width: 100%;
+      height: auto; /*Ajusta la altura automáticamente*/
+      max-height: 200px; /* Mantén una altura máxima para la imagen */
+      object-fit: cover;
+      display: block;
+      margin: 0 auto; /* Centra la imagen dentro del contenedor */
+      max-width: none; /* Cambiado para permitir que la imagen se expanda más allá del contenedor si es necesario */
+    }
+
+.nombre {
+  position: absolute; /* Posiciona el texto sobre la imagen */
+  bottom: 5px; /* Acerca el texto al borde inferior de la imagen */
+  left: 10px; /* Ajusta el margen izquierdo según sea necesario */
+  font-family: 'Pacifico', cursive;
+  color: #efe4cf;
+  font-size: 40px; /* Ajusta el tamaño de la fuente según sea necesario */
+  font-weight: normal;
+  text-align: left; /* Alinea el texto a la izquierda */
+  padding: 5px; /* Añade un poco de relleno alrededor del texto */
+  border-radius: 5px; /* Añade bordes redondeados al fondo del texto */
+  background: rgba(0, 0, 0, 0.5); /* Añade un fondo semi-transparente para mejorar la legibilidad */
+}
+
+.restaurante{
+  color: #395B64;
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  font-weight: normal; /* Asegúrate de que no esté en negrita */
+  text-align: center;
+}
