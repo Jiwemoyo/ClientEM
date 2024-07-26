@@ -38,7 +38,7 @@ input[type="text"] {
 .no-recipes p {
   font-size: 1.2em;
   font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
   color: #395B64  ;
 }
 
@@ -159,7 +159,7 @@ input[type="text"] {
 .no-restaurants p {
   margin: 0; /* Elimina el margen por defecto del párrafo */
   font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Pacifico', cursive; /* Fuente específica para el título */
   color: #395B64  ;
 }
 
