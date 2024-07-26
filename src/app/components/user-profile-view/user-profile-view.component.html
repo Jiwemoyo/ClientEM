@@ -41,7 +41,7 @@
   <ul>
     <li *ngFor="let restaurant of restaurants" class="restaurant-card">
       <a [href]="restaurant.locationUrl" target="_blank" class="restaurant-link">
-        <img [src]="restaurant.imageUrl || '../../../assets/collageComida.jpg'" alt="{{ restaurant.name }}" class="restaurant-img">
+        <img [src]="restaurant.imageUrl || '../../../assets/restaurant.png'" alt="{{ restaurant.name }}" class="restaurant-img">
       </a>
       <h3 class="restaurant-name">
         <a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a>
