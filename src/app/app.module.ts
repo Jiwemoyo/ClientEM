@@ -20,6 +20,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     UserProfileViewComponent,
     NavbarComponent,
     AdminDashboardComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

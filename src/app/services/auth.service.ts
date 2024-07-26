@@ -1,16 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3000/api/auth';
-  private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.loggedIn.next(this.hasToken());
+    }
+  }
 
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
@@ -19,23 +27,17 @@ export class AuthService {
   login(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, userData).pipe(
       tap((response: any) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userId', response.userId);
-        localStorage.setItem('userRole', response.role); // Guardar el rol del usuario
-        this.loggedIn.next(true);
+        this.setSession(response);
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
-    this.loggedIn.next(false);
+    this.clearSession();
   }
 
   getUserRole(): string {
-    return localStorage.getItem('userRole') || '';
+    return this.getItem('userRole') || '';
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -43,6 +45,47 @@ export class AuthService {
   }
 
   private hasToken(): boolean {
-    return typeof localStorage !== 'undefined' && !!localStorage.getItem('token');
+    return !!this.getItem('token') && !this.isTokenExpired();
+  }
+
+  private setSession(authResult: any): void {
+    this.setItem('token', authResult.token);
+    this.setItem('userId', authResult.userId);
+    this.setItem('userRole', authResult.role);
+    this.setItem('expiresAt', authResult.expiresAt);
+    this.loggedIn.next(true);
+  }
+
+  private clearSession(): void {
+    this.removeItem('token');
+    this.removeItem('userId');
+    this.removeItem('userRole');
+    this.removeItem('expiresAt');
+    this.loggedIn.next(false);
+  }
+
+  private isTokenExpired(): boolean {
+    const expiresAt = this.getItem('expiresAt');
+    if (!expiresAt) return true;
+    return new Date().getTime() > new Date(expiresAt).getTime();
+  }
+
+  private setItem(key: string, value: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(key, value);
+    }
+  }
+
+  private getItem(key: string): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(key);
+    }
+    return null;
+  }
+
+  private removeItem(key: string): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(key);
+    }
   }
 }
