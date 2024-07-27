@@ -7,10 +7,11 @@
 
 .image-container {
   position: relative;
-  width: 100vw;
   margin: 0 auto;
   overflow: hidden;
-  margin-left: 0;
+  margin-left: 20px;
+  border-radius: 8px;
+  padding-right: 0;
 }
 
 .image-container img {
@@ -40,11 +41,13 @@ h2 {
   font-size: 2.5em;
   color: #395B64;
   margin-bottom: 20px;
-  text-align: left;
+  text-align: center;
   font-weight: normal;
   padding-left: 50px;
 }
-
+.h2{
+  text-align: left;
+}
 /* Estilos para la barra de búsqueda */
 .search-container {
   position: relative;
@@ -84,7 +87,7 @@ h2 {
 }
 
 .search-button:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
 
 .search-icon {
@@ -197,9 +200,8 @@ ul {
 }
 
 .details-btn:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
-
 
 .action-btn {
   background-color: #395B64;
@@ -214,8 +216,263 @@ ul {
 }
 
 .action-btn:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
+
+/* Estilos generales para el formulario */
+.container-receta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Esto asegura que estén alineados a la misma altura */
+  padding: 10px; /* Ajusta el padding según sea necesario */
+}
+
+.container-receta h2 {
+  margin: 0; /* Asegúrate de que no haya márgenes adicionales */
+}
+
+.container-receta button {
+  margin-left: auto; /* Esto empuja el botón hacia el extremo derecho */
+}
+/* frmulario de receta */
+
+.recipe-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF5E1;
+  flex-direction: column;
+  border: none;
+  padding: 20px 40px; /* Aumentar el padding horizontal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%; /* Aumentar el ancho */
+  max-width: 900px; /* Aumentar el ancho máximo */
+  height: auto; /* Ajustar la altura automáticamente */
+  max-height: 80%; /* Reducir el largo máximo */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+}
+input{
+  justify-content: center;
+  background-color: #FFF5E1;
+}
+.recipe-form h3 {
+  text-align: center;
+  font-family: Pacifico;
+  font-weight: normal;
+  size: 10em;
+  color: #577d86;
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+.container-receta button{
+  top: 152px;
+  color: #FFF5E1;
+  left: 1251px;
+  padding: 10px 0px 0px 0px;
+  gap: 10px;
+  border-radius: 8px;
+  background: #547A80;
+  font-family: Pacifico;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 35.12px;
+  text-align: center;
+  font-weight: normal;
+  border:0px;
+}
+.container-receta button:hover{
+  background-color: #507f9d;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+/* Estilos de inicio de receta y inputs */
+
+.form1 {
+  display:flex;
+  justify-content: row;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+
+}
+
+.image-label span {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23.44px;
+  text-align: left;
+  font-weight: normal;
+}
+
+.image-container {
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.image-label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  width: 300px;
+  height: 150px;
+  justify-content:center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 16px;
+  background-color: #FFF5E1;
+  border: 5px solid rgba(84, 122, 128, 1)
+}
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: block;
+  font-size: 16px;
+  color: #b0a99f;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  border: none;
+  border-bottom: 2px solid #688d8b;
+  background-color: #fef6ec;
+}
+
+.input-field:focus {
+  outline: none;
+  border-bottom: 2px solid #456;
+}
+
+.form-fields {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 0%;
+  margin-right: 22%;
+}
+.form-fields input{
+  background-color: #FFF5E1;
+}
+.form-fields1 label{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 22%;
+  margin-right: 22%;
+}
+
+.form-fields .form {
+  margin-left:20px;  /* Ajusta este valor según sea necesario para acercar los inputs al recuadro de la imagen */
+
+}
+
+.form input[type="text"] {
+  width: 300%;  /* Ajusta el ancho al 100% del contenedor */
+  max-width: 400px;  /* Máximo ancho deseado, puedes ajustar este valor según necesites */
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  border: none;
+  border-bottom: 2px solid #688d8b;
+  background-color: #FFF5E1;
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
+
+.form input[type="text"]:focus {
+  outline: none;
+  border-bottom: 2px solid #456;
+}
+
+.form-group textarea {
+  padding: 20px;
+  font-size: 1rem;
+  justify-content: space-between;
+  background-color: #FFF5E1;
+  resize: none;
+  height: 150px;
+  width: 300px;
+  top: 1600px;
+  left: 62px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 5px solid rgba(84, 122, 128, 1)
+}
+
+.button-group {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  width: 120px;
+  height: 40px;
+  font-weight: normal;
+}
+.button-group1 {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  width: 120px;
+  height: 60px;
+  margin-left: 90px;
+  font-weight: normal;
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+  font-family: Pacifico;
+  font-size: 20px;
+  line-height: 35.12px;
+  text-align: center;
+  font-weight: normal;
+}
+
+button[type="submit"] {
+  background: #547A80;
+  color: #FFFFFF;
+}
+ 
+button[type="button"] {
+  background: #805854;
+  color: #FFFFFF;
+}
+
+button[type="button"]:hover {
+  background-color: #507f9d;
+}
+button[type="submit"]:hover {
+  background-color: #507f9d;
+}
+
 
 /* Contenedor de restaurantes */
 .no-restaurants-container {
@@ -275,53 +532,13 @@ a:hover {
 }
 
 /* Estilo para los formularios de receta */
-.container-receta{
-  display: flex;
-  justify-content: center; /* Alinea horizontalmente al centro */
-  align-items: center;
-}
-.recipe-form {
-  background-color: #f9f3e9;
-  padding: 15px;
-  border: 2px solid #4c4c4c;
-  border-radius: 8px;
-  margin: 10px 0;
-  max-width: 400px;
-  width: 80%;
-  text-align: center;
-}
+
 
 /* Contenedor de restaurantes */
 .no-restaurants-container {
   display: flex;
   justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
   padding: 10px;
-}
-
-/* Contenido de no restaurantes */
-.no-restaurants-content {
-  display: flex;
-  align-items: center; /* Alinea los elementos verticalmente en el centro */
-}
-
-/* Imagen de home y estilos */
-.home {
-  max-width: 300px; /* Ajusta este valor según tus necesidades */
-  height: auto;
-  border-radius: 8px; /* Opcional: para bordes redondeados */
-  margin-right: 15px; /* Espacio entre la imagen y el texto */
-  opacity: 0.7;
-}
-
-/* Texto de restaurantes */
-.no-restaurants-content p {
-  color: #616161; /* Color del texto */
-  margin: 0;
-  font-family: Pacifico, cursive;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: left;
 }
 
 /* estilo crear sucursal*/
@@ -335,43 +552,26 @@ a:hover {
   font-size: 1rem;
   transition: background-color 0.3s, border-color 0.3s;
 }
-
-.create-button:hover {
-  background-color: #1b5e20; /* Verde más oscuro */
-  border-color: #1b5e20;
-}
-
 .restaurant-form {
-  background-color: #f9f3e9;
+  font-family: 'Pacifico', cursive;
+  background-color: #FFF5E1;
   padding: 15px;
-  border: 2px solid #4c4c4c;
+  border: 0;
   border-radius: 8px;
   margin: 10px 0;
   max-width: 400px;
   width: 80%;
+
 }
 
 .restaurant-form h2 {
-  font-family: 'Cursive', sans-serif;
+  font-family: Pacifico;
+  font-weight: normal;
+  font-weight: 400;
+  line-height: 112.38px;
+  text-align: left;
   font-size: 1.8rem;
   color: #4c4c4c;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  font-size: 1rem;
-  color: #4c4c4c;
-}
-
-.input-field {
-  width: calc(100% - 20px);
-  padding: 10px;
-  font-size: 1rem;
-  border: 2px solid #4c4c4c;
-  border-radius: 8px;
 }
 
 .button-group {
@@ -383,20 +583,24 @@ a:hover {
   border: 2px solid;
   border-radius: 8px;
   padding: 10px 20px;
+  margin-left: 90px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
 }
+input .submit-button{
+  width: 50px;
+}
 
 .submit-button {
-  background-color: #4c4c4c; /* Verde */
+  background-color: #4c4c4c; 
   color: white;
   border-color: #4c4c4c;
 }
 
 .submit-button:hover {
-  background-color: #1b5e20; /* Verde más oscuro */
-  border-color: #1b5e20;
+  background-color: #507f9d; 
+  border-color: #507f9d;
 }
 
 .cancel-button {
@@ -409,28 +613,40 @@ a:hover {
   background-color: #e53935; /* Rojo más oscuro */
   border-color: #e53935;
 }
-
-.error {
-  color: #b24c4c;
-  font-size: 0.875rem;
-}
 /* estilo crear sucursal fin */
 
 /* estilo actualizar sucursal*/
 .form-group {
+  position: relative;
   margin-bottom: 20px;
 }
 
 .form-group label {
+  padding: 0;
   font-size: 1rem;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 23.44px;
   color: #4c4c4c;
+  text-align: left;
+  font-weight: normal;
+  background-color: #FFF5E1;
 }
-
+label{
+  font-size: 1rem;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 23.44px;
+  color: #4c4c4c;
+  text-align: left;
+  font-weight: normal;
+  background-color: #FFF5E1;
+}
 .input-field {
   width: calc(100% - 20px);
   padding: 10px;
   font-size: 1rem;
-  border: 2px solid #4c4c4c;
+  border: 2px solid #547A80;
   border-radius: 8px;
 }
 
@@ -439,118 +655,22 @@ a:hover {
   gap: 10px;
 }
 
-.form-button {
-  border: 2px solid;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-.submit-button {
-  background-color: #4CAF50; /* Verde */
-  color: white;
-  border-color: #4CAF50;
-}
-
-.submit-button:hover {
-  background-color: #45a049; /* Verde más oscuro */
-  border-color: #45a049;
-}
-
-
-
-/* estilo actualizar sucursal fin */
-
 /* Encabezado del formulario */
 h3 {
   text-align: center;
   font-family: 'Cursive', sans-serif;
-  font-size: 1.8rem;
+  font-size: 2.5em;
   color: #4c4c4c;
   margin-bottom: 20px;
-}
-
-/* Label e input para la imagen */
-.image-label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #4c4c4c;
-  border-radius: 8px;
-  padding: 20px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  text-align: center;
-  background-color: #fff;
-}
-
-.image-label span {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: #4c4c4c;
-}
-
-.image-label input {
-  display: none;
-}
-
-/* Form group */
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 1rem;
-  color: #4c4c4c;
-}
-
-.form-group input,
-.form-group textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  font-size: 1rem;
-  border: 2px solid #4c4c4c;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-/* Textareas */
-textarea {
-  height: 80px;
-  resize: vertical;
-}
-
-/* Button group */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-group button {
-  width: 48%;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  background-color: #4c4c4c;
-  color: white;
-}
-
-.button-group button[type="button"] {
-  background-color: #b24c4c;
 }
 
 /* Estilo para mensajes de error */
 .error {
+  font-weight: normal;
   color: #b24c4c;
   font-size: 0.875rem;
 }
+/* pasos para la ubicacion */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -558,12 +678,11 @@ textarea {
   justify-content: center;
   margin: 2rem 0;
 }
-
 .card {
   background: #547A80; /* Color de fondo de la tarjeta */
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(228, 6, 6, 0.1);
   width: 250px; /* Tamaño ajustado de las tarjetas */
   text-align: center;
   overflow: hidden;
@@ -597,6 +716,7 @@ textarea {
   .button-group button {
     width: 100%;
     margin-bottom: 10px;
+    justify-content: center;
   }
 
   .button-group button:last-child {

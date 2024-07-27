@@ -1,196 +1,193 @@
+
+<title>Document</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<div>
 <div class="container">
-  <div class="image-container">
-    <img src="../../../assets/collageComida.jpg" alt="comida">
-    <div class="overlay-text">Bienvenido:</div>
-  </div>
-  <br>
-  <br>
+<div class="image-container">
+  <img src="../../../assets/collageComida.jpg" alt="comida">
+  <div class="overlay-text">Bienvenido</div>
+</div>
+<br><br>
+
 <div class="search-container">
   <input type="text" placeholder="Buscar recetas" (input)="onSearch($event)" class="search-input"/>
-    <button class="search-button">
-      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-    </button>
+  <button class="search-button">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </button>
 </div>
 <div *ngIf="recipes.length === 0">
   <p>No tienes recetas aún.</p>
 </div>
+<div class="container-receta">
   <h2>Mis Recetas</h2>
-  <div *ngIf="recipes.length > 0" class="recipes-list">
-    <ul>
-      <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
-        <div class="recipe-image-container">
-          <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
-        </div>
-        <h3 class="recipe-title">{{ recipe.title }}</h3>
-        <div class="likes-and-details">
-          <p class="likes"><i class="fa fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
-          <button (click)="viewRecipe(recipe._id)" class="details-btn">Ver Detalles</button>
-        </div>
-        <hr class="separator">
-        <div class="button-container">
-          <button (click)="editRecipe(recipe)" class="action-btn">Actualizar</button>
-          <button (click)="deleteRecipe(recipe._id)" class="action-btn">Eliminar</button>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Nueva Receta</button>
+  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Receta</button>
+</div>
+<div *ngIf="recipes.length > 0" class="recipes-list">
+  <ul>
+    <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
+      <div class="recipe-image-container">
+        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+      </div>
+      <h3 class="recipe-title">{{ recipe.title }}</h3>
+      <div class="likes-and-details">
+        <p class="likes"><i class="fa fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
+        <button (click)="viewRecipe(recipe._id)" class="details-btn">Ver Detalles</button>
+      </div>
+      <hr class="separator">
+      <div class="button-container">
+        <button (click)="editRecipe(recipe)" class="action-btn">Actualizar</button>
+        <button (click)="deleteRecipe(recipe._id)" class="action-btn">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
 
-  <!-- Formulario de creación de receta -->
-  <div *ngIf="fieldError" class="error-message">
-    {{ fieldError }}
-  </div>
-  <div class="container-receta">
-    <div class="recipe-form" *ngIf="isCreating">
-      <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
-        <h3>Crea tu receta</h3>
+<!-- Formulario de creación de receta -->
+<div *ngIf="fieldError" class="error-message">
+  {{ fieldError }}
+</div>
+<div class="recipe-form" *ngIf="isCreating">
+  <form [formGroup]="recipeForm" (ngSubmit)="createRecipe()">
+    <h3>Crea tu receta</h3>
 
-        <!-- Mensaje de error general -->
-        <div *ngIf="fieldError" class="error-message">
-          {{ fieldError }}
-        </div>
+     <!-- Mensaje de error general -->
+     <div *ngIf="fieldError" class="error-message">
+      {{ fieldError }}
+    </div>
 
-        <!-- Sección para subir la imagen -->
-        <div class="form-group">
-          <label for="image" class="image-label">
-            <input type="file" id="image" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
-            <span>Elige una imagen</span>
-          </label>
+    <!-- Sección para subir la imagen -->
+    <div class="form1">
+      <div class="image-container">
+
+        <label for="image" class="image-label">
           <div *ngIf="recipeForm.get('image')?.invalid && (recipeForm.get('image')?.touched || recipeForm.get('image')?.dirty)" class="error-message">
             La imagen es requerida
-          </div>
-        </div>
+          </div>    
+          <input type="file" id="image" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg"><br>
+          <span>Elige una imagen</span>
+        </label>
+      </div>
 
-        <!-- Inputs y textareas con nueva estructura de CSS -->
-        <div class="form-group">
-          <label for="title">Nombre de la receta</label>
-          <input id="title" formControlName="title" type="text" />
+      <div class="form-fields">
+        <div class="form">
+          <label for="title"></label>
+          <input id="title" formControlName="title" type="text" placeholder="Nombre de la receta"/>
           <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched" class="error-message">
             El nombre de la receta es requerido
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="description">Descripción</label>
-          <input id="description" formControlName="description" type="text" />
+        <div class="form">
+          <label for="description" class="lbl-name"></label>
+          <input id="description" formControlName="description" type="text" placeholder="Descripción"/>
           <div *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched" class="error-message">
             La descripción es requerida
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="ingredients">Ingredientes (separados por comas)</label>
-          <textarea id="ingredients" formControlName="ingredients"></textarea>
-          <div *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched" class="error-message">
-            Los ingredientes son requeridos
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="steps">Pasos (separados por comas)</label>
-          <textarea id="steps" formControlName="steps"></textarea>
-          <div *ngIf="recipeForm.get('steps')?.invalid && recipeForm.get('steps')?.touched" class="error-message">
-            Los pasos son requeridos
-          </div>
-        </div>
-
-        <!-- Botones de acción con nueva estructura de CSS -->
-        <div class="button-group">
-          <button type="submit">Crear</button>
-          <button type="button" (click)="cancelCreate()">Cancelar</button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
- <!-- Formulario de actualizar receta -->
- <div class="container-receta">
- <form class="recipe-form" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+    <!--lo de arriba bien-->
+    <div class="form1">
+      <div class="form-group">
+        <label for="ingredients">Ingredientes (separados por comas)</label>
+        <textarea id="ingredients" formControlName="ingredients"></textarea>
+        <div *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched" class="error-message">
+          Los ingredientes son requeridos
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="steps">Pasos (separados por comas)</label>
+        <textarea id="steps" formControlName="steps"></textarea>
+        <div *ngIf="recipeForm.get('steps')?.invalid && recipeForm.get('steps')?.touched" class="error-message">
+          Los pasos son requeridos
+        </div>
+      </div>
+      <!-- Botones de acción con nueva estructura de CSS -->
+      <div class="button-group">
+        <button type="submit">Crear</button>
+        <button type="button" (click)="cancelCreate()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Formulario de actualizar receta -->
+<form class="recipe-form" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
   <h2>Actualizar Receta</h2>
-
-  <div class="form-group">
-    <label for="title">Título</label>
-    <input id="title" formControlName="title" type="text" />
-    <div *ngIf="recipeForm.get('title')?.invalid && (recipeForm.get('title')?.dirty || recipeForm.get('title')?.touched)" class="error-message">
-      El título es requerido
+  <div class="form-fields1">
+    <div class="form">
+      <label for="title">Título</label>
+      <input id="title" formControlName="title" type="text" />
+      <div *ngIf="recipeForm.get('title')?.invalid && (recipeForm.get('title')?.dirty || recipeForm.get('title')?.touched)" class="error-message">
+        El título es requerido
+      </div>
+      <label for="description">Descripción</label>
+      <input id="description" formControlName="description" type="text" />
+      <div *ngIf="recipeForm.get('description')?.invalid && (recipeForm.get('description')?.dirty || recipeForm.get('description')?.touched)" class="error-message">
+        La descripción es requerida
+      </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="description">Descripción</label>
-    <input id="description" formControlName="description" type="text" />
-    <div *ngIf="recipeForm.get('description')?.invalid && (recipeForm.get('description')?.dirty || recipeForm.get('description')?.touched)" class="error-message">
-      La descripción es requerida
+  <div class="form1">
+    <div class="form-group">
+      <label for="ingredients">Ingredientes</label>
+      <textarea id="ingredients" formControlName="ingredients"></textarea>
+      <div *ngIf="recipeForm.get('ingredients')?.invalid && (recipeForm.get('ingredients')?.dirty || recipeForm.get('ingredients')?.touched)" class="error-message">
+        Los ingredientes son requeridos
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="steps">Pasos</label>
+      <textarea id="steps" formControlName="steps"></textarea>
+      <div *ngIf="recipeForm.get('steps')?.invalid && (recipeForm.get('steps')?.dirty || recipeForm.get('steps')?.touched)" class="error-message">
+        Los pasos son requeridos
+      </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="ingredients">Ingredientes</label>
-    <textarea id="ingredients" formControlName="ingredients"></textarea>
-    <div *ngIf="recipeForm.get('ingredients')?.invalid && (recipeForm.get('ingredients')?.dirty || recipeForm.get('ingredients')?.touched)" class="error-message">
-      Los ingredientes son requeridos
+  <div class="form1">
+    <div class="form-group">
+      <label for="image">Imagen</label>
+      <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
+      <small><br>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
     </div>
-  </div>
-
-  <div class="form-group">
-    <label for="steps">Pasos</label>
-    <textarea id="steps" formControlName="steps"></textarea>
-    <div *ngIf="recipeForm.get('steps')?.invalid && (recipeForm.get('steps')?.dirty || recipeForm.get('steps')?.touched)" class="error-message">
-      Los pasos son requeridos
+    <div class="form-group">
+      <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
     </div>
-  </div>
-
-  <div class="form-group">
-    <label for="image">Imagen</label>
-    <input type="file" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg">
-    <small>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
-  </div>
-
-  <div class="form-group">
-    <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
-  </div>
-
-  <div class="button-group">
-    <button type="submit" [disabled]="!recipeForm.valid">Actualizar</button>
-    <button type="button" (click)="cancelEdit()">Cancelar</button>
+    <div class="button-group">
+      <button type="submit">Actualizar</button>
+      <button type="button" (click)="cancelEdit()">Cancelar</button>
+    </div>
   </div>
 </form>
- </div>
- <br>
- <br>
-
-  <h2>{{ restaurantCountText() }}</h2>
-  <div class="no-restaurants-container">
-    <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
-      <img src="../../../assets/home.jpeg" alt="comida" class="home">
-      <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
-    </div>
+<br><br>
+<h2 class="h2">{{ restaurantCountText() }}</h2>
+<div class="no-restaurants-container">
+  <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
+    <img src="../../../assets/home.jpeg" alt="comida" class="home">
+    <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
   </div>
-
-  <div *ngIf="restaurants.length > 0">
-    <ul>
-      <li *ngFor="let restaurant of restaurants">
-        <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
-        <button (click)="editRestaurant(restaurant)">Actualizar</button>
-        <button (click)="deleteRestaurant(restaurant._id)">Eliminar</button>
-      </li>
-    </ul>
-  </div>
-<!-- crear sucursal -->
-  <div class="container-receta">
-  <button
-  class="create-button"
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
+</div>
+<div *ngIf="restaurants.length > 0">
+  <ul>
+    <li *ngFor="let restaurant of restaurants">
+      <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
+      <button (click)="editRestaurant(restaurant)">Actualizar</button>
+      <button (click)="deleteRestaurant(restaurant._id)">Eliminar</button>
+    </li>
+  </ul>
+</div>
+<!-- Crear sucursal -->
+<button 
+  class="create-button" 
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
   (click)="startCreatingRestaurant()"
 >
   Crear Nueva Sucursal
 </button>
 
-<form
-  class="restaurant-form"
-  *ngIf="isCreatingRestaurant"
-  [formGroup]="restaurantForm"
+<form 
+  class="restaurant-form recipe-form" 
+  *ngIf="isCreatingRestaurant" 
+  [formGroup]="restaurantForm" 
   (ngSubmit)="createRestaurant()"
 >
   <h2>Crear Nueva Sucursal</h2>
@@ -211,60 +208,57 @@
     </div>
   </div>
 
-  <div class="button-group">
-    <button type="submit" [disabled]="!restaurantForm.valid" class="form-button submit-button">Crear</button>
-    <button type="button" (click)="cancelCreateRestaurant()" class="form-button cancel-button">Cancelar</button>
+  <div class="button-group1">
+    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button">Crear</button>
+    <button type="button" (click)="cancelCreateRestaurant()" class="cancel-button">Cancelar</button>
+  </div>
+</form>
+
+<!-- Actualizar sucursal -->
+<form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()" class="recipe-form">
+  <h2>Actualizar Restaurante</h2>
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input id="name" formControlName="name" type="text" class="input-field" />
+    <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
+      <small class="error">El nombre es requerido</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="locationUrl">URL de Ubicación (Google Maps)</label>
+    <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
+    <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
+      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+    </div>
+  </div>
+  <div class="button-group1">
+    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button">Actualizar</button>
+    <button type="button" (click)="cancelEditRestaurant()" class="cancel-button">Cancelar</button>
   </div>
 </form>
 </div>
-<!-- actualizar sucursal -->
-<div class="container-receta">
-  <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()">
-    <h2>Actualizar Restaurante</h2>
 
-    <div class="form-group">
-      <label for="name">Nombre</label>
-      <input id="name" formControlName="name" type="text" class="input-field" />
-      <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
-        <small class="error">El nombre es requerido</small>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="locationUrl">URL de Ubicación (Google Maps)</label>
-      <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
-      <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
-        <small class="error">Por favor, introduce una URL válida de Google Maps</small>
-      </div>
-    </div>
-
-    <div class="button-group">
-      <button type="submit" [disabled]="!restaurantForm.valid" class="form-button submit-button">Actualizar</button>
-      <button type="button" (click)="cancelEditRestaurant()" class="form-button cancel-button">Cancelar</button>
-    </div>
-  </form>
-</div>
-</div>
 <!-- Mostrar tarjetas solo cuando se está creando una nueva sucursal -->
 <div *ngIf="isCreatingRestaurant" class="cards-container">
-  <div class="card">
-    <img src="../../../assets/paso.png" alt="Descripción de la imagen" />
-    <p> Dirigiete a Google Maps y busca la hubicacion de tu restaurante </p>
-  </div>
-  <div class="card">
-    <img src="../../../assets/paso1.png" alt="Descripción de la imagen" />
-    <p>Si no estas posicionado en google map da click derecho para mostrar las cordenadas y luego click en ellas para copiarlas</p>
-  </div>
-  <div class="card">
-    <img src="../../../assets/paso2.png" alt="Descripción de la imagen" />
-    <p>pega las cordenadas en el buscador y presiona enter</p>
-  </div>
-  <div class="card">
-    <img src="../../../assets/paso3.png" alt="Descripción de la imagen" />
-    <p>Veras como una pantalla se expande y darle a la opcion que dice compartir</p>
-  </div>
-  <div class="card">
-    <img src="../../../assets/paso4.png" alt="Descripción de la imagen" />
-    <p>Dale click a copiar vinculo y pegalo en el input de arriba</p>
-  </div>
+<div class="card">
+  <img src="../../../assets/paso.png" alt="Descripción de la imagen" />
+  <p> Dirigiete a Google Maps y busca la hubicacion de tu restaurante </p>
+</div>
+<div class="card">
+  <img src="../../../assets/paso1.png" alt="Descripción de la imagen" />
+  <p>Si no estas posicionado en google map da click derecho para mostrar las cordenadas y luego click en ellas para copiarlas</p>
+</div>
+<div class="card">
+  <img src="../../../assets/paso2.png" alt="Descripción de la imagen" />
+  <p>pega las cordenadas en el buscador y presiona enter</p>
+</div>
+<div class="card">
+  <img src="../../../assets/paso3.png" alt="Descripción de la imagen" />
+  <p>Veras como una pantalla se expande y darle a la opcion que dice compartir</p>
+</div>
+<div class="card">
+  <img src="../../../assets/paso4.png" alt="Descripción de la imagen" />
+  <p>Dale click a copiar vinculo y pegalo en el input de arriba</p>
+</div>
 </div>
