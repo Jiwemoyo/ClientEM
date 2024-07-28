@@ -61,7 +61,7 @@
         <label for="image" class="image-label">
           <div *ngIf="recipeForm.get('image')?.invalid && (recipeForm.get('image')?.touched || recipeForm.get('image')?.dirty)" class="error-message">
             La imagen es requerida
-          </div>    
+          </div>
           <input type="file" id="image" (change)="alSeleccionarArchivo($event)" accept="image/jpeg,image/png,image/jpg"><br>
           <span>Elige una imagen</span>
         </label>
@@ -176,18 +176,18 @@
   </ul>
 </div>
 <!-- Crear sucursal -->
-<button 
-  class="create-button" 
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
+<button
+  class="create-button"
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
   (click)="startCreatingRestaurant()"
 >
   Crear Nueva Sucursal
 </button>
 
-<form 
-  class="restaurant-form recipe-form" 
-  *ngIf="isCreatingRestaurant" 
-  [formGroup]="restaurantForm" 
+<form
+  class="restaurant-form recipe-form"
+  *ngIf="isCreatingRestaurant"
+  [formGroup]="restaurantForm"
   (ngSubmit)="createRestaurant()"
 >
   <h2>Crear Nueva Sucursal</h2>

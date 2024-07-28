@@ -12,7 +12,7 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  createRecipe(recipeData: any, token: string): Observable<any> {
+  createRecipe(recipeData: FormData, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.apiUrl, recipeData, { headers });
   }

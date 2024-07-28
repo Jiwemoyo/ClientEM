@@ -148,7 +148,7 @@ export class UserProfileComponent implements OnInit {
     const formData = new FormData();
     Object.keys(this.recipeForm.controls).forEach((key) => {
       const control = this.recipeForm.get(key);
-      if (control && control.value !== null) {
+      if (control && control.value !== null && key !== 'image') {
         formData.append(key, control.value);
       }
     });
@@ -289,6 +289,7 @@ export class UserProfileComponent implements OnInit {
   alSeleccionarArchivo(evento: any): void {
     const archivo = evento.target.files[0];
     if (archivo) {
+      console.log('Archivo seleccionado:', archivo);
       if (archivo.type.match(/image\/(jpeg|png|jpg)/)) {
         this.archivoSeleccionado = archivo;
         this.recipeForm.patchValue({
@@ -296,6 +297,7 @@ export class UserProfileComponent implements OnInit {
         });
         this.recipeForm.get('image')?.updateValueAndValidity();
       } else {
+        console.log('Archivo no válido');
         alert(
           'Por favor, selecciona un archivo de imagen válido (JPEG, PNG, JPG).'
         );
