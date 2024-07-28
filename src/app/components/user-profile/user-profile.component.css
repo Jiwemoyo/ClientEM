@@ -1,3 +1,4 @@
+
 /* Estilos para el contenedor principal */
 .container {
   max-width: 1300px;
@@ -17,7 +18,7 @@
 .image-container img {
   width: 100vw;
   height: 150px;
-  max-height: 300px; /* Ajusta este valor según sea necesario */
+  max-height: 400px; /* Ajusta este valor según sea necesario */
   object-fit: cover;
   display: block;
 }
@@ -225,6 +226,14 @@ ul {
   justify-content: space-between;
   align-items: center; /* Esto asegura que estén alineados a la misma altura */
   padding: 10px; /* Ajusta el padding según sea necesario */
+  font-weight: normal;
+}
+.container-receta1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Esto asegura que estén alineados a la misma altura */
+  padding: 10px; /* Ajusta el padding según sea necesario */
+  font-weight: normal;
 }
 
 .container-receta h2 {
@@ -254,6 +263,44 @@ ul {
   max-height: 80%; /* Reducir el largo máximo */
   overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
 }
+.recipe-form1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF5E1;
+  flex-direction: column;
+  border: none;
+  padding: 20px 40px; /* Aumentar el padding horizontal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%; /* Aumentar el ancho */
+  max-width: 750px; /* Aumentar el ancho máximo */
+  height: auto; /* Ajustar la altura automáticamente */
+  max-height: 80%; /* Reducir el largo máximo */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+}
+
+.recipe-form3 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF5E1;
+  flex-direction: column;
+  border: none;
+  padding: 20px 40px; /* Aumentar el padding horizontal */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100%; /* Aumentar el ancho */
+  max-width: 500px; /* Aumentar el ancho máximo */
+  height: auto; /* Ajustar la altura automáticamente */
+  max-height: 80%; /* Reducir el largo máximo */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+}
+
 input{
   justify-content: center;
   background-color: #FFF5E1;
@@ -270,19 +317,38 @@ input{
   top: 152px;
   color: #FFF5E1;
   left: 1251px;
+  padding: 10px 0px 0px 10px;
+  gap: 10px;
+  border-radius: 8px;
+  background: #547A80;
+  font-family: Pacifico;
+  font-size: 20px;
+  line-height: 35.12px;
+  text-align: center;
+  font-weight: normal;
+  border:0px;
+  width: 10%;
+}
+.container-receta1 button{
+  top: 152px;
+  color: #FFF5E1;
+  left: 1251px;
   padding: 10px 0px 0px 0px;
   gap: 10px;
   border-radius: 8px;
   background: #547A80;
   font-family: Pacifico;
   font-size: 20px;
-  font-weight: normal;
   line-height: 35.12px;
   text-align: center;
   font-weight: normal;
   border:0px;
+  width: 20%;
 }
 .container-receta button:hover{
+  background-color: #507f9d;
+}
+.container-receta1 button:hover{
   background-color: #507f9d;
 }
 
@@ -299,7 +365,6 @@ input{
   align-items: center;
   padding: 0 10px;
   margin-bottom: 20px;
-
 }
 
 .image-label span {
@@ -339,7 +404,7 @@ input{
   font-size: 16px;
   color: #b0a99f;
   margin-bottom: 5px;
-  text-align: center;
+  text-align: left;
 }
 
 .input-field {
@@ -356,7 +421,9 @@ input{
   outline: none;
   border-bottom: 2px solid #456;
 }
-
+label input{
+  text-align: left;
+}
 .form-fields {
   display: flex;
   align-items: flex-start;
@@ -416,10 +483,38 @@ input{
   border-radius: 8px;
   border: 5px solid rgba(84, 122, 128, 1)
 }
+.form-group1 textarea {
+  padding: 20px;
+  font-size: 1rem;
+  justify-content: space-between;
+  background-color: #FFF5E1;
+  resize: none;
+  height: 150px;
+  width: 300px;
+  top: 1600px;
+  left: 62px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 5px solid rgba(84, 122, 128, 1)
+}
 
+.form-steps textarea {
+  padding: 20px;
+  font-size: 1rem;
+  justify-content: space-between;
+  background-color: #FFF5E1;
+  resize: none;
+  height: 150px;
+  width: 300px;
+  top: 1600px;
+  left: 62px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 5px solid rgba(84, 122, 128, 1)
+}
 .button-group {
   display: flex;
-  text-align: center;
+  text-align: right;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 30px;
@@ -428,17 +523,24 @@ input{
   height: 40px;
   font-weight: normal;
 }
+
 .button-group1 {
   display: flex;
-  text-align: center;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 30px;
   margin-top: 20px;
   width: 120px;
   height: 60px;
-  margin-left: 90px;
   font-weight: normal;
+} 
+.button-group1 .submit-button1{
+  margin-right: 210%;
+
+}
+.button-group1 .submit-button2{
+  margin-right: 160%;
+
 }
 
 button[type="submit"],
@@ -452,18 +554,21 @@ button[type="button"] {
   font-family: Pacifico;
   font-size: 20px;
   line-height: 35.12px;
-  text-align: center;
+  justify-content: space-between;
   font-weight: normal;
+  width: 122px;
 }
 
 button[type="submit"] {
   background: #547A80;
   color: #FFFFFF;
+  margin: auto;
 }
  
 button[type="button"] {
   background: #805854;
   color: #FFFFFF;
+  margin: 0px;
 }
 
 button[type="button"]:hover {
@@ -485,6 +590,69 @@ button[type="submit"]:hover {
 .no-restaurants-content {
   display: flex;
   align-items: center; /* Alinea los elementos verticalmente en el centro */
+}
+
+.restaurants-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.hori {
+  display: flex;
+  flex-direction: row; /* Alinea los elementos hijos en fila */
+  gap: 20px; /* Espacio entre los botones */
+}
+
+.hori .actu1 {
+  margin: 0; /* Elimina márgenes adicionales */
+  width: 120px;
+  height: 60px;
+  font-weight: normal;
+}
+
+.restaurant-card {
+  background-color: #efe4cf;
+  border: 1px solid #efe4cf;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.restaurant-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block; /* Asegura que la imagen no esté flotando */
+}
+
+.restaurant-name {
+  font-size: 1.2em;
+  color: #395B64;
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+}
+
+.restaurant-name a {
+  color: #395B64;
+  text-decoration: none;
+  font-weight: normal; /* Asegúrate de que no esté en negrita */
+  font-size: 20px;
+}
+
+.restaurant-name a:hover {
+  text-decoration: none;
 }
 
 /* Imagen de home y estilos */
@@ -543,7 +711,7 @@ a:hover {
 
 /* estilo crear sucursal*/
 .create-button {
-  background-color: #4c4c4c; /* Verde */
+  background-color: #4c4c4c; 
   color: white;
   border: 2px solid #4c4c4c;
   border-radius: 8px;
@@ -553,7 +721,7 @@ a:hover {
   transition: background-color 0.3s, border-color 0.3s;
 }
 .restaurant-form {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Arial', cursive;
   background-color: #FFF5E1;
   padding: 15px;
   border: 0;
@@ -577,6 +745,7 @@ a:hover {
 .button-group {
   display: flex;
   gap: 10px;
+  margin-left: 10px;
 }
 
 .form-button {
@@ -590,12 +759,6 @@ a:hover {
 }
 input .submit-button{
   width: 50px;
-}
-
-.submit-button {
-  background-color: #4c4c4c; 
-  color: white;
-  border-color: #4c4c4c;
 }
 
 .submit-button:hover {
@@ -619,8 +782,25 @@ input .submit-button{
 .form-group {
   position: relative;
   margin-bottom: 20px;
+  margin-right: 20px;
 }
-
+.form-steps{
+  position: relative;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+.form-steps label {
+  padding: 0;
+  font-size: 1rem;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 23.44px;
+  color: #4c4c4c;
+  text-align: left;
+  display: block;
+  font-weight: normal;
+  background-color: #FFF5E1;
+}
 .form-group label {
   padding: 0;
   font-size: 1rem;
@@ -632,6 +812,19 @@ input .submit-button{
   font-weight: normal;
   background-color: #FFF5E1;
 }
+.form-group1 label {
+  padding: 0;
+  font-size: 1rem;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 23.44px;
+  color: #4c4c4c;
+  text-align: left;
+  font-weight: normal;
+  display: block;
+  background-color: #FFF5E1;
+}
+
 label{
   font-size: 1rem;
   font-family: Roboto;
@@ -650,9 +843,40 @@ label{
   border-radius: 8px;
 }
 
-.button-group {
+.form-group input[type="file"] {
+  display: block;
+  margin-top: 10px;
+}
+
+.button-group2 {
   display: flex;
   gap: 10px;
+}
+.textarea-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  max-width: 100%;
+}
+
+/* Estilos generales para los textarea */
+textarea {
+  width: 45%;
+  height: 150px;
+  border: 2px solid #4c4c4c;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f3e9;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #4c4c4c;
+  justify-content: space-between;
+  resize: none;
 }
 
 /* Encabezado del formulario */
@@ -665,7 +889,7 @@ h3 {
 }
 
 /* Estilo para mensajes de error */
-.error {
+.error-message {
   font-weight: normal;
   color: #b24c4c;
   font-size: 0.875rem;
@@ -704,22 +928,5 @@ h3 {
 @media (max-width: 768px) {
   .card {
     width: 100%;
-  }
-}
-/* Responsive styles */
-@media (max-width: 600px) {
-  .recipe-form {
-    width: 95%;
-    padding: 10px;
-  }
-
-  .button-group button {
-    width: 100%;
-    margin-bottom: 10px;
-    justify-content: center;
-  }
-
-  .button-group button:last-child {
-    margin-bottom: 0;
   }
 }
