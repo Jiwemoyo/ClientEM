@@ -111,7 +111,7 @@
 </div>
 
 <!-- Formulario de actualizar receta -->
-<form class="recipe-form" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
+<form class="recipe-form1" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
   <h2>Actualizar Receta</h2>
   <div class="form-fields1">
     <div class="form">
@@ -127,17 +127,17 @@
       </div>
     </div>
   </div>
-  <div class="form1">
-    <div class="form-group">
+  <div class="textarea-container">
+    <div class="form-group1">
       <label for="ingredients">Ingredientes</label>
-      <textarea id="ingredients" formControlName="ingredients"></textarea>
+      <textarea id="ingredients" formControlName="ingredients" placeholder="Separa los ingredientes por comas(,)"></textarea>
       <div *ngIf="recipeForm.get('ingredients')?.invalid && (recipeForm.get('ingredients')?.dirty || recipeForm.get('ingredients')?.touched)" class="error-message">
         Los ingredientes son requeridos
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-steps">
       <label for="steps">Pasos</label>
-      <textarea id="steps" formControlName="steps"></textarea>
+      <textarea id="steps" formControlName="steps" placeholder="Separa los pasos por comas(,)"></textarea>
       <div *ngIf="recipeForm.get('steps')?.invalid && (recipeForm.get('steps')?.dirty || recipeForm.get('steps')?.touched)" class="error-message">
         Los pasos son requeridos
       </div>
@@ -159,30 +159,38 @@
   </div>
 </form>
 <br><br>
-<h2 class="h2">{{ restaurantCountText() }}</h2>
+<div class="container-receta1">
+  <h2 class="h2">{{ restaurantCountText() }}</h2>
+  <button 
+  class="create-button" 
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
+  (click)="startCreatingRestaurant()"
+>
+  Crear Nueva Sucursal
+</button>
+</div>
 <div class="no-restaurants-container">
   <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
     <img src="../../../assets/home.jpeg" alt="comida" class="home">
     <p>Si tienes un restaurante coloca la dirección para que la gente pueda disfrutar el sabor auténtico de tus recetas</p>
   </div>
 </div>
-<div *ngIf="restaurants.length > 0">
+<!-- Tarjetas de restaurantes cuando hay al menos uno -->
+<div *ngIf="restaurants.length > 0" class="restaurants-list">
   <ul>
-    <li *ngFor="let restaurant of restaurants">
-      <h3><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3>
-      <button (click)="editRestaurant(restaurant)">Actualizar</button>
-      <button (click)="deleteRestaurant(restaurant._id)">Eliminar</button>
+    <li *ngFor="let restaurant of restaurants" class="restaurant-card">
+      <a [href]="restaurant.locationUrl" target="_blank" class="restaurant-link">
+        <img [src]="restaurant.imageUrl || '../../../assets/restaurant.png'" alt="{{ restaurant.name }}" class="restaurant-img">
+      </a>
+      <h3 class="restaurant-name"><a [href]="restaurant.locationUrl" target="_blank">{{ restaurant.name }}</a></h3><br>
+      <div class="hori">
+      <button (click)="editRestaurant(restaurant)" type="submit" class="actu1">Actualizar</button>
+      <button (click)="deleteRestaurant(restaurant._id)" type="button" class="actu1">Eliminar</button>
+    </div>
     </li>
   </ul>
 </div>
 <!-- Crear sucursal -->
-<button
-  class="create-button"
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
-  (click)="startCreatingRestaurant()"
->
-  Crear Nueva Sucursal
-</button>
 
 <form
   class="restaurant-form recipe-form"
@@ -216,7 +224,7 @@
 
 <!-- Actualizar sucursal -->
 <form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()" class="recipe-form">
-  <h2>Actualizar Restaurante</h2>
+  <h2>Actualizar Sucursal</h2>
   <div class="form-group">
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" class="input-field" />
