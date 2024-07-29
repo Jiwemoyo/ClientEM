@@ -166,7 +166,7 @@
   *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
   (click)="startCreatingRestaurant()"
 >
-  Crear Nueva Sucursal
+  Crear Sucursal
 </button>
 </div>
 <div class="no-restaurants-container">
@@ -217,30 +217,30 @@
   </div>
 
   <div class="button-group1">
-    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button">Crear</button>
+    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button2">Crear</button>
     <button type="button" (click)="cancelCreateRestaurant()" class="cancel-button">Cancelar</button>
   </div>
 </form>
 
 <!-- Actualizar sucursal -->
-<form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()" class="recipe-form">
+<form *ngIf="isEditingRestaurant" [formGroup]="restaurantForm" (ngSubmit)="updateRestaurant()" class="recipe-form3">
   <h2>Actualizar Sucursal</h2>
   <div class="form-group">
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
-      <small class="error">El nombre es requerido</small>
+      <small class="error-message">El nombre es requerido</small>
     </div>
   </div>
   <div class="form-group">
     <label for="locationUrl">URL de Ubicación (Google Maps)</label>
     <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
-      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+      <small class="error-message">Por favor, introduce una URL válida de Google Maps</small>
     </div>
   </div>
   <div class="button-group1">
-    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button">Actualizar</button>
+    <button type="submit" [disabled]="!restaurantForm.valid" class="submit-button1">Actualizar</button>
     <button type="button" (click)="cancelEditRestaurant()" class="cancel-button">Cancelar</button>
   </div>
 </form>
