@@ -943,6 +943,12 @@ h3 {
 
 }
 
+@media (max-width: 767px) {
+  .footer {
+    font-size: 11px; /* Tamaño de fuente para pantallas pequeñas */
+    padding: 8px 0; /* Padding para pantallas pequeñas */
+  }
+}
 
 @media (max-width: 768px) {
   .card {
