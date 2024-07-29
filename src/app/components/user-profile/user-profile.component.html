@@ -204,7 +204,7 @@
     <label for="name">Nombre</label>
     <input id="name" formControlName="name" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('name')?.invalid && restaurantForm.get('name')?.touched">
-      <small class="error">El nombre es requerido</small>
+      <small class="error-message">El nombre es requerido</small>
     </div>
   </div>
 
@@ -212,7 +212,7 @@
     <label for="locationUrl">URL de Ubicación (Google Maps)</label>
     <input id="locationUrl" formControlName="locationUrl" type="text" class="input-field" />
     <div *ngIf="restaurantForm.get('locationUrl')?.invalid && restaurantForm.get('locationUrl')?.touched">
-      <small class="error">Por favor, introduce una URL válida de Google Maps</small>
+      <small class="error-message">Por favor, introduce una URL válida de Google Maps</small>
     </div>
   </div>
 
