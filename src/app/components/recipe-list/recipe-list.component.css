@@ -87,7 +87,7 @@ h2 {
 }
 
 .search-button:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
 
 .search-icon {
@@ -99,35 +99,18 @@ h2 {
 /* Estilos para la lista de recetas */
 ul {
   text-align: left;
-  gap: 20px; /* Espacio entre las imágenes */
   list-style: none;
-  padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  margin: 20px auto; /* Ajusta el margen superior e inferior */
-  max-width: 1300px; /* Ajusta el ancho máximo del contenedor */
-  justify-content: center; /* Centra las imágenes horizontalmente */
+  margin: 5px auto;
+  max-width: 1300px;
+  gap: 20px; /* Espacio entre las tarjetas */
+  justify-content: center; /* Centra las tarjetas horizontalmente */
 }
 
 /* Estilos para cada receta */
-li {
-  padding: 0;
-  margin-bottom: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: none;
-  border: none;
-  text-align: left;
-  border-radius: 10px; /* Mantiene los bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
 
-li:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más prominente solo hacia abajo */
-}
+
 
 /* Estilos para el título de la receta */
 h3 {
@@ -142,12 +125,14 @@ h3 {
 }
 b{
   margin-right: 130px;
+  overflow: hidden;
+  margin-left: 4%;
 }
 
 /* Estilos para los párrafos */
 p {
   font-family: 'Arial', sans-serif;
-  font-size: 1em;
+  font-size: 0,5em;
   color: #555;
   margin: 5px 0;
   text-align: center;
@@ -155,6 +140,8 @@ p {
   font-weight: bold;
   align-self: flex-start;
   font-weight: normal;
+  overflow: hidden;
+  justify-content: column;
 }
 /* Estilos para el botón de Ver detalles */
 .details-button {
@@ -170,7 +157,7 @@ p {
 }
 
 .details-button:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
 
 /* Estilos para la imagen de la receta */
@@ -191,10 +178,12 @@ p {
   padding: 0 10px;
 }
 
+
 .like-button {
   display: flex;
   align-items: center;
-  font-size: 1.3em;
+  font-size: 1em;
+  color: #7B8C8F;
   cursor: pointer;
 }
 
@@ -203,7 +192,7 @@ p {
 }
 
 button:hover {
-  background-color: #1b5e20;
+  background-color: #507f9d;
 }
 
 /* Estilos para los enlaces */

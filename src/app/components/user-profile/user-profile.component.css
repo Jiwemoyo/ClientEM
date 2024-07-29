@@ -1,24 +1,24 @@
 
 /* Estilos para el contenedor principal */
 .container {
-  max-width: 1300px;
+  max-width: 300%;
+  max-height: auto;
   text-align: center;
   background-color: #FFF5E1;
+  margin: 0;
+  padding: 0%;
 }
 
 .image-container {
   position: relative;
-  margin: 0 auto;
   overflow: hidden;
-  margin-left: 1%;
-  border-radius: 8px;
-  padding-right: 0;
+  max-height: 500%;
 }
 
 .image-container img {
   width: 100vw;
   height: 150px;
-  max-height: 400px; /* Ajusta este valor según sea necesario */
+  max-height: 500%; /* Ajusta este valor según sea necesario */
   object-fit: cover;
   display: block;
 }
@@ -122,7 +122,6 @@ ul {
 }
 
 .recipe-card:hover {
-  transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más prominente solo hacia abajo */
 }
 
@@ -163,6 +162,7 @@ ul {
   font-size: 1.1em;
   color: #7B8C8F;
   margin: 10px 0;
+  cursor: pointer;
 }
 
 .likes .fa-heart {
@@ -927,6 +927,22 @@ h3 {
   color: #fff; /* Color de texto blanco */
   font-size: 0.9rem; /* Tamaño de fuente ajustado */
 }
+.footer {
+  text-align: center;
+  padding: 5px 0;
+  background: #54797F;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.23px;
+  text-align: left;
+}
+
+.footer p {
+  margin: 0;
+  color: #FFF5E7;
+
+}
+
 
 @media (max-width: 768px) {
   .card {
