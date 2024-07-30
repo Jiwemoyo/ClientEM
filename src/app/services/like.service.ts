@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LikeService {
-  private apiUrl = 'http://localhost:3000/api/likes'; // Ruta base del backend para likes
+  private apiUrl = 'https://apieasymenu.onrender.com/api/likes'; // Ruta base del backend para likes
 
   constructor(private http: HttpClient) { }
 

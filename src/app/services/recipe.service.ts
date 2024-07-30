@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiUrl = 'http://localhost:3000/api/recipes';
+  private apiUrl = 'https://apieasymenu.onrender.com/api/recipes';
 
   constructor(private http: HttpClient) { }
 

@@ -19,7 +19,7 @@
     <div class="recipe-image-container">
       <img
         *ngIf="recipe.image"
-        [src]="'http://localhost:3000' + recipe.image"
+        [src]="recipe.image"
         alt="{{ recipe.title }}"
         class="recipe-image"
       />

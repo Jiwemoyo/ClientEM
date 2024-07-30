@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://apieasymenu.onrender.com/api/auth';
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(
