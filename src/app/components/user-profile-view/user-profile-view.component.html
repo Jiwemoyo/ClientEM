@@ -16,7 +16,7 @@
   <div *ngIf="filteredRecipes.length > 0" class="recipes-list">
     <ul>
       <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
-        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+        <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image">
         <h3>{{ recipe.title }}</h3>
         <div class="likes-details">
           <span class="likes">

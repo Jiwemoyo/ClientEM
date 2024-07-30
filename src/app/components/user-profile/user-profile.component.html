@@ -25,7 +25,7 @@
   <ul>
     <li *ngFor="let recipe of filteredRecipes" class="recipe-card">
       <div class="recipe-image-container">
-        <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+        <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image">
       </div>
       <h3 class="recipe-title">{{ recipe.title }}</h3>
       <div class="likes-and-details">
@@ -161,9 +161,9 @@
 <br><br>
 <div class="container-receta1">
   <h2 class="h2">{{ restaurantCountText() }}</h2>
-  <button 
-  class="create-button" 
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant" 
+  <button
+  class="create-button"
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
   (click)="startCreatingRestaurant()"
 >
   Crear Sucursal

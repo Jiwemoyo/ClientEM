@@ -19,7 +19,7 @@
     <div *ngIf="filteredRecipes.length > 0" >
       <ul>
         <li *ngFor="let recipe of filteredRecipes">
-          <img *ngIf="recipe.image" [src]="'http://localhost:3000' + recipe.image" alt="{{ recipe.title }}" class="recipe-image">
+          <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image">
           <h3>{{ recipe.title }}</h3>
           <b>Hecho por:
             <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
