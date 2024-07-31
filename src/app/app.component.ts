@@ -8,7 +8,7 @@ import { LoadingService } from './services/loading.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loading$ = this.loadingService.isLoading$;
+  loading$ = this.loadingService.loading$;
 
   constructor(
     private loadingService: LoadingService,
@@ -17,17 +17,20 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Mostrar loading al iniciar la aplicación
-      this.loadingService.show();
-
-      // Ocultar loading cuando la página haya cargado completamente
-      window.addEventListener('load', () => {
-        this.loadingService.hide();
+      setTimeout(() => {
+        this.loadingService.show();
       });
 
-      // Mostrar loading cuando se inicia una recarga de página
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          this.loadingService.hide();
+        });
+      });
+
       window.addEventListener('beforeunload', () => {
-        this.loadingService.show();
+        setTimeout(() => {
+          this.loadingService.show();
+        });
       });
     }
   }

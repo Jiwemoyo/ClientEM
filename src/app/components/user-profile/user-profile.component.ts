@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { RestaurantService } from '../../services/restaurant.service';
+import { LoadingService } from '../../services/loading.service';
 
 const forbiddenWords = ['puta', 'zorra', 'putas','zorras','verga','vergas'];
 
@@ -48,14 +49,15 @@ export class UserProfileComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private restaurantService: RestaurantService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {
     this.recipeForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       ingredients: ['', Validators.required],
       steps: ['', Validators.required],
-      image: [null, Validators.required],
+      image: [null] // Validación condicional
     });
 
     this.restaurantForm = this.formBuilder.group({
@@ -84,6 +86,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadUserRecipes(): void {
+    this.loadingService.show(); // Muestra el estado de carga
     this.recipeService.getRecipesByUser().subscribe(
       (recipes) => {
         this.recipes = recipes.map(
@@ -94,10 +97,15 @@ export class UserProfileComponent implements OnInit {
           })
         );
         this.filteredRecipes = this.recipes;
+        this.loadingService.hide(); // Oculta el estado de carga
       },
-      (error) => console.error(error)
+      (error) => {
+        console.error(error);
+        this.loadingService.hide(); // Oculta el estado de carga en caso de error
+      }
     );
   }
+
 
   onSearch(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
@@ -206,10 +214,20 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateRecipe(): void {
-    if (!this.currentRecipeId) return;
+    if (!this.currentRecipeId) return; // Asegúrate de que `currentRecipeId` esté disponible
 
-    if (!this.validateRecipeForm()) {
+    if (this.recipeForm.invalid) {
+      this.markAllFieldsAsTouched(); // Marca todos los campos como tocados para mostrar errores
+      this.fieldError = "Por favor, completa todos los campos requeridos."; // Mensaje de error
       return;
+    }
+    if (!this.validateRecipeForm()) {
+      if (this.recipeForm.get('image')?.value === null && this.currentRecipeId) {
+        // Si no hay nueva imagen seleccionada y hay una imagen actual, se puede proceder
+        console.log('Imagen existente detectada, omitiendo validación de imagen');
+      } else {
+        return;
+      }
     }
 
     this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
@@ -223,11 +241,7 @@ export class UserProfileComponent implements OnInit {
     });
 
     if (this.archivoSeleccionado) {
-      formData.append(
-        'image',
-        this.archivoSeleccionado,
-        this.archivoSeleccionado.name
-      );
+      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
     }
 
     if (this.token) {
@@ -239,18 +253,22 @@ export class UserProfileComponent implements OnInit {
               (recipe) => recipe._id === this.currentRecipeId
             );
             if (index !== -1) {
-              this.recipes[index] = updatedRecipe;
+              this.recipes[index] = updatedRecipe; // Actualiza la receta en la lista local
             }
             this.isEditing = false;
             this.currentRecipeId = null;
-            this.recipeForm.reset();
-            this.archivoSeleccionado = null;
-            this.loadUserRecipes();
+            this.recipeForm.reset(); // Reinicia el formulario
+            this.archivoSeleccionado = null; // Limpia el archivo seleccionado
+            this.loadUserRecipes(); // Carga las recetas del usuario
           },
-          (error) => console.error(error)
+          (error) => {
+            console.error(error);
+            this.fieldError = "Hubo un error al actualizar la receta. Por favor, inténtalo de nuevo."; // Mensaje de error al usuario
+          }
         );
     }
   }
+
 
   cancelEdit(): void {
     this.isEditing = false;
@@ -312,11 +330,16 @@ export class UserProfileComponent implements OnInit {
 
   loadUserRestaurants(): void {
     if (this.token) {
+      this.loadingService.show(); // Muestra el estado de carga
       this.restaurantService.getRestaurantsByUser(this.token).subscribe(
         (restaurants) => {
           this.restaurants = restaurants;
+          this.loadingService.hide(); // Oculta el estado de carga
         },
-        (error) => console.error(error)
+        (error) => {
+          console.error(error);
+          this.loadingService.hide(); // Oculta el estado de carga en caso de error
+        }
       );
     }
   }
