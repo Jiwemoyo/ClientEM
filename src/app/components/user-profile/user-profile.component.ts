@@ -55,7 +55,7 @@ export class UserProfileComponent implements OnInit {
       description: ['', Validators.required],
       ingredients: ['', Validators.required],
       steps: ['', Validators.required],
-      image: [null, Validators.required],
+      image: [null, this.isCreating ? Validators.required : Validators.nullValidator], // Validación condicional
     });
 
     this.restaurantForm = this.formBuilder.group({
@@ -206,9 +206,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateRecipe(): void {
-    if (!this.currentRecipeId) return;
+    if (!this.currentRecipeId) return; // Asegúrate de que `currentRecipeId` esté disponible
+
+    if (this.recipeForm.invalid) {
+      this.markAllFieldsAsTouched(); // Marca todos los campos como tocados para mostrar errores
+      this.fieldError = "Por favor, completa todos los campos requeridos."; // Mensaje de error
+      return;
+    }
 
     if (!this.validateRecipeForm()) {
+      // Aquí deberías manejar la validación específica si es necesaria
       return;
     }
 
@@ -218,7 +225,7 @@ export class UserProfileComponent implements OnInit {
     Object.keys(this.recipeForm.controls).forEach((key) => {
       const control = this.recipeForm.get(key);
       if (control && control.value !== null && key !== 'image') {
-        formData.append(key, control.value);
+        formData.append(key, control.value); // Agrega campos del formulario a FormData
       }
     });
 
@@ -226,7 +233,7 @@ export class UserProfileComponent implements OnInit {
       formData.append(
         'image',
         this.archivoSeleccionado,
-        this.archivoSeleccionado.name
+        this.archivoSeleccionado.name // Agrega el archivo seleccionado al FormData
       );
     }
 
@@ -239,18 +246,22 @@ export class UserProfileComponent implements OnInit {
               (recipe) => recipe._id === this.currentRecipeId
             );
             if (index !== -1) {
-              this.recipes[index] = updatedRecipe;
+              this.recipes[index] = updatedRecipe; // Actualiza la receta en la lista local
             }
             this.isEditing = false;
             this.currentRecipeId = null;
-            this.recipeForm.reset();
-            this.archivoSeleccionado = null;
-            this.loadUserRecipes();
+            this.recipeForm.reset(); // Reinicia el formulario
+            this.archivoSeleccionado = null; // Limpia el archivo seleccionado
+            this.loadUserRecipes(); // Carga las recetas del usuario
           },
-          (error) => console.error(error)
+          (error) => {
+            console.error(error);
+            this.fieldError = "Hubo un error al actualizar la receta. Por favor, inténtalo de nuevo."; // Mensaje de error al usuario
+          }
         );
     }
   }
+
 
   cancelEdit(): void {
     this.isEditing = false;

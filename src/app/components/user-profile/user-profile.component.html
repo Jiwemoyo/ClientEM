@@ -111,6 +111,7 @@
 </div>
 
 <!-- Formulario de actualizar receta -->
+<!-- Formulario de actualización receta -->
 <form class="recipe-form1" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
   <h2>Actualizar Receta</h2>
   <div class="form-fields1">
@@ -158,17 +159,8 @@
     </div>
   </div>
 </form>
-<br><br>
-<div class="container-receta1">
-  <h2 class="h2">{{ restaurantCountText() }}</h2>
-  <button
-  class="create-button"
-  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
-  (click)="startCreatingRestaurant()"
->
-  Crear Sucursal
-</button>
-</div>
+
+  <!-- Crear Sucursal -->
 <div class="no-restaurants-container">
   <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
     <img src="../../../assets/home.jpeg" alt="comida" class="home">
