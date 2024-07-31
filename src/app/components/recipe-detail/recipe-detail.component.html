@@ -87,13 +87,15 @@
       </div>
     </div>
 
-    <form [formGroup]="editCommentForm" *ngIf="editingCommentId">
-      <label for="editContent">Editar Comentario</label>
+    <form [formGroup]="editCommentForm" *ngIf="editingCommentId" class="comment-form1">
+      <label for="editContent" class="comments-title">Editar Comentario:</label>
       <input id="editContent" formControlName="content" type="text" />
-      <button type="button" (click)="onSubmitEditComment()">
+      <div class="comment-actions1">
+      <button type="button" (click)="onSubmitEditComment()" class="edit-btn1">
         Guardar Cambios
       </button>
-      <button type="button" (click)="onCancelEdit()">Cancelar</button>
+      <button type="button" (click)="onCancelEdit()" class="delete-btn1">Cancelar</button>
+    </div>
     </form>
   </div>
 </div>

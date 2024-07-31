@@ -200,6 +200,7 @@ button[type="submit"]:hover {
   font-size: 2em;
   color: #547A80;
   margin-bottom: 20px;
+  font-weight: weight;
 }
 
 .comment-form {
@@ -218,6 +219,17 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
   width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
 }
+.comment-form1 input[type="text"] {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #547A80; /* Línea más ancha */
+  padding: 10px 0;
+  font-size: 1em;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 10px;
+  width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+}
+
 
 .comment-form input[type="text"]::placeholder {
   color: #a8a8a8;
@@ -290,6 +302,12 @@ button[type="submit"]:hover {
   gap: 10px;
 }
 
+.comment-actions1 {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .comment-actions button {
   padding: 5px 10px;
   border: none;
@@ -297,6 +315,16 @@ button[type="submit"]:hover {
   cursor: pointer;
   font-size: 0.8em;
   transition: background-color 0.3s ease;
+}
+
+.comment-actions1 button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: background-color 0.3s ease;
+  justify-content: flex-end;
 }
 
 .edit-btn {
@@ -308,6 +336,16 @@ button[type="submit"]:hover {
   background-color: #3a5559;
 }
 
+.edit-btn1 {
+  background-color: #547A80;
+  color: white;
+}
+
+.edit-btn1:hover {
+  background-color: #3a5559;
+}
+
+
 .delete-btn {
   background-color: #805854;
   color: white;
@@ -316,6 +354,16 @@ button[type="submit"]:hover {
 .delete-btn:hover {
   background-color: #5a3e3b;
 }
+
+.delete-btn1 {
+  background-color: #805854;
+  color: white;
+}
+
+.delete-btn1:hover {
+  background-color: #5a3e3b;
+}
+
 
 @media (max-width: 768px) {
   .recipe-header {
@@ -353,8 +401,15 @@ button[type="submit"]:hover {
   .comment-form {
     flex-direction: column;
   }
+  .comment-form1 {
+    flex-direction: column;
+  }
 
   .comment-form button {
+    align-self: flex-start;
+    margin-top: 10px;
+  }
+  .comment-form1 button {
     align-self: flex-start;
     margin-top: 10px;
   }
@@ -364,6 +419,9 @@ button[type="submit"]:hover {
   }
 
   .comment-actions {
+    margin-top: 10px;
+  }
+  .comment-actions1 {
     margin-top: 10px;
   }
 }
@@ -387,6 +445,11 @@ button[type="submit"]:hover {
   .ingredients h3,
   .recipe-steps h3,
   .comments-title {
+    font-size: 1.5em;
+  }
+  .ingredients h3,
+  .recipe-steps h3,
+  .comments-title1 {
     font-size: 1.5em;
   }
 }
