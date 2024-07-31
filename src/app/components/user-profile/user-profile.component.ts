@@ -221,10 +221,13 @@ export class UserProfileComponent implements OnInit {
       this.fieldError = "Por favor, completa todos los campos requeridos."; // Mensaje de error
       return;
     }
-
     if (!this.validateRecipeForm()) {
-      // Aquí deberías manejar la validación específica si es necesaria
-      return;
+      if (this.recipeForm.get('image')?.value === null && this.currentRecipeId) {
+        // Si no hay nueva imagen seleccionada y hay una imagen actual, se puede proceder
+        console.log('Imagen existente detectada, omitiendo validación de imagen');
+      } else {
+        return;
+      }
     }
 
     this.fieldError = null; // Limpiar el mensaje de error si el contenido es apropiado
