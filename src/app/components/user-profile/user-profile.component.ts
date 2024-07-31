@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
       description: ['', Validators.required],
       ingredients: ['', Validators.required],
       steps: ['', Validators.required],
-      image: [null, this.isCreating ? Validators.required : Validators.nullValidator], // Validación condicional
+      image: [null] // Validación condicional
     });
 
     this.restaurantForm = this.formBuilder.group({
@@ -233,16 +233,12 @@ export class UserProfileComponent implements OnInit {
     Object.keys(this.recipeForm.controls).forEach((key) => {
       const control = this.recipeForm.get(key);
       if (control && control.value !== null && key !== 'image') {
-        formData.append(key, control.value); // Agrega campos del formulario a FormData
+        formData.append(key, control.value);
       }
     });
 
     if (this.archivoSeleccionado) {
-      formData.append(
-        'image',
-        this.archivoSeleccionado,
-        this.archivoSeleccionado.name // Agrega el archivo seleccionado al FormData
-      );
+      formData.append('image', this.archivoSeleccionado, this.archivoSeleccionado.name);
     }
 
     if (this.token) {
