@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { RestaurantService } from '../../services/restaurant.service';
+import { LoadingService } from '../../services/loading.service';
 
 const forbiddenWords = ['puta', 'zorra', 'putas','zorras','verga','vergas'];
 
@@ -48,7 +49,8 @@ export class UserProfileComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private restaurantService: RestaurantService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {
     this.recipeForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -84,6 +86,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadUserRecipes(): void {
+    this.loadingService.show(); // Muestra el estado de carga
     this.recipeService.getRecipesByUser().subscribe(
       (recipes) => {
         this.recipes = recipes.map(
@@ -94,10 +97,15 @@ export class UserProfileComponent implements OnInit {
           })
         );
         this.filteredRecipes = this.recipes;
+        this.loadingService.hide(); // Oculta el estado de carga
       },
-      (error) => console.error(error)
+      (error) => {
+        console.error(error);
+        this.loadingService.hide(); // Oculta el estado de carga en caso de error
+      }
     );
   }
+
 
   onSearch(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
@@ -323,11 +331,16 @@ export class UserProfileComponent implements OnInit {
 
   loadUserRestaurants(): void {
     if (this.token) {
+      this.loadingService.show(); // Muestra el estado de carga
       this.restaurantService.getRestaurantsByUser(this.token).subscribe(
         (restaurants) => {
           this.restaurants = restaurants;
+          this.loadingService.hide(); // Oculta el estado de carga
         },
-        (error) => console.error(error)
+        (error) => {
+          console.error(error);
+          this.loadingService.hide(); // Oculta el estado de carga en caso de error
+        }
       );
     }
   }

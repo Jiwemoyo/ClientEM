@@ -19,6 +19,7 @@ import { UserProfileViewComponent } from './components/user-profile-view/user-pr
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingComponent } from './components/loading/loading.component';
 
@@ -54,7 +55,8 @@ import { LoadingComponent } from './components/loading/loading.component';
       useClass: AuthInterceptor,
       multi: true
     },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,},
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

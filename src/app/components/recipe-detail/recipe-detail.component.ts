@@ -6,6 +6,7 @@ import { LikeService } from '../../services/like.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -28,7 +29,8 @@ export class RecipeDetailComponent implements OnInit {
     private commentService: CommentService,
     private likeService: LikeService,
     private fb: FormBuilder,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private loadingService: LoadingService
   ) {
     this.commentForm = this.fb.group({
       content: ['', Validators.required]
@@ -49,6 +51,7 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     if (id && token) {
+      this.loadingService.show(); // Muestra el indicador de carga
       this.recipeService.getRecipeById(id, token).subscribe((data: any) => {
         this.recipe = data;
         if (typeof this.recipe.ingredients === 'string') {
@@ -57,10 +60,13 @@ export class RecipeDetailComponent implements OnInit {
         this.getLikes();
         this.checkUserLike();
         this.getLikesCount();
+        this.loadingService.hide(); // Oculta el indicador de carga
+      }, error => {
+        console.error('Error al cargar receta:', error);
+        this.loadingService.hide(); // Oculta el indicador de carga en caso de error
       });
     }
   }
-
   toggleLike() {
     if (this.userHasLiked) {
       this.unlikeRecipe();

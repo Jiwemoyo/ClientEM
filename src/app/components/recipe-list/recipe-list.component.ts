@@ -1,7 +1,7 @@
-// src/app/components/recipe-list/recipe-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
+import { LoadingService } from '../../services/loading.service'; // Asegúrate de importar el servicio de carga
 
 @Component({
   selector: 'app-recipe-list',
@@ -12,12 +12,28 @@ export class RecipeListComponent implements OnInit {
   recipes: any[] = [];
   filteredRecipes: any[] = [];
 
-  constructor(private recipeService: RecipeService, private router: Router) { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router,
+    private loadingService: LoadingService // Inyecta el servicio de carga
+  ) { }
 
   ngOnInit(): void {
-    this.recipeService.getAllRecipes().subscribe((data: any[]) => {
-      this.recipes = data;
-      this.filteredRecipes = data; // Inicialmente, todas las recetas están en la lista filtrada
+    this.loadRecipes(); // Llama al método para cargar las recetas
+  }
+
+  loadRecipes(): void {
+    this.loadingService.show(); // Muestra el indicador de carga
+    this.recipeService.getAllRecipes().subscribe({
+      next: (data: any[]) => {
+        this.recipes = data;
+        this.filteredRecipes = data; // Inicialmente, todas las recetas están en la lista filtrada
+        this.loadingService.hide(); // Oculta el indicador de carga
+      },
+      error: (error) => {
+        console.error('Error al cargar recetas:', error);
+        this.loadingService.hide(); // Oculta el indicador de carga en caso de error
+      }
     });
   }
 

@@ -15,17 +15,18 @@ import { AdminGuard } from './guards/admin.guard';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { LoadingGuard } from './guards/loading.guard';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent,canActivate:[AuthenticatedGuard] },
-  { path: 'login', component: LoginComponent,canActivate:[AuthenticatedGuard]},
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'register', component: RegisterComponent,canActivate:[AuthenticatedGuard,LoadingGuard] },
+  { path: 'login', component: LoginComponent,canActivate:[AuthenticatedGuard,LoadingGuard]},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard,LoadingGuard] },
   { path: 'admin/users', component: UserListComponent },
-  { path: 'recipes', component: RecipeListComponent },
+  { path: 'recipes', component: RecipeListComponent, canActivate:[LoadingGuard] },
   { path: 'recipe/:id', component: RecipeDetailComponent, canActivate: [AuthGuard] },
-  { path: 'create-recipe', component: RecipeFormComponent },
+  { path: 'create-recipe', component: RecipeFormComponent,canActivate:[LoadingGuard] },
   { path: 'comments/:recipeId', component: CommentListComponent },
-  { path: 'user-profile-view/:userId', component: UserProfileViewComponent, canActivate: [AuthGuard] },
+  { path: 'user-profile-view/:userId', component: UserProfileViewComponent, canActivate: [AuthGuard,LoadingGuard] },
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'create-comment', component: CommentFormComponent },
   { path: 'admin/users', component: UserListComponent, canActivate: [AuthGuard, AdminGuard] },
