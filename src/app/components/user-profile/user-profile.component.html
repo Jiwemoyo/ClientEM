@@ -150,7 +150,7 @@
       <small><br>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
     </div>
     <div class="form-group">
-      <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
+      <img *ngIf="existingImageUrl" [src]="existingImageUrl" alt="Imagen actual" class="recipe-image">
     </div>
     <div class="button-group">
       <button type="submit">Actualizar</button>
