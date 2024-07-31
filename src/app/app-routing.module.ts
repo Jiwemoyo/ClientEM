@@ -18,8 +18,8 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { LoadingGuard } from './guards/loading.guard';
 
 const routes: Routes = [
-  { path: 'register', component: RegisterComponent,canActivate:[AuthenticatedGuard,LoadingGuard] },
-  { path: 'login', component: LoginComponent,canActivate:[AuthenticatedGuard,LoadingGuard]},
+  { path: 'register', component: RegisterComponent,canActivate:[AuthenticatedGuard] },
+  { path: 'login', component: LoginComponent,canActivate:[AuthenticatedGuard]},
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard,LoadingGuard] },
   { path: 'admin/users', component: UserListComponent },
   { path: 'recipes', component: RecipeListComponent, canActivate:[LoadingGuard] },
