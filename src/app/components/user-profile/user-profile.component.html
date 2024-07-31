@@ -111,7 +111,6 @@
 </div>
 
 <!-- Formulario de actualizar receta -->
-<!-- Formulario de actualización receta -->
 <form class="recipe-form1" *ngIf="isEditing" [formGroup]="recipeForm" (ngSubmit)="updateRecipe()">
   <h2>Actualizar Receta</h2>
   <div class="form-fields1">
@@ -151,7 +150,7 @@
       <small><br>Solo se permiten archivos de imagen (JPEG, PNG, JPG)</small>
     </div>
     <div class="form-group">
-      <img *ngIf="existingImageUrl" [src]="existingImageUrl" alt="Imagen actual" class="recipe-image">
+      <img *ngIf="existingImageUrl" [src]="'http://localhost:3000' + existingImageUrl" alt="Imagen actual" class="recipe-image">
     </div>
     <div class="button-group">
       <button type="submit">Actualizar</button>
@@ -159,8 +158,17 @@
     </div>
   </div>
 </form>
-
-  <!-- Crear Sucursal -->
+<br><br>
+<div class="container-receta1">
+  <h2 class="h2">{{ restaurantCountText() }}</h2>
+  <button
+  class="create-button"
+  *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
+  (click)="startCreatingRestaurant()"
+>
+  Crear Sucursal
+</button>
+</div>
 <div class="no-restaurants-container">
   <div *ngIf="restaurants.length === 0" class="no-restaurants-content">
     <img src="../../../assets/home.jpeg" alt="comida" class="home">
