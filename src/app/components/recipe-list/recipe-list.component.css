@@ -165,11 +165,19 @@ b a:hover {
 
 /* Footer */
 .footer {
-  background-color: #395B64;
-  color: #FFF;
   text-align: center;
   padding: 10px 0;
-  margin-top: 40px;
+  background: #54797F;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 15.23px;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  color: #FFF5E7;
+
 }
 
 /* Responsive */
