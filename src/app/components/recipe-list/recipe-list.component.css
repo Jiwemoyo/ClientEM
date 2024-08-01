@@ -1,27 +1,28 @@
-/* Estilos para el contenedor principal */
-.container-fondo {
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+  font-family: 'Roboto', sans-serif;
   background-color: #FFF5E1;
+  color: #395B64;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
 }
 
-.container {
-  max-width: 1300px; /* Aumenta el ancho máximo del contenedor */
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
-}
-
+/* Contenedor de imagen */
 .image-container {
   position: relative;
   width: 100%;
-  margin: 0 auto;
+  height: 250px;
+  overflow: hidden;
 }
 
 .image-container img {
   width: 100%;
-  height: 900px;
-  max-height: 300px; /* Ajusta este valor según sea necesario */
+  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .overlay-text {
@@ -29,247 +30,181 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
-  font-size: 2em;
-  font-weight: bold;
+  color: #FFF;
+  font-size: 32px;
+  font-family: 'Pacifico', cursive;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Estilos para el título */
-h2 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2.5em;
-  color: #395B64;
-  margin-bottom: 20px;
-  text-align: left;
-  font-weight: normal;
-  padding-left: 35px;
+/* Contenedor principal */
+.container-fondo {
+  background-color: #FFF5E1;
+  padding-top: 10px;
 }
 
-/* Estilos para la barra de búsqueda */
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Barra de búsqueda */
 .search-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
+  display: flex;
+  max-width: 600px;
+  margin: 20px auto;
 }
 
 .search-input {
-  width: calc(100% - 50px); /* Ajustar el ancho para dejar espacio al botón */
-  padding: 10px 20px;
-  font-size: 1.1em;
+  flex-grow: 1;
+  padding: 8px 12px;
+  font-size: 16px;
   border: 2px solid #395B64;
-  border-radius: 20px 0 0 20px;
-  box-sizing: border-box;
-  outline: none;
+  border-radius: 5px 0 0 5px;
 }
 
 .search-button {
   background-color: #395B64;
-  color: #ffe1ef;
-  padding: 10px;
+  color: #FFF;
   border: none;
+  padding: 8px 12px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 5px 5px 0;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-  background-color: #507f9d;
+  background-color: #2c4a53;
 }
 
-.search-icon {
-  font-size: 1.9em;
-  color: #FFF5E1;
-  font-variant: normal;
+/* Lista de recetas */
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  color: #395B64;
+  margin: 30px 0 20px;
+  text-align: center;
 }
 
-/* Estilos para la lista de recetas */
 ul {
-  text-align: left;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 5px auto;
-  max-width: 1300px;
-  gap: 20px; /* Espacio entre las tarjetas */
-  justify-content: center; /* Centra las tarjetas horizontalmente */
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
 }
 
-/* Estilos para cada receta */
+li {
+  background-color: #FFF5E1;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
 
+li:hover {
+  transform: translateY(-5px);
+}
 
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
-/* Estilos para el título de la receta */
 h3 {
   font-family: 'Pacifico', cursive;
-  font-size: 1.5em;
+  font-size: 20px;
   color: #395B64;
-  margin: 10px 0;
-  text-align: left;
-  font-weight: normal;
-  align-self: flex-start;
-  margin-left: 15px;
-}
-b{
-  margin-right: 130px;
-  overflow: hidden;
-  margin-left: 4%;
+  margin: 10px;
 }
 
-/* Estilos para los párrafos */
-p {
-  font-family: 'Arial', sans-serif;
-  font-size: 0,5em;
-  color: #555;
-  margin: 5px 0;
-  text-align: center;
-  padding: 5px;
-  font-weight: bold;
-  align-self: flex-start;
-  font-weight: normal;
-  overflow: hidden;
-  justify-content: column;
-}
-/* Estilos para el botón de Ver detalles */
-.details-button {
-  background-color: #395B64;
-  color: #FFF5E1;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  transition: background-color 0.3s;
-  padding: 5px;
+b {
+  display: block;
+  margin: 10px;
+  font-size: 14px;
 }
 
-.details-button:hover {
-  background-color: #507f9d;
+b a {
+  color: #395B64;
+  text-decoration: none;
 }
 
-/* Estilos para la imagen de la receta */
-.recipe-image {
-  width: 280px; /* Aumenta el ancho de la imagen */
-  height: 180px; /* Aumenta el alto de la imagen */
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 10px;
+b a:hover {
+  text-decoration: underline;
 }
 
-/* Estilos para el contenedor del botón y los likes */
 .button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 280px; /* Alineado con el ancho de la imagen */
-  padding: 0 10px;
+  padding: 10px;
 }
-
 
 .like-button {
-  display: flex;
-  align-items: center;
-  font-size: 1em;
-  color: #7B8C8F;
+  font-size: 14px;
+  color: #395B64;
+}
+
+.details-button {
+  background-color: #395B64;
+  color: #FFF;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
   cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.like-button i {
-  margin-right: 5px; /* Espacio entre el ícono y el texto */
+.details-button:hover {
+  background-color: #2c4a53;
 }
 
-button:hover {
-  background-color: #507f9d;
-}
-
-/* Estilos para los enlaces */
-a {
-  color: #1e88e5;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-  text-align: left;
-}
+/* Footer */
 .footer {
+  background-color: #395B64;
+  color: #FFF;
   text-align: center;
-  padding: 5px 0;
-  background: #54797F;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 15.23px;
-  text-align: left;
+  padding: 10px 0;
+  margin-top: 40px;
 }
 
-.footer p {
-  margin: 0;
-  color: #FFF5E7;
-
+/* Responsive */
+@media (max-width: 1200px) {
+  ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
-/* Media Queries para diferentes dispositivos */
+
+@media (max-width: 900px) {
+  ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .overlay-text {
+    font-size: 24px;
+  }
+
   h2 {
-    font-size: 2em;
-    text-align: center;
-  }
-
-  .search-container {
-    width: 80%;
-  }
-
-  ul {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .search-container {
-    width: 100%;
-  }
-
-  .search-input {
-    font-size: 1em;
-  }
-
-  .search-button {
-    width: 40px;
-  }
-
-  h3 {
-    font-size: 1.2em;
-  }
-
-  p {
-    font-size: 0.9em;
-  }
-
-  .details-button {
-    font-size: 0.7em;
-    padding: 5px 8px;
-  }
-
-  ul {
-    grid-template-columns: 1fr;
-  }
-}
-/* Estilos para pantallas pequeñas */
-@media (max-width: 767px) {
-  .footer {
-    font-size: 11px; /* Tamaño de fuente para pantallas pequeñas */
-    padding: 8px 0; /* Padding para pantallas pequeñas */
+    font-size: 28px;
   }
 }
