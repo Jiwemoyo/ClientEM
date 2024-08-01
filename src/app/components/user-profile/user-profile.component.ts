@@ -202,7 +202,7 @@ export class UserProfileComponent implements OnInit {
         ? recipe.ingredients.join(', ')
         : recipe.ingredients,
       steps: Array.isArray(recipe.steps)
-        ? recipe.steps.join('\n')
+        ? recipe.steps.join(',')
         : recipe.steps,
     });
 
