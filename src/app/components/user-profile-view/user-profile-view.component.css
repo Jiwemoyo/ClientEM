@@ -122,7 +122,7 @@
 }
 
 .recipe-card button {
-  padding: 8px 15px;
+  padding: 14px 20px;
   background-color: #547A80;
   border: none;
   color: #fff;
@@ -130,6 +130,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-family: 'Roboto', sans-serif;
+  font-size: 14px;
   align-self: flex-start; /* Alinea el botón a la izquierda */
 }
 
@@ -151,16 +152,49 @@
     padding: 15px;
   }
 
+  .recipes-list ul {
+    gap: 10px; /* Reducir el espacio entre tarjetas en pantallas más pequeñas */
+  }
+
   .recipe-card {
-    max-width: 100%;
+    max-width: 45%; /* Permite que se muestren dos tarjetas por fila */
+    box-sizing: border-box;
+  }
+
+  .recipe-card img {
+    max-height: 180px; /* Ajusta la altura máxima para pantallas más grandes en dispositivos móviles */
+  }
+
+  .restaurant-card {
+    max-width: 45%; /* Permite que se muestren dos tarjetas por fila */
+    box-sizing: border-box;
+  }
+
+  .restaurant-img {
+    max-height: 180px; /* Ajusta la altura máxima para pantallas más grandes en dispositivos móviles */
   }
 }
 
 @media (max-width: 480px) {
   .recipe-card {
-    padding: 10px;
+    max-width: 100%; /* Ocupa el ancho completo en pantallas muy pequeñas */
+    padding: 8px;
+  }
+
+  .recipe-card img {
+    max-height: 150px; /* Ajusta la altura máxima para pantallas pequeñas */
+  }
+
+  .restaurant-card {
+    max-width: 100%; /* Ocupa el ancho completo en pantallas muy pequeñas */
+    padding: 8px;
+  }
+
+  .restaurant-img {
+    max-height: 150px; /* Ajusta la altura máxima para pantallas pequeñas */
   }
 }
+
 
 .no-restaurants {
   display: flex;
@@ -235,6 +269,7 @@
   text-decoration: none;
 }
 
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .restaurant-card {
@@ -288,13 +323,14 @@
   font-weight: normal; /* Asegúrate de que no esté en negrita */
   text-align: center;
 }
+
 .footer {
   text-align: center;
   padding: 10px 0;
   background: #54797F;
   font-size: 13px;
   font-weight: 400;
-  line-height: 15.23px;
+  line-height: 1.2;
   width: 100%;
   box-sizing: border-box;
 }
@@ -310,3 +346,30 @@
     padding: 8px 0;
   }
 }
+/* Responsive Styles for Buttons */
+@media (max-width: 768px) {
+  .recipe-card button {
+    width: 100%; /* Hace que el botón ocupe todo el ancho del contenedor */
+    padding: 7px; /* Ajusta el padding para pantallas más pequeñas */
+    font-size: 10px; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+  }
+
+  .restaurant-card button {
+    width: 100%; /* Hace que el botón ocupe todo el ancho del contenedor */
+    padding: 7px; /* Ajusta el padding para pantallas más pequeñas */
+    font-size: 10px; /* Ajusta el tamaño de la fuente para pantallas más pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card button {
+    padding: 7px; /* Ajusta el padding para pantallas muy pequeñas */
+    font-size: 10 px; /* Ajusta el tamaño de la fuente para pantallas muy pequeñas */
+  }
+
+  .restaurant-card button {
+    padding: 7px; /* Ajusta el padding para pantallas muy pequeñas */
+    font-size: 10px; /* Ajusta el tamaño de la fuente para pantallas muy pequeñas */
+  }
+}
+
