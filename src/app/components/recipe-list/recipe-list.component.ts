@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LoadingService } from '../../services/loading.service'; // Asegúrate de importar el servicio de carga
@@ -15,24 +15,29 @@ export class RecipeListComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private loadingService: LoadingService // Inyecta el servicio de carga
+    private loadingService: LoadingService, // Inyecta el servicio de carga
+    private ngZone: NgZone
   ) { }
 
   ngOnInit(): void {
-    this.loadRecipes(); // Llama al método para cargar las recetas
+    this.loadRecipes();
   }
 
   loadRecipes(): void {
-    this.loadingService.show(); // Muestra el indicador de carga
+    this.loadingService.show();
     this.recipeService.getAllRecipes().subscribe({
       next: (data: any[]) => {
-        this.recipes = data;
-        this.filteredRecipes = data; // Inicialmente, todas las recetas están en la lista filtrada
-        this.loadingService.hide(); // Oculta el indicador de carga
+        this.ngZone.run(() => {
+          this.recipes = data;
+          this.filteredRecipes = data;
+          this.loadingService.hide();
+        });
       },
       error: (error) => {
         console.error('Error al cargar recetas:', error);
-        this.loadingService.hide(); // Oculta el indicador de carga en caso de error
+        this.ngZone.run(() => {
+          this.loadingService.hide();
+        });
       }
     });
   }

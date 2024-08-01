@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { LoadingService } from './services/loading.service';
 
 @Component({
@@ -7,31 +6,15 @@ import { LoadingService } from './services/loading.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   loading$ = this.loadingService.loading$;
 
   constructor(
     private loadingService: LoadingService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        this.loadingService.show();
-      });
-
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          this.loadingService.hide();
-        });
-      });
-
-      window.addEventListener('beforeunload', () => {
-        setTimeout(() => {
-          this.loadingService.show();
-        });
-      });
-    }
+    private cdr: ChangeDetectorRef
+  ) {
+    this.loading$.subscribe(() => {
+      this.cdr.detectChanges();
+    });
   }
 }
