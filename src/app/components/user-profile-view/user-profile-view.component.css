@@ -11,7 +11,7 @@
 .nombre1 {
   text-align: center;
   font-family: 'Pacifico', cursive; /* Fuente específica para el título */
-  color: #395B64;
+  color: #547A80;
   font-size: 30px;
   font-weight: normal; /* Asegúrate de que no esté en negrita */
   text-align: center; /* Alinea el texto a la izquierda */
@@ -26,7 +26,7 @@
 .search-container input[type="text"] {
   width: 100%; /* Ajusta el ancho del input dentro del contenedor */
   padding: 10px 20px 10px 10px; /* Deja espacio para el icono a la derecha */
-  border: 4px solid #395B64;
+  border: 4px solid #547A80;
   border-radius: 20px;
   box-sizing: border-box;
   background-color: #efe4cf;
@@ -38,7 +38,7 @@
   top: 0;
   height: 100%;
   width: 40px; /* Ajusta según sea necesario */
-  background-color: #395B64; /* Color del fondo detrás del icono */
+  background-color: #547A80; /* Color del fondo detrás del icono */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +60,7 @@
   font-size: 1.2em;
   font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
   font-family: 'Pacifico', cursive; /* Fuente específica para el título */
-  color: #395B64  ;
+  color: #547A80  ;
 }
 
 .recipes-list ul {
@@ -88,7 +88,7 @@
 
 .recipe-card h3 {
   font-size: 1.2em;
-  color: #395B64;
+  color: #547A80;
   margin: 10px 0;
   font-weight: normal; /* Asegúrate de que no esté en negrita */
   font-family: 'Pacifico', cursive; /* Fuente específica para el título */
@@ -103,7 +103,7 @@
   align-items: center;
   margin-top: auto;
   width: 100%;
-  border-top: 3px solid #395B64;
+  border-top: 3px solid #547A80;
   padding-top: 10px;
 }
 
@@ -123,7 +123,7 @@
 
 .recipe-card button {
   padding: 8px 15px;
-  background-color: #395B64;
+  background-color: #547A80;
   border: none;
   color: #fff;
   border-radius: 5px;
@@ -181,7 +181,7 @@
   margin: 0; /* Elimina el margen por defecto del párrafo */
   font-size: 18px; /* Ajusta el tamaño de la fuente según tu diseño */
   font-family: 'Pacifico', cursive; /* Fuente específica para el título */
-  color: #395B64  ;
+  color: #547A80  ;
 }
 
 
@@ -219,13 +219,13 @@
 
 .restaurant-name {
   font-size: 1.2em;
-  color: #395B64;
+  color: #547A80;
   font-family: 'Pacifico', cursive;
   margin: 0;
 }
 
 .restaurant-name a {
-  color: #395B64;
+  color: #547A80;
   text-decoration: none;
   font-weight: normal; /* Asegúrate de que no esté en negrita */
   font-size: 20px;
@@ -282,7 +282,7 @@
 }
 
 .restaurante{
-  color: #395B64;
+  color: #547A80;
   font-family: 'Pacifico', cursive;
   font-size: 30px;
   font-weight: normal; /* Asegúrate de que no esté en negrita */

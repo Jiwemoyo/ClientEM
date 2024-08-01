@@ -14,14 +14,14 @@
 .navbar-brand {
   font-family: 'Pacifico', cursive;
   font-size: 32px;
-  color: #395B64;
+  color: #547A80;
 }
 
 .navbar-logo {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #395B64;
+  color: #547A80;
 }
 
 .navbar-logo .icon {
@@ -37,7 +37,7 @@
 .menu-icon {
   width: 25px;
   height: 3px;
-  background-color: #395B64;
+  background-color: #547A80;
   display: block;
   position: relative;
   transition: all 0.3s ease;
@@ -48,7 +48,7 @@
   content: '';
   width: 25px;
   height: 3px;
-  background-color: #395B64;
+  background-color: #547A80;
   display: block;
   position: absolute;
   transition: all 0.3s ease;
@@ -87,7 +87,7 @@
   font-family: 'Pacifico', cursive;
   font-size: 24px;
   text-decoration: none;
-  color: #395B64;
+  color: #547A80;
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -99,7 +99,7 @@
   position: absolute;
   width: 0;
   height: 3px;
-  background-color: #395B64;
+  background-color: #547A80;
   bottom: -5px;
   left: 0;
   transition: width 0.3s ease-in-out;
@@ -134,7 +134,7 @@
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-top: 2px solid #395B64;  /* Línea divisoria añadida aquí */
+    border-top: 2px solid #547A80;  /* Línea divisoria añadida aquí */
     margin: 15px;
   }
 
@@ -157,7 +157,7 @@
   .navbar-links a:hover,
   .navbar-links .logout:hover,
   .navbar-links .active-link {
-    background-color: #395B64;
+    background-color: #547A80;
     color: #FFF5E1;
   }
 

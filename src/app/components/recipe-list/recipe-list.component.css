@@ -5,7 +5,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #FFF5E1;
-  color: #395B64;
+  color: #547A80;
   margin: 0;
   padding: 0;
   font-weight: normal;
@@ -60,12 +60,12 @@ body {
   flex-grow: 1;
   padding: 8px 12px;
   font-size: 16px;
-  border: 2px solid #395B64;
+  border: 2px solid #547A80;
   border-radius: 5px 0 0 5px;
 }
 
 .search-button {
-  background-color: #395B64;
+  background-color: #547A80;
   color: #FFF;
   border: none;
   padding: 8px 12px;
@@ -83,7 +83,7 @@ body {
 h2 {
   font-family: 'Pacifico', cursive;
   font-size: 36px;
-  color: #395B64;
+  color: #547A80;
   margin: 30px 0 20px;
   text-align: center;
 }
@@ -117,7 +117,7 @@ li:hover {
 h3 {
   font-family: 'Pacifico', cursive;
   font-size: 20px;
-  color: #395B64;
+  color: #547A80;
   margin: 10px;
   white-space: nowrap;
   overflow: hidden;
@@ -131,7 +131,7 @@ b {
 }
 
 b a {
-  color: #395B64;
+  color: #547A80;
   text-decoration: none;
 }
 
@@ -148,11 +148,11 @@ b a:hover {
 
 .like-button {
   font-size: 14px;
-  color: #395B64;
+  color: #547A80;
 }
 
 .details-button {
-  background-color: #395B64;
+  background-color: #547A80;
   color: #FFF;
   border: none;
   padding: 8px 12px;
