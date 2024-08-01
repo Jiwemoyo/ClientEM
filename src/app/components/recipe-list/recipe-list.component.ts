@@ -1,4 +1,4 @@
-import { Component, OnInit,NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { LoadingService } from '../../services/loading.service'; // Asegúrate de importar el servicio de carga
@@ -28,8 +28,9 @@ export class RecipeListComponent implements OnInit {
     this.recipeService.getAllRecipes().subscribe({
       next: (data: any[]) => {
         this.ngZone.run(() => {
-          this.recipes = data;
-          this.filteredRecipes = data;
+          // Ordenar las recetas por fecha de creación (de más nuevo a más antiguo)
+          this.recipes = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+          this.filteredRecipes = this.recipes;
           this.loadingService.hide();
         });
       },

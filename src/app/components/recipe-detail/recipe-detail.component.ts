@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
 import { LoadingService } from '../../services/loading.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -30,7 +31,8 @@ export class RecipeDetailComponent implements OnInit {
     private likeService: LikeService,
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private authService: AuthService
   ) {
     this.commentForm = this.fb.group({
       content: ['', Validators.required]
@@ -129,19 +131,26 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment: any) => {
-          // Crear un objeto de comentario completo
+          // Obtén el nombre de usuario de varias fuentes posibles
+          const username = this.authService.getUsername() ||
+                           this.localStorageService.getItem('username') ||
+                           'Usuario Anónimo';
+
+          console.log('Username:', username); // Para depuración
+
           const fullNewComment = {
             _id: newComment._id,
             content: newComment.content,
             author: {
               _id: this.userId,
-              username: this.localStorageService.getItem('username') || 'Usuario'
+              username: username
             },
             createdAt: newComment.createdAt || new Date().toISOString(),
             recipe: newComment.recipe
           };
 
-          // Añadir el nuevo comentario al principio del array
+          console.log('Full New Comment:', fullNewComment); // Para depuración
+
           this.recipe.comments = [fullNewComment, ...this.recipe.comments];
           this.commentForm.reset();
         },

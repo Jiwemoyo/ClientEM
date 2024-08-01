@@ -40,6 +40,10 @@ export class AuthService {
     return this.getItem('userRole') || '';
   }
 
+  getUsername(): string {
+    return this.getItem('username') || '';
+  }
+
   isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -53,6 +57,7 @@ export class AuthService {
     this.setItem('userId', authResult.userId);
     this.setItem('userRole', authResult.role);
     this.setItem('expiresAt', authResult.expiresAt);
+    this.setItem('username', authResult.username);
     this.loggedIn.next(true);
   }
 
