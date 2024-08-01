@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
   menuActive: boolean = false;
   private authSubscription: Subscription | null = null;
 
@@ -18,7 +19,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.authService.isLoggedIn().subscribe((status: boolean) => {
       this.isLoggedIn = status;
+      if (status) {
+        this.checkAdminStatus();
+      } else {
+        this.isAdmin = false;
+      }
     });
+  }
+
+  checkAdminStatus(): void {
+    const userRole = this.authService.getUserRole();
+    this.isAdmin = userRole === 'admin'; // Asumimos que el rol de administrador se llama 'admin'
   }
 
   toggleMenu() {

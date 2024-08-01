@@ -6,6 +6,7 @@
     <span class="menu-icon" [class.open]="menuActive"></span>
   </div>
   <div class="navbar-links" [class.open]="menuActive">
+    <a *ngIf="isAdmin" routerLink="/admin/users" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Admin</a>
     <a routerLink="/recipes" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Recetas</a>
     <a *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Login</a>
     <a *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Perfil</a>
