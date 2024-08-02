@@ -87,16 +87,16 @@
     <!--lo de arriba bien-->
     <div class="form1">
       <div class="form-group">
-        <label for="ingredients">Ingredientes (separados por asteriscos(*) ejem: ingrediente1*ingrediente2*)</label>
-        <textarea id="ingredients" formControlName="ingredients"></textarea>
+        <label for="ingredients">Ingredientes</label>
+        <textarea id="ingredients" formControlName="ingredients" placeholder="(separados por asteriscos(*) ejem: ingrediente1*ingrediente2*)"></textarea>
         <div *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched" class="error-message">
           Los ingredientes son requeridos
         </div>
       </div>
 
       <div class="form-group">
-        <label for="steps">Pasos (separados por asteriscos(*))</label>
-        <textarea id="steps" formControlName="steps"></textarea>
+        <label for="steps">Pasos</label>
+        <textarea id="steps" formControlName="steps" placeholder="(separados por asteriscos(*))"></textarea>
         <div *ngIf="recipeForm.get('steps')?.invalid && recipeForm.get('steps')?.touched" class="error-message">
           Los pasos son requeridos
         </div>

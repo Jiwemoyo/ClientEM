@@ -28,7 +28,7 @@
   border: 4px solid #547A80;
   border-radius: 20px;
   box-sizing: border-box;
-  background-color: #FFF5E7;
+  background-color: #efe4cf;
 }
 
 .search-container .search-icon {
@@ -72,8 +72,8 @@
 }
 
 .recipe-card {
-  background-color: #FFF5E7;
-  border: 1px solid #FFF5E7;
+  background-color: #efe4cf;
+  border: 1px solid #efe4cf;
   border-radius: 10px;
   padding: 10px;
   width: 100%;

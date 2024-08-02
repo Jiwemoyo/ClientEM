@@ -67,6 +67,7 @@ h2 {
   box-sizing: border-box;
   outline: none;
   background-color: #FFF5E7;
+  outline: none;
 }
 
 .search-button {
@@ -499,7 +500,8 @@ label input{
   left: 62px;
   gap: 0px;
   border-radius: 8px;
-  border: 5px solid rgba(84, 122, 128, 1)
+  border: 5px solid rgba(84, 122, 128, 1);
+  outline: none;
 }
 
 .form-steps textarea {
@@ -514,7 +516,8 @@ label input{
   left: 62px;
   gap: 0px;
   border-radius: 8px;
-  border: 5px solid rgba(84, 122, 128, 1)
+  border: 5px solid rgba(84, 122, 128, 1);
+  outline: none;
 }
 .button-group {
   display: flex;
@@ -565,13 +568,13 @@ button[type="button"] {
 
 button[type="submit"] {
   background: #547A80;
-  color: #FFFFFF;
+  color: #FFF5E7;
   margin: auto;
 }
  
 button[type="button"] {
   background: #805854;
-  color: #FFFFFF;
+  color: #FFF5E7;
   margin: 0px;
 }
 
@@ -726,7 +729,7 @@ a:hover {
 }
 .restaurant-form {
   font-family: 'Arial', cursive;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   padding: 15px;
   border: 0;
   border-radius: 8px;
@@ -804,7 +807,7 @@ input .submit-button{
   text-align: left;
   display: block;
   font-weight: normal;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 .form-group label {
   padding: 0;
@@ -815,7 +818,7 @@ input .submit-button{
   color: #4c4c4c;
   text-align: left;
   font-weight: normal;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 .form-group1 label {
   padding: 0;
@@ -838,7 +841,7 @@ label{
   color: #4c4c4c;
   text-align: left;
   font-weight: normal;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 .input-field {
   width: calc(100% - 20px);
@@ -867,6 +870,7 @@ label{
   margin-bottom: 20px;
   align-items: flex-start;
   max-width: 100%;
+  outline: none;
 }
 
 /* Estilos generales para los textarea */
@@ -882,6 +886,7 @@ textarea {
   color: #4c4c4c;
   justify-content: space-between;
   resize: none;
+  outline: none;
 }
 
 /* Encabezado del formulario */
