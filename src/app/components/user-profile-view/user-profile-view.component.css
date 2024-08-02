@@ -1,12 +1,11 @@
 /* General Styles */
 .container {
-  background-color: #efe4cf; /* Color de fondo adaptable */
-  min-height: 100%; /* Altura mínima del 100% del viewport */
-  width: 100%;
-  padding: 0 15px; /* Añade un poco de padding para mejor ajuste */
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-  margin: 0; /* Elimina cualquier margen */
-  bottom: 0; /* Asegura que se extienda hasta el fondo */
+  max-width: 300%;
+  max-height: auto;
+  text-align: center;
+  background-color: #efe4cf;;
+  margin: 0;
+  padding: 0%;
 }
 .nombre1 {
   text-align: center;
@@ -325,14 +324,18 @@
 }
 
 .footer {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   padding: 10px 0;
   background: #54797F;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.2;
-  width: 100%;
+  line-height: 15.23px;
   box-sizing: border-box;
+  margin: 0%;
 }
 
 .footer p {
