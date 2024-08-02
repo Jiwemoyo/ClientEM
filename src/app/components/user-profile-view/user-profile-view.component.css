@@ -3,7 +3,7 @@
   max-width: 300%;
   max-height: auto;
   text-align: center;
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   margin: 0;
   padding: 0%;
 }
@@ -28,7 +28,7 @@
   border: 4px solid #547A80;
   border-radius: 20px;
   box-sizing: border-box;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 
 .search-container .search-icon {
@@ -72,8 +72,8 @@
 }
 
 .recipe-card {
-  background-color: #efe4cf;
-  border: 1px solid #efe4cf;
+  background-color: #FFF5E7;
+  border: 1px solid #FFF5E7;
   border-radius: 10px;
   padding: 10px;
   width: 100%;
@@ -108,7 +108,7 @@
 
 .recipe-card .likes {
   color: #7B8C8F;
-      margin-right: 10px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start; /* Alinea el conteo de likes al borde izquierdo */
@@ -228,7 +228,7 @@
 }
 
 .restaurant-card {
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   border: 1px solid #efe4cf;
   border-radius: 10px;
   padding: 10px;
@@ -294,7 +294,7 @@
 .image-container img {
       width: 100%;
       height: auto; /*Ajusta la altura automáticamente*/
-      max-height: 200px; /* Mantén una altura máxima para la imagen */
+      max-height: 150px; /* Mantén una altura máxima para la imagen */
       object-fit: cover;
       display: block;
       margin: 0 auto; /* Centra la imagen dentro del contenedor */
@@ -306,13 +306,12 @@
   bottom: 5px; /* Acerca el texto al borde inferior de la imagen */
   left: 10px; /* Ajusta el margen izquierdo según sea necesario */
   font-family: 'Pacifico', cursive;
-  color: #efe4cf;
+  color: #FFF5E7;
   font-size: 40px; /* Ajusta el tamaño de la fuente según sea necesario */
   font-weight: normal;
   text-align: left; /* Alinea el texto a la izquierda */
   padding: 5px; /* Añade un poco de relleno alrededor del texto */
   border-radius: 5px; /* Añade bordes redondeados al fondo del texto */
-  background: rgba(0, 0, 0, 0.5); /* Añade un fondo semi-transparente para mejorar la legibilidad */
 }
 
 .restaurante{
