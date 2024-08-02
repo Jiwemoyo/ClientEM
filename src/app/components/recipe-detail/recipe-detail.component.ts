@@ -53,22 +53,28 @@ export class RecipeDetailComponent implements OnInit {
     }
 
     if (id && token) {
-      this.loadingService.show(); // Muestra el indicador de carga
+      this.loadingService.show();
       this.recipeService.getRecipeById(id, token).subscribe((data: any) => {
         this.recipe = data;
         if (typeof this.recipe.ingredients === 'string') {
           this.recipe.ingredients = this.recipe.ingredients.split(',');
         }
+        this.sortComments(); // Ordena los comentarios inicialmente
         this.getLikes();
         this.checkUserLike();
         this.getLikesCount();
-        this.loadingService.hide(); // Oculta el indicador de carga
+        this.loadingService.hide();
       }, error => {
         console.error('Error al cargar receta:', error);
-        this.loadingService.hide(); // Oculta el indicador de carga en caso de error
+        this.loadingService.hide();
       });
     }
   }
+
+  sortComments(): void {
+    this.recipe.comments.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
   toggleLike() {
     if (this.userHasLiked) {
       this.unlikeRecipe();
@@ -131,12 +137,11 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment: any) => {
-          // Obtén el nombre de usuario de varias fuentes posibles
           const username = this.authService.getUsername() ||
                            this.localStorageService.getItem('username') ||
                            'Usuario Anónimo';
 
-          console.log('Username:', username); // Para depuración
+          console.log('Username:', username);
 
           const fullNewComment = {
             _id: newComment._id,
@@ -149,9 +154,10 @@ export class RecipeDetailComponent implements OnInit {
             recipe: newComment.recipe
           };
 
-          console.log('Full New Comment:', fullNewComment); // Para depuración
+          console.log('Full New Comment:', fullNewComment);
 
           this.recipe.comments = [fullNewComment, ...this.recipe.comments];
+          this.sortComments(); // Ordena los comentarios después de agregar uno nuevo
           this.commentForm.reset();
         },
         (error) => {
@@ -177,10 +183,10 @@ export class RecipeDetailComponent implements OnInit {
         (updatedComment: any) => {
           const index = this.recipe.comments.findIndex((c: any) => c._id === this.editingCommentId);
           if (index !== -1) {
-            // Mantener toda la información del comentario, solo actualizar el contenido
             this.recipe.comments[index].content = updatedComment.content;
             this.recipe.comments = [...this.recipe.comments];
           }
+          this.sortComments(); // Ordena los comentarios después de editar uno
           this.editingCommentId = null;
           this.editCommentForm.reset();
         },
@@ -196,6 +202,7 @@ export class RecipeDetailComponent implements OnInit {
     this.commentService.deleteComment(commentId, token!).subscribe(
       () => {
         this.recipe.comments = this.recipe.comments.filter((c: any) => c._id !== commentId);
+        this.sortComments(); // Ordena los comentarios después de eliminar uno
       },
       (error) => {
         console.error('Error deleting comment:', error);
