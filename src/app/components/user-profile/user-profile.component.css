@@ -4,7 +4,7 @@
   max-width: 300%;
   max-height: auto;
   text-align: center;
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   margin: 0;
   padding: 0%;
 }
@@ -66,7 +66,7 @@ h2 {
   border-radius: 20px 0 0 20px;
   box-sizing: border-box;
   outline: none;
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
 }
 
 .search-button {
@@ -191,7 +191,7 @@ ul {
 
 .details-btn {
   background-color: #395B64;
-  color: #efe4cf;
+  color: #FFF5E7;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -251,7 +251,7 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   text-align: center;
   flex-direction: column;
   border: none;
@@ -271,7 +271,7 @@ ul {
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   flex-direction: column;
   border: none;
   padding: 20px 40px; /* Aumentar el padding horizontal */
@@ -291,7 +291,7 @@ ul {
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   flex-direction: column;
   border: none;
   padding: 20px 40px; /* Aumentar el padding horizontal */
@@ -307,7 +307,7 @@ ul {
 
 input{
   justify-content: center;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 .recipe-form h3 {
   text-align: center;
@@ -319,7 +319,7 @@ input{
 }
 .container-receta button{
   top: 152px;
-  color: #efe4cf;
+  color: #FFF5E7;
   left: 1251px;
   padding: 10px 0px 0px 0px;
   gap: 10px;
@@ -335,7 +335,7 @@ input{
 }
 .container-receta1 button{
   top: 152px;
-  color: #efe4cf;
+  color: #FFF5E7;
   left: 1251px;
   padding: 10px 0px 0px 0px;
   gap: 10px;
@@ -396,7 +396,7 @@ input{
   text-align: center;
   cursor: pointer;
   border-radius: 16px;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   border: 5px solid rgba(84, 122, 128, 1)
 }
 .input-container {
@@ -406,7 +406,7 @@ input{
 .input-label {
   display: block;
   font-size: 16px;
-  color: #efe4cf;
+  color: #FFF5E7;
   margin-bottom: 5px;
   text-align: left;
 }
@@ -418,7 +418,7 @@ input{
   color: #333;
   border: none;
   border-bottom: 2px solid #688d8b;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 
 .input-field:focus {
@@ -437,7 +437,7 @@ label input{
   margin-right: 22%;
 }
 .form-fields input{
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 .form-fields1 label{
   display: flex;
@@ -463,7 +463,7 @@ label input{
   text-align: left;
   border: none;
   border-bottom: 2px solid #688d8b;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   margin-bottom: 20px;
   margin-right: 50px;
 }
@@ -477,7 +477,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   resize: none;
   height: 150px;
   width: 300px;
@@ -491,7 +491,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   resize: none;
   height: 150px;
   width: 300px;
@@ -506,7 +506,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   resize: none;
   height: 150px;
   width: 300px;
@@ -619,7 +619,7 @@ button[type="submit"]:hover {
 }
 
 .restaurant-card {
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   border: 1px solid #efe4cf;
   border-radius: 10px;
   padding: 10px;
@@ -876,7 +876,7 @@ textarea {
   border: 2px solid #4c4c4c;
   border-radius: 8px;
   padding: 10px;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
   color: #4c4c4c;

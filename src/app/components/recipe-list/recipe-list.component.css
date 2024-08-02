@@ -4,7 +4,7 @@
 /* Estilos generales */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   color: #395B64;
   margin: 0;
   padding: 0;
@@ -39,7 +39,7 @@ body {
 
 /* Contenedor principal */
 .container-fondo {
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
   padding-top: 10px;
 }
 
@@ -64,7 +64,7 @@ body {
   border-radius: 20px 0 0 20px;
   box-sizing: border-box;
   outline: none;
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
 }
 
 .search-button {
@@ -100,7 +100,7 @@ ul {
 }
 
 li {
-  background-color: #efe4cf;;
+  background-color: #FFF5E7;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   overflow: hidden;
@@ -179,7 +179,7 @@ b a:hover {
 
 .footer p {
   margin: 0;
-  color: #efe4cf;;
+  color: #FFF5E7;
 
 }
 
