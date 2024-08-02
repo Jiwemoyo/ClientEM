@@ -4,8 +4,8 @@
 /* Estilos generales */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #FFF5E1;
-  color: #547A80;
+  background-color: #efe4cf;;
+  color: #395B64;
   margin: 0;
   padding: 0;
   font-weight: normal;
@@ -39,7 +39,7 @@ body {
 
 /* Contenedor principal */
 .container-fondo {
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   padding-top: 10px;
 }
 
@@ -52,26 +52,29 @@ body {
 /* Barra de búsqueda */
 .search-container {
   display: flex;
-  max-width: 600px;
+  max-width: 400px;
   margin: 20px auto;
 }
 
 .search-input {
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 2px solid #547A80;
-  border-radius: 5px 0 0 5px;
+  width: calc(100% - 50px); /* Ajustar el ancho para dejar espacio al botón */
+  padding: 10px 20px;
+  font-size: 1.1em;
+  border: 2px solid #395B64;
+  border-radius: 20px 0 0 20px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #efe4cf;;
 }
 
 .search-button {
-  background-color: #547A80;
+  background-color: #395B64;
   color: #FFF;
   border: none;
   padding: 8px 12px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 20px 20px 0;
   transition: background-color 0.3s ease;
 }
 
@@ -83,7 +86,7 @@ body {
 h2 {
   font-family: 'Pacifico', cursive;
   font-size: 36px;
-  color: #547A80;
+  color: #395B64;
   margin: 30px 0 20px;
   text-align: center;
 }
@@ -97,7 +100,7 @@ ul {
 }
 
 li {
-  background-color: #FFF5E1;
+  background-color: #efe4cf;;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   overflow: hidden;
@@ -117,11 +120,8 @@ li:hover {
 h3 {
   font-family: 'Pacifico', cursive;
   font-size: 20px;
-  color: #547A80;
+  color: #395B64;
   margin: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 b {
@@ -131,7 +131,7 @@ b {
 }
 
 b a {
-  color: #547A80;
+  color: #395B64;
   text-decoration: none;
 }
 
@@ -148,11 +148,11 @@ b a:hover {
 
 .like-button {
   font-size: 14px;
-  color: #547A80;
+  color: #395B64;
 }
 
 .details-button {
-  background-color: #547A80;
+  background-color: #395B64;
   color: #FFF;
   border: none;
   padding: 8px 12px;
@@ -179,7 +179,7 @@ b a:hover {
 
 .footer p {
   margin: 0;
-  color: #FFF5E7;
+  color: #efe4cf;;
 
 }
 

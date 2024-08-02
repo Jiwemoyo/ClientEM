@@ -4,7 +4,7 @@
   max-width: 300%;
   max-height: auto;
   text-align: center;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;;
   margin: 0;
   padding: 0%;
 }
@@ -66,6 +66,7 @@ h2 {
   border-radius: 20px 0 0 20px;
   box-sizing: border-box;
   outline: none;
+  background-color: #efe4cf;;
 }
 
 .search-button {
@@ -190,7 +191,7 @@ ul {
 
 .details-btn {
   background-color: #395B64;
-  color: #FFF5E1;
+  color: #efe4cf;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -250,7 +251,7 @@ ul {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #FFF5E1;
+  background-color: #efe4cf;;
   text-align: center;
   flex-direction: column;
   border: none;
@@ -270,7 +271,7 @@ ul {
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  background-color: #FFF5E1;
+  background-color: #efe4cf;;
   flex-direction: column;
   border: none;
   padding: 20px 40px; /* Aumentar el padding horizontal */
@@ -290,7 +291,7 @@ ul {
   left: 50%;
   text-align: center;
   transform: translate(-50%, -50%);
-  background-color: #FFF5E1;
+  background-color: #efe4cf;;
   flex-direction: column;
   border: none;
   padding: 20px 40px; /* Aumentar el padding horizontal */
@@ -306,7 +307,7 @@ ul {
 
 input{
   justify-content: center;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 .recipe-form h3 {
   text-align: center;
@@ -318,7 +319,7 @@ input{
 }
 .container-receta button{
   top: 152px;
-  color: #FFF5E1;
+  color: #efe4cf;
   left: 1251px;
   padding: 10px 0px 0px 0px;
   gap: 10px;
@@ -334,7 +335,7 @@ input{
 }
 .container-receta1 button{
   top: 152px;
-  color: #FFF5E1;
+  color: #efe4cf;
   left: 1251px;
   padding: 10px 0px 0px 0px;
   gap: 10px;
@@ -395,7 +396,7 @@ input{
   text-align: center;
   cursor: pointer;
   border-radius: 16px;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   border: 5px solid rgba(84, 122, 128, 1)
 }
 .input-container {
@@ -405,7 +406,7 @@ input{
 .input-label {
   display: block;
   font-size: 16px;
-  color: #b0a99f;
+  color: #efe4cf;
   margin-bottom: 5px;
   text-align: left;
 }
@@ -417,7 +418,7 @@ input{
   color: #333;
   border: none;
   border-bottom: 2px solid #688d8b;
-  background-color: #fef6ec;
+  background-color: #efe4cf;
 }
 
 .input-field:focus {
@@ -436,7 +437,7 @@ label input{
   margin-right: 22%;
 }
 .form-fields input{
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 .form-fields1 label{
   display: flex;
@@ -462,7 +463,7 @@ label input{
   text-align: left;
   border: none;
   border-bottom: 2px solid #688d8b;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   margin-bottom: 20px;
   margin-right: 50px;
 }
@@ -476,7 +477,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   resize: none;
   height: 150px;
   width: 300px;
@@ -490,7 +491,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   resize: none;
   height: 150px;
   width: 300px;
@@ -505,7 +506,7 @@ label input{
   padding: 20px;
   font-size: 1rem;
   justify-content: space-between;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   resize: none;
   height: 150px;
   width: 300px;
@@ -725,7 +726,7 @@ a:hover {
 }
 .restaurant-form {
   font-family: 'Arial', cursive;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
   padding: 15px;
   border: 0;
   border-radius: 8px;
@@ -803,7 +804,7 @@ input .submit-button{
   text-align: left;
   display: block;
   font-weight: normal;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 .form-group label {
   padding: 0;
@@ -814,7 +815,7 @@ input .submit-button{
   color: #4c4c4c;
   text-align: left;
   font-weight: normal;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 .form-group1 label {
   padding: 0;
@@ -826,7 +827,7 @@ input .submit-button{
   text-align: left;
   font-weight: normal;
   display: block;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 
 label{
@@ -837,7 +838,7 @@ label{
   color: #4c4c4c;
   text-align: left;
   font-weight: normal;
-  background-color: #FFF5E1;
+  background-color: #efe4cf;
 }
 .input-field {
   width: calc(100% - 20px);
@@ -875,7 +876,7 @@ textarea {
   border: 2px solid #4c4c4c;
   border-radius: 8px;
   padding: 10px;
-  background-color: #f9f3e9;
+  background-color: #efe4cf;
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
   color: #4c4c4c;
