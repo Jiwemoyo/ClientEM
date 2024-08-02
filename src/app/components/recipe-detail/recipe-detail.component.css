@@ -243,6 +243,7 @@ button[type="submit"]:hover {
   font-family: 'Roboto', sans-serif;
   margin-bottom: 10px;
   width: 100%; /* Asegura que el input ocupe todo el ancho disponible de la pg */
+  outline: none;
 }
 
 
