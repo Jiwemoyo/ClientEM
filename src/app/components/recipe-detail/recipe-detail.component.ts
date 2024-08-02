@@ -137,27 +137,19 @@ export class RecipeDetailComponent implements OnInit {
 
       this.commentService.createComment(commentData, token!).subscribe(
         (newComment: any) => {
-          const username = this.authService.getUsername() ||
-                           this.localStorageService.getItem('username') ||
-                           'Usuario Anónimo';
 
-          console.log('Username:', username);
 
+          // Usa la información del autor directamente de la respuesta del servidor
           const fullNewComment = {
             _id: newComment._id,
             content: newComment.content,
-            author: {
-              _id: this.userId,
-              username: username
-            },
-            createdAt: newComment.createdAt || new Date().toISOString(),
+            author: newComment.author, // Esto debería incluir _id y username
+            createdAt: newComment.createdAt,
             recipe: newComment.recipe
           };
 
-          console.log('Full New Comment:', fullNewComment);
-
           this.recipe.comments = [fullNewComment, ...this.recipe.comments];
-          this.sortComments(); // Ordena los comentarios después de agregar uno nuevo
+          this.sortComments();
           this.commentForm.reset();
         },
         (error) => {
@@ -166,7 +158,6 @@ export class RecipeDetailComponent implements OnInit {
       );
     }
   }
-
   onEditComment(commentId: string, currentContent: string): void {
     this.editingCommentId = commentId;
     this.editCommentForm.patchValue({ content: currentContent });
