@@ -149,6 +149,16 @@ b a:hover {
 .like-button {
   font-size: 14px;
   color: #395B64;
+  display: flex;
+  align-items: center;
+}
+
+.like-button i {
+  margin-right: 5px;
+}
+
+.likes-count {
+  margin-right: 5px;
 }
 
 .details-button {
