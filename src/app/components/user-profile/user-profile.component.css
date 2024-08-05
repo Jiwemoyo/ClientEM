@@ -9,6 +9,22 @@
   padding: 0%;
 }
 
+.recipes-list {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .image-container {
   position: relative;
   overflow: hidden;
@@ -114,13 +130,13 @@ ul {
 /* Estilos para cada receta */
 .recipe-card {
   width: 100%;
-  max-width: 300px; /* Ajusta el tamaño de las tarjetas */
+  max-width: 300px;
+  margin: 0 0 20px 0;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   text-align: center;
-  background: none; /* Sin fondo blanco */
-  margin-bottom: 20px;
+  background: none;
 }
 
 .recipe-card:hover {
@@ -1041,5 +1057,25 @@ h3 {
   .button-icon {
     display: inline-block;
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipes-list {
+    padding: 0 10px;
+  }
+
+  ul {
+    gap: 15px;
+  }
+
+  .recipe-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card {
+    margin: 0 0 15px 0;
   }
 }
