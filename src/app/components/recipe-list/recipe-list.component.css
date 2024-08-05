@@ -57,7 +57,7 @@ body {
 }
 
 .search-input {
-  width: calc(100% - 50px); /* Ajustar el ancho para dejar espacio al botón */
+  width: calc(100% - 50px);
   padding: 10px 20px;
   font-size: 1.1em;
   border: 2px solid #395B64;
@@ -180,7 +180,6 @@ b a:hover {
 .footer p {
   margin: 0;
   color: #FFF5E7;
-
 }
 
 /* Responsive */
@@ -217,5 +216,46 @@ b a:hover {
 
   h2 {
     font-size: 28px;
+  }
+
+  .likes-text {
+    font-size: 0;
+    display: inline-block;
+  }
+
+  .likes-text::before {
+    content: '\f007'; /* Icono de persona */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+
+  .like-button {
+    display: flex;
+    align-items: center;
+  }
+
+  .like-button i,
+  .likes-count {
+    margin-right: 5px;
+  }
+
+  .details-button {
+    font-size: 0;
+    padding: 8px;
+  }
+
+  .details-button::before {
+    content: '\f06e'; /* Icono de ojo */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) {
+  .button-icon {
+    display: none;
   }
 }
