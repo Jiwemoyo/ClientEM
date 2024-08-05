@@ -19,7 +19,10 @@
 </div>
 <div class="container-receta">
   <h2>Mis Recetas</h2>
-  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Receta</button>
+  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()" class="create-button">
+    <span class="button-text">Crear Receta</span>
+    <i class="fas fa-plus-circle button-icon"></i>
+  </button>
 </div>
 <div *ngIf="recipes.length > 0" class="recipes-list">
   <ul>
@@ -174,7 +177,8 @@
   *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
   (click)="startCreatingRestaurant()"
 >
-  Crear Sucursal
+  <span class="button-text">Crear Sucursal</span>
+  <i class="fas fa-store button-icon"></i>
 </button>
 </div>
 <div class="no-restaurants-container">
