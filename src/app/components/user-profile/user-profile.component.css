@@ -165,11 +165,21 @@ ul {
   color: #7B8C8F;
   margin: 10px 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .likes .fa-heart {
   color: #FF0000;
   margin-right: 5px;
+}
+
+.likes-count {
+  margin-right: 5px;
+}
+
+.likes-icon {
+  display: none;
 }
 
 /* Estilos para el contenedor de botones */
@@ -199,11 +209,17 @@ ul {
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .details-btn:hover {
   background-color: #507f9d;
+}
+
+.details-icon {
+  display: none;
 }
 
 .action-btn {
@@ -540,7 +556,7 @@ label input{
   width: 120px;
   height: 60px;
   font-weight: normal;
-} 
+}
 .button-group1 .submit-button1{
   margin-right: 210%;
 
@@ -571,7 +587,7 @@ button[type="submit"] {
   color: #FFF5E7;
   margin: auto;
 }
- 
+
 button[type="button"] {
   background: #805854;
   color: #FFF5E7;
@@ -718,7 +734,7 @@ a:hover {
 
 /* estilo crear sucursal*/
 .create-button {
-  background-color: #4c4c4c; 
+  background-color: #4c4c4c;
   color: white;
   border: 2px solid #4c4c4c;
   border-radius: 8px;
@@ -770,7 +786,7 @@ input .submit-button{
 }
 
 .submit-button:hover {
-  background-color: #507f9d; 
+  background-color: #507f9d;
   border-color: #507f9d;
 }
 
@@ -959,5 +975,37 @@ h3 {
 @media (max-width: 768px) {
   .card {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .details-text {
+    display: none;
+  }
+
+  .details-icon {
+    display: inline-block;
+  }
+
+  .details-btn {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .likes-text {
+    display: none;
+  }
+
+  .likes-icon {
+    display: inline-block;
+    margin-left: 5px;
+    color: #7B8C8F;
+  }
+
+  .likes {
+    font-size: 1em;
   }
 }

@@ -29,8 +29,16 @@
       </div>
       <h3 class="recipe-title">{{ recipe.title }}</h3>
       <div class="likes-and-details">
-        <p class="likes"><i class="fa fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
-        <button (click)="viewRecipe(recipe._id)" class="details-btn">Ver Detalles</button>
+        <p class="likes">
+          <i class="fa fa-heart" style="color: #FF6B6B;"></i>
+          <span class="likes-count">{{ recipe.likesCount }}</span>
+          <span class="likes-text">personas</span>
+          <i class="fas fa-user likes-icon"></i>
+        </p>
+        <button (click)="viewRecipe(recipe._id)" class="details-btn">
+          <span class="details-text">Ver Detalles</span>
+          <i class="fas fa-eye details-icon" aria-hidden="true"></i>
+        </button>
       </div>
       <hr class="separator">
       <div class="button-container">
