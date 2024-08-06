@@ -28,7 +28,8 @@ ul {
 .image-container {
   position: relative;
   overflow: hidden;
-  max-height: 500%;
+  margin-left: 100px;
+  width: 100%;
 }
 
 .image-container img {
@@ -286,17 +287,18 @@ ul {
   transform: translate(-50%, -50%);
   background-color: #FFF5E7;
   text-align: center;
+  display: flex;
   flex-direction: column;
   border: none;
-  padding: 20px 40px; /* Aumentar el padding horizontal */
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  width: 100%; /* Aumentar el ancho */
-  max-width: 900px; /* Aumentar el ancho máximo */
-  height: auto; /* Ajustar la altura automáticamente */
-  max-height: 80%; /* Reducir el largo máximo */
-  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+  width: 90%;
+  max-width: 900px;
+  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .recipe-form1 {
   position: fixed;
@@ -402,6 +404,7 @@ input{
   align-items: center;
   padding: 0 10px;
   margin-bottom: 20px;
+
 }
 
 .image-label span {
@@ -423,14 +426,12 @@ input{
   flex-wrap: wrap;
   align-items: center;
   padding: 10px;
-  width: 300px;
-  height: 150px;
+  width: 100%;
   justify-content:center;
   text-align: center;
   cursor: pointer;
   border-radius: 16px;
   background-color: #FFF5E7;
-  border: 5px solid rgba(84, 122, 128, 1)
 }
 .input-container {
   margin-bottom: 20px;
@@ -553,11 +554,12 @@ label input{
 }
 .button-group {
   display: flex;
-  text-align: right;
+  text-align: cent;
   flex-direction: column;
   justify-content: center;
   margin-bottom: 30px;
   margin-top: 20px;
+
   width: 120px;
   height: 40px;
   font-weight: normal;
@@ -997,52 +999,115 @@ h3 {
 
 }
 
-@media (max-width: 767px) {
-  .footer {
-    font-size: 11px; /* Tamaño de fuente para pantallas pequeñas */
-    padding: 8px 0; /* Padding para pantallas pequeñas */
-  }
+/* Estilos base para los formularios */
+.recipe-form, .recipe-form1, .recipe-form3, .restaurant-form {
+  width: 90%;
+  max-width: 900px;
+  padding: 20px;
+  margin: 20px auto;
+  box-sizing: border-box;
 }
 
+/* Ajustes para los campos de formulario */
+.form-fields, .form-fields1, .form-group, .form-steps {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.form input[type="text"], .input-field {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Ajustes para los textarea */
+.textarea-container {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group textarea, .form-group1 textarea, .form-steps textarea {
+  width: 100%;
+  max-width: none;
+}
+
+/* Ajustes para los botones */
+.button-group, .button-group1 {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group button, .button-group1 button {
+  width: 100%;
+  margin: 5px 0;
+}
+
+/* Media queries para ajustes responsivos */
 @media (max-width: 768px) {
-  .card {
+  /* Estilos generales */
+  .container, .recipes-list, .restaurants-list,
+  .recipe-form, .recipe-form1, .recipe-form3, .restaurant-form {
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .details-text {
-    display: none;
-  }
-
-  .details-icon {
-    display: inline-block;
+    max-width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
-  .details-btn {
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .likes-text {
-    display: none;
+  h2, h3 {
+    font-size: 1.8em;
   }
 
-  .likes-icon {
-    display: inline-block;
-    margin-left: 5px;
-    color: #7B8C8F;
+  ul {
+    gap: 15px;
   }
 
-  .likes {
-    font-size: 1em;
+  /* Formularios */
+  .form1, .form-fields, .form-fields1, .textarea-container {
+    flex-direction: column;
+    align-items: stretch;
   }
-}
 
-@media (max-width: 768px) {
+  .form-fields, .form-fields1 {
+    margin-left: 0;
+  }
+
+  .form-group, .form-steps, .form-group1 {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .image-label {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Botones */
+  .button-group, .button-group1 {
+    width: 95%;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .button-group button, .button-group1 button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .button-group1 .submit-button1,
+  .button-group1 .submit-button2 {
+    margin-right: 0;
+  }
+
   .create-button {
     width: 50px;
     height: 50px;
@@ -1058,24 +1123,91 @@ h3 {
     display: inline-block;
     margin-bottom: 10px;
   }
-}
 
-@media (max-width: 768px) {
-  .recipes-list {
-    padding: 0 10px;
-  }
-
-  ul {
-    gap: 15px;
-  }
-
-  .recipe-card {
+  /* Tarjetas */
+  .recipe-card, .restaurant-card, .card {
+    width: 100%;
     max-width: 100%;
+    margin: 10px 0;
+  }
+
+  /* Detalles y likes */
+  .details-text, .likes-text {
+    display: none;
+  }
+
+  .details-icon, .likes-icon {
+    display: inline-block;
+  }
+
+  .details-btn {
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .likes-icon {
+    margin-left: 5px;
+    color: #7B8C8F;
+  }
+
+  .likes {
+    font-size: 1em;
+  }
+
+  /* Imágenes y multimedia */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Clearfix para elementos flotantes */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
   }
 }
 
 @media (max-width: 480px) {
+  .container, .recipes-list, .restaurants-list,
+  .recipe-form, .recipe-form1, .recipe-form3, .restaurant-form {
+    padding: 10px;
+    margin: 5px 0;
+  }
+
+  body {
+    font-size: 14px;
+  }
+  .image-container{
+    margin-left: 0px;
+  }
+
+  h2, h3 {
+    font-size: 1.5em;
+  }
+
+  input, textarea, button {
+    font-size: 14px;
+  }
+
   .recipe-card {
     margin: 0 0 15px 0;
+  }
+
+  .button-container, .hori {
+    flex-direction: column;
+  }
+
+  .button-container button, .hori button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    font-size: 11px;
+    padding: 8px 0;
   }
 }
