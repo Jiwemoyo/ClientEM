@@ -628,9 +628,26 @@ button[type="submit"]:hover {
 }
 
 /* Contenido de no restaurantes */
+.no-restaurants-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente el contenido en el contenedor principal */
+  padding: 10px;
+}
+
 .no-restaurants-content {
   display: flex;
-  align-items: center; /* Alinea los elementos verticalmente en el centro */
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.home {
+  width: 100%; /* La imagen ocupará el ancho completo del contenedor en pantallas pequeñas */
+  height: auto; /* Mantiene la relación de aspecto de la imagen */
+  max-width: 400px; /* Limita el tamaño máximo de la imagen */
+  margin-bottom: 10px; /* Espacio inferior entre la imagen y el texto */
 }
 
 .restaurants-list ul {
@@ -1167,6 +1184,15 @@ h3 {
     clear: both;
     display: table;
   }
+
+  .home {
+    max-width: 300px;
+    margin-right: 200px;
+  }
+
+  p {
+    font-size: 14px; /* Ajusta el tamaño del texto para pantallas pequeñas */
+  }
 }
 
 @media (max-width: 480px) {
@@ -1203,6 +1229,7 @@ h3 {
     width: 100%;
     margin: 5px 0;
   }
+
 }
 
 @media (max-width: 767px) {
