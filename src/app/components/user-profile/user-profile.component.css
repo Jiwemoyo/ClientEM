@@ -28,7 +28,6 @@ ul {
 .image-container {
   position: relative;
   overflow: hidden;
-  margin-left: 100px;
   width: 100%;
 }
 
@@ -294,8 +293,8 @@ ul {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  width: 90%;
-  max-width: 900px;
+  width: 50%; /* Ajusta este valor para reducir el ancho */
+  max-width: 100px; /* Ajusta este valor para reducir el ancho máximo */
   height: auto;
   max-height: 90vh;
   overflow-y: auto;
@@ -314,7 +313,7 @@ ul {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   width: 100%; /* Aumentar el ancho */
-  max-width: 750px; /* Aumentar el ancho máximo */
+  max-width: 650px; /* Aumentar el ancho máximo */
   height: auto; /* Ajustar la altura automáticamente */
   max-height: 80%; /* Reducir el largo máximo */
   overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
@@ -334,7 +333,7 @@ ul {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   width: 100%; /* Aumentar el ancho */
-  max-width: 500px; /* Aumentar el ancho máximo */
+  max-width: 200px; /* Aumentar el ancho máximo */
   height: auto; /* Ajustar la altura automáticamente */
   max-height: 80%; /* Reducir el largo máximo */
   overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
@@ -422,21 +421,26 @@ input{
 }
 
 .image-label {
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   align-items: center;
   padding: 10px;
-  width: 100%;
+  width: 85%;
   justify-content:center;
   text-align: center;
   cursor: pointer;
-  border-radius: 16px;
   background-color: #FFF5E7;
 }
 .input-container {
   margin-bottom: 20px;
 }
-
+input[type="file"]{
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid #6c8b7b;
+}
 .input-label {
   display: block;
   font-size: 16px;
@@ -478,13 +482,12 @@ label input{
   flex-wrap: wrap;
   align-items: flex-start;
   flex-direction: column;
-  text-align: center;
-  margin-left: 22%;
+  text-align: left;
   margin-right: 22%;
 }
 
 .form-fields .form {
-  margin-left:20px;  /* Ajusta este valor según sea necesario para acercar los inputs al recuadro de la imagen */
+  margin-left:20%;  /* Ajusta este valor según sea necesario para acercar los inputs al recuadro de la imagen */
 
 }
 
@@ -508,18 +511,16 @@ label input{
 }
 
 .form-group textarea {
-  padding: 20px;
+  padding: 5px;
   font-size: 1rem;
   justify-content: space-between;
   background-color: #FFF5E7;
   resize: none;
   height: 150px;
-  width: 300px;
-  top: 1600px;
-  left: 62px;
-  gap: 0px;
+  width: 10%;
+  gap: 10px;
   border-radius: 8px;
-  border: 5px solid rgba(84, 122, 128, 1)
+  border: 5px solid rgba(84, 122, 128, 1);
 }
 .form-group1 textarea {
   padding: 20px;
@@ -554,14 +555,12 @@ label input{
 }
 .button-group {
   display: flex;
-  text-align: cent;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-bottom: 30px;
   margin-top: 20px;
-
-  width: 120px;
-  height: 40px;
+  width: 20%; /* Ajusta según sea necesario */
   font-weight: normal;
 }
 
@@ -584,6 +583,20 @@ label input{
 
 }
 
+.button-group .submit-button2 .cancel-button {
+  padding: 10px 20px; /* Ajusta el padding según sea necesario */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px; /* Añade espacio entre los botones */
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+  line-height: 35.12px;
+  font-weight: normal;
+  width: auto; /* Ajusta el ancho de los botones */
+  max-width: 200px; /* Ancho máximo de los botones */
+}
+
 button[type="submit"],
 button[type="button"] {
   padding: 10px 20px;
@@ -597,11 +610,10 @@ button[type="button"] {
   line-height: 35.12px;
   justify-content: space-between;
   font-weight: normal;
-  width: 122px;
 }
 
 button[type="submit"] {
-  background: #547A80;
+  background: #395B64;
   color: #FFF5E7;
   margin: auto;
 }
@@ -897,7 +909,7 @@ input .submit-button{
   text-align: left;
   font-weight: normal;
   display: block;
-  background-color: #efe4cf;
+  background-color: #FFF5E7;
 }
 
 label{
@@ -906,7 +918,7 @@ label{
   font-weight: 700;
   line-height: 23.44px;
   color: #4c4c4c;
-  text-align: left;
+  text-align: center;
   font-weight: normal;
   background-color: #FFF5E7;
 }
@@ -942,7 +954,7 @@ label{
 
 /* Estilos generales para los textarea */
 textarea {
-  width: 45%;
+  width: 35%;
   height: 150px;
   border: 2px solid #4c4c4c;
   border-radius: 8px;
@@ -1045,7 +1057,7 @@ h3 {
 }
 
 .form-group textarea, .form-group1 textarea, .form-steps textarea {
-  width: 100%;
+  width: 90%;
   max-width: none;
 }
 
@@ -1093,7 +1105,7 @@ h3 {
   }
 
   .form-group, .form-steps, .form-group1 {
-    width: 100%;
+    width: 90%;
     margin-right: 0;
   }
 
