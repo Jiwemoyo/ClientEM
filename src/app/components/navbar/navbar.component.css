@@ -134,8 +134,8 @@
     justify-content: space-around;
     padding: 10px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    border-top: 2px solid #547A80;  /* Línea divisoria añadida aquí */
-    margin: 15px;
+    border-top: 2px solid #547A80;
+    margin-top: 15px;
   }
 
   .navbar-links.open {
@@ -147,6 +147,38 @@
     margin: 0;
     padding: 10px 15px;
     text-align: center;
+    font-size: 0;
+  }
+
+  .navbar-links a::before,
+  .navbar-links .logout::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 24px;
+  }
+
+  .navbar-links a[routerLink="/admin/users"]::before {
+    content: '\f0c0'; /* Icono de usuarios */
+  }
+
+  .navbar-links a[routerLink="/recipes"]::before {
+    content: '\f2e7'; /* Icono de recetas */
+  }
+
+  .navbar-links a[routerLink="/login"]::before {
+    content: '\f2f6'; /* Icono de login */
+  }
+
+  .navbar-links a[routerLink="/profile"]::before {
+    content: '\f007'; /* Icono de perfil */
+  }
+
+  .navbar-links a[routerLink="/register"]::before {
+    content: '\f234'; /* Icono de registro */
+  }
+
+  .navbar-links .logout::before {
+    content: '\f2f5'; /* Icono de salir */
   }
 
   .navbar-links a::after,

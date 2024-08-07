@@ -8,6 +8,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { jwtDecode } from 'jwt-decode';
 import { LoadingService } from '../../services/loading.service';
 import { AuthService } from '../../services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -32,7 +33,8 @@ export class RecipeDetailComponent implements OnInit {
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
     private loadingService: LoadingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) {
     this.commentForm = this.fb.group({
       content: ['', Validators.required]
@@ -70,6 +72,11 @@ export class RecipeDetailComponent implements OnInit {
       });
     }
   }
+
+  goBack(): void {
+    this.location.back();
+  }
+
 
   sortComments(): void {
     this.recipe.comments.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());

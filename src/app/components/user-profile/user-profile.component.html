@@ -19,7 +19,10 @@
 </div>
 <div class="container-receta">
   <h2>Mis Recetas</h2>
-  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()">Crear Receta</button>
+  <button *ngIf="!isCreating && !isEditing" (click)="startCreating()" class="create-button">
+    <span class="button-text">Crear Receta</span>
+    <i class="fas fa-plus-circle button-icon"></i>
+  </button>
 </div>
 <div *ngIf="recipes.length > 0" class="recipes-list">
   <ul>
@@ -29,8 +32,16 @@
       </div>
       <h3 class="recipe-title">{{ recipe.title }}</h3>
       <div class="likes-and-details">
-        <p class="likes"><i class="fa fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
-        <button (click)="viewRecipe(recipe._id)" class="details-btn">Ver Detalles</button>
+        <p class="likes">
+          <i class="fa fa-heart" style="color: #FF6B6B;"></i>
+          <span class="likes-count">{{ recipe.likesCount }}</span>
+          <span class="likes-text">personas</span>
+          <i class="fas fa-user likes-icon"></i>
+        </p>
+        <button (click)="viewRecipe(recipe._id)" class="details-btn">
+          <span class="details-text">Ver Detalles</span>
+          <i class="fas fa-eye details-icon" aria-hidden="true"></i>
+        </button>
       </div>
       <hr class="separator">
       <div class="button-container">
@@ -166,7 +177,8 @@
   *ngIf="!isCreatingRestaurant && !isEditingRestaurant"
   (click)="startCreatingRestaurant()"
 >
-  Crear Sucursal
+  <span class="button-text">Crear Sucursal</span>
+  <i class="fas fa-store button-icon"></i>
 </button>
 </div>
 <div class="no-restaurants-container">

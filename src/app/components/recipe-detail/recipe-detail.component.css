@@ -379,6 +379,23 @@ button[type="submit"]:hover {
 .delete-btn1:hover {
   background-color: #5a3e3b;
 }
+.back-button {
+  background-color: #547A80;
+  color: #FFF5E7;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto; /* Centra el botón horizontalmente */
+}
+
+.back-button:hover {
+  background-color: #3a5559;
+}
 
 
 @media (max-width: 768px) {
@@ -441,6 +458,7 @@ button[type="submit"]:hover {
     margin-top: 10px;
   }
 }
+
 
 /* Para pantallas aún más pequeñas */
 @media (max-width: 480px) {

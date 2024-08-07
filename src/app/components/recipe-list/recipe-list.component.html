@@ -22,11 +22,18 @@
           <img *ngIf="recipe.image" [src]="recipe.image" alt="{{ recipe.title }}" class="recipe-image">
           <h3>{{ recipe.title }}</h3>
           <b>Hecho por:
-            <a [routerLink]="['/user-profile-view', recipe.author._id]">{{ recipe.author.username }}</a>
+            <a [routerLink]="['/user-profile-view', recipe.author._id]" [attr.data-username]="recipe.author.username">{{ recipe.author.username }}</a>
           </b>
           <div class="button-container">
-            <p class="like-button"> <i class="fa-solid fa-heart" style="color: #FF6B6B;"></i> {{ recipe.likesCount }} personas</p>
-            <button class="details-button" (click)="viewRecipe(recipe._id)">Ver Detalles</button>
+            <p class="like-button">
+              <i class="fa-solid fa-heart" style="color: #FF6B6B;"></i>
+              <span class="likes-count">{{ recipe.likesCount }}</span>
+              <span class="likes-text">personas</span>
+            </p>
+            <button class="details-button" (click)="viewRecipe(recipe._id)">
+              <span class="button-text">Ver Detalles</span>
+              <i class="fa-solid fa-eye button-icon"></i>
+            </button>
           </div>
         </li>
       </ul>
