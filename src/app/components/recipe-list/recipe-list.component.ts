@@ -1,7 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
-import { LoadingService } from '../../services/loading.service'; // Asegúrate de importar el servicio de carga
+import { LoadingService } from '../../services/loading.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,8 +16,9 @@ export class RecipeListComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private router: Router,
-    private loadingService: LoadingService, // Inyecta el servicio de carga
-    private ngZone: NgZone
+    private loadingService: LoadingService,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
@@ -25,13 +27,16 @@ export class RecipeListComponent implements OnInit {
 
   loadRecipes(): void {
     this.loadingService.show();
-    this.recipeService.getAllRecipes().subscribe({
+    this.recipeService.getAllRecipes(new Date().getTime()).subscribe({
       next: (data: any[]) => {
         this.ngZone.run(() => {
-          // Ordenar las recetas por fecha de creación (de más nuevo a más antiguo)
           this.recipes = data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
           this.filteredRecipes = this.recipes;
           this.loadingService.hide();
+          // Actualizar el almacenamiento local con los datos más recientes solo si estamos en el navegador
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('recipes', JSON.stringify(this.recipes));
+          }
         });
       },
       error: (error) => {
@@ -52,5 +57,13 @@ export class RecipeListComponent implements OnInit {
     this.filteredRecipes = this.recipes.filter(recipe =>
       recipe.title.toLowerCase().includes(searchTerm)
     );
+  }
+
+  // Método para forzar una recarga de datos
+  forceReload(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem('recipes');
+    }
+    this.loadRecipes();
   }
 }

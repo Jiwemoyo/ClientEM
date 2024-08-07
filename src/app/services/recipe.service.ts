@@ -1,8 +1,9 @@
 // recipe.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,17 @@ export class RecipeService {
 
   createRecipe(recipeData: FormData, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post(this.apiUrl, recipeData, { headers });
+    return this.http.post(this.apiUrl, recipeData, { headers }).pipe(
+      tap(() => this.invalidateCache())
+    );
   }
 
-  getAllRecipes(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getAllRecipes(timestamp?: number): Observable<any> {
+    let params = new HttpParams();
+    if (timestamp) {
+      params = params.set('t', timestamp.toString());
+    }
+    return this.http.get(this.apiUrl, { params });
   }
 
   getRecipesByUser(): Observable<any> {
@@ -39,11 +46,21 @@ export class RecipeService {
 
   updateRecipe(recipeId: string, recipeData: any, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put(`${this.apiUrl}/${recipeId}`, recipeData, { headers });
+    return this.http.put(`${this.apiUrl}/${recipeId}`, recipeData, { headers }).pipe(
+      tap(() => this.invalidateCache())
+    );
   }
 
   deleteRecipe(recipeId: string, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers });
+    return this.http.delete(`${this.apiUrl}/${recipeId}`, { headers }).pipe(
+      tap(() => this.invalidateCache())
+    );
+  }
+
+  private invalidateCache(): void {
+    // Aquí puedes implementar lógica para invalidar cualquier caché local
+    // Por ejemplo, si estás usando localStorage:
+    localStorage.removeItem('recipes');
   }
 }
