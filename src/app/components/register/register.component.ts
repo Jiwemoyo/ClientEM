@@ -17,8 +17,8 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   register() {
-    if (!this.validateEmail()) {
-      this.errorMessage = "Por favor, ingresa un correo electrónico válido.";
+    if (!this.validateEmail() || this.password.length < 5) {
+      this.errorMessage = "Por favor, ingresa un correo electrónico válido y una contraseña de al menos 6 caracteres.";
       return;
     }
 

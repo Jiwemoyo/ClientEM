@@ -24,6 +24,9 @@
         <span class="error-message" *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
           La contraseña es requerida.
         </span>
+        <span class="error-message" *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+          La contraseña debe tener al menos 6 caracteres.
+        </span>
       </div>
       <button type="submit" [disabled]="registerForm.form.invalid">Registrarse</button>
     </form>
